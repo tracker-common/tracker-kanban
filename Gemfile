@@ -56,6 +56,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+gem "react_on_rails", "~> 7"
+# installation of React for Rails
+
 
 #Custom Gems
 gem 'mongoid', git: 'https://github.com/mongodb/mongoid.git'
