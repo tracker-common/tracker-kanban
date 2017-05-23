@@ -5,20 +5,15 @@
     <meta name="google-signin-client_id" content="569976604919-hmipa5tk1gjat8h4k13pviegsuo7e4fe.apps.googleusercontent.com">
 </head>
 <body>
-    <div id= "login" class="g-signin2" data-onsuccess="onSignIn" onclick="unhide();" ></div>
+    <div id= "login" class="g-signin2" data-onsuccess="onSignIn" ></div>
     <script src="https://apis.google.com/js/platform.js" async defer></script>
     <div id= "signOutWords" onclick="signOut();">Sign out</div>
     <script>
 
     document.getElementById('signOutWords').style.visibility = 'hidden';
-
-    function unhide() {
-          document.getElementById('signOutWords').style.visibility = 'visible';
-    }
-
-
       
       function onSignIn(googleUser) {
+        document.getElementById('signOutWords').style.visibility = 'visible';
         var profile = googleUser.getBasicProfile();
           console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
           console.log('Name: ' + profile.getName());
