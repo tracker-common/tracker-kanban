@@ -3291,3 +3291,31 @@ Processing by WelcomeController#helloWorld as HTML
 Completed 200 OK in 215ms (Views: 16.2ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:38:37 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (258.6ms)
+Completed 200 OK in 492ms (Views: 305.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:38:40 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 23ms (Views: 21.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:38:49 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 18ms (Views: 16.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:38:55 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 23ms (Views: 20.7ms)
+
+
