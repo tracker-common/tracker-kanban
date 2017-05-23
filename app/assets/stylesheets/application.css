@@ -13,3 +13,37 @@
  *= require_tree .
  *= require_self
  */
+ .TrackerTitle {
+    font-size: 30px;
+    align-items: center;
+    color: #4878A7;
+    font-weight: bold;
+  }
+
+  .screenText {
+    font-size: 15px;
+    align-items: center;
+    color: #4878A7;
+  }
+
+  .signButton {
+    margin: 0 auto;
+    float: left;
+    align-content: center;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    align-content: center;
+    align-items: center;
+  }
+  .g-signin2{
+    width: 100%;
+  }
+
+  .g-signin2 > div{
+    margin: 0 auto;
+  }

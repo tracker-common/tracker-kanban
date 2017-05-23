@@ -59,7 +59,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "react_on_rails", "~> 7"
 # installation of React for Rails
 
+gem "react-rails"
+
+gem 'bootstrap-sass'
+# make everything look pretty
+
 
 #Custom Gems
 gem 'mongoid', git: 'https://github.com/mongodb/mongoid.git'
-

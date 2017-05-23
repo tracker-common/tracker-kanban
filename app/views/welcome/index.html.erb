@@ -1,17 +1,22 @@
+<%= stylesheet_link_tag "application" %>
+
 <html>
-<h1>Kanban Tracker</h1>
-<p>Sign in with your Google Email Address</p>
-<head>
-    <meta name="google-signin-client_id" content="569976604919-hmipa5tk1gjat8h4k13pviegsuo7e4fe.apps.googleusercontent.com">
+<img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.tasktop.com/sites/default/files/styles/large/public/pivotal-tracker-logo_1.png?itok=Qek_Dh-P"/>
+<h2 class="TrackerTitle"><font face="verdana">Kanban</font></h2>
+<p class="screenText"><font face="verdana">Sign in with Google to see your stories</font></p>
+<div class="signButton">
+    <meta name ="google-signin-client_id" content="569976604919-hmipa5tk1gjat8h4k13pviegsuo7e4fe.apps.googleusercontent.com">
     <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js' type='text/javascript'></script>
-</head>
-<body>
-    <div id= "login" class="g-signin2" data-onsuccess="onSignIn" ></div>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</div>
+<body style="text-align: center">
+  <div class="g-signin2" data-onsuccess="onSignIn"
+    -theme="light" data-width="300" data-height="50"
+    data-longtitle="true">button</div>
+    <script src="https://apis.google.com/js/platform.js" async defer; style="display: block; margin-left: auto; margin-right: auto"></script>
     <a href=" " id="signOutWords" onclick="signOut();">Sign out</a>
     <script>
     document.getElementById('signOutWords').style.visibility = 'hidden';
-      
+
       function onSignIn(googleUser) {
         document.getElementById('signOutWords').style.visibility = 'visible';
         var profile = googleUser.getBasicProfile();
@@ -29,12 +34,6 @@
             });
         }
     </script>
-    <form>
-      <p>
-        <label for='token'>User API Token:</label>
-        <input type='text' id='token' />
-      </p>
-    </form>
 
 </body>
 </html>
