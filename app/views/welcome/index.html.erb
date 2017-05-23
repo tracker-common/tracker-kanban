@@ -1,14 +1,31 @@
 <html>
-<h1>Sup mmmmmORGAN</h1>
-<p>You can find us in our little space hacking away.</p>
-
+<h1>Kanban Tracker</h1>
+<p>Sign in with your Google Email Address</p>
 <head>
     <meta name="google-signin-client_id" content="569976604919-hmipa5tk1gjat8h4k13pviegsuo7e4fe.apps.googleusercontent.com">
 </head>
 <body>
     <div class="g-signin2" data-onsuccess="onSignIn"></div>
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer>
+  
+        var auth2 = gapi.auth2.getAuthInstance();
+
+        if (auth2.isSignedIn.get()) {
+  var profile = auth2.currentUser.get().getBasicProfile();
+  console.log('ID: ' + profile.getId());
+  console.log('Full Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail());
+}
+
+
+
+    </script>
     <a href="#" onclick="signOut();">Sign out</a>
+
     <script>
         function signOut() {
             var auth2 = gapi.auth2.getAuthInstance();
