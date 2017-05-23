@@ -49,7 +49,16 @@ GEM
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
     arel (8.0.0)
+    autoprefixer-rails (7.1.1)
+      execjs
+    babel-source (5.8.35)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bindex (0.5.0)
+    bootstrap-sass (3.3.7)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     bson (4.2.1)
     builder (3.2.3)
     byebug (9.0.6)
@@ -166,6 +175,12 @@ GEM
     rb-fsevent (0.9.8)
     rb-inotify (0.9.8)
       ffi (>= 0.5.0)
+    react-rails (2.2.0)
+      babel-transpiler (>= 0.7.0)
+      connection_pool
+      execjs
+      railties (>= 3.2)
+      tilt
     react_on_rails (7.0.4)
       addressable
       connection_pool
@@ -235,6 +250,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
@@ -246,6 +262,7 @@ DEPENDENCIES
   mongoid!
   puma (~> 3.7)
   rails (~> 5.1.1)
+  react-rails
   react_on_rails (~> 7)
   sass-rails (~> 5.0)
   selenium-webdriver

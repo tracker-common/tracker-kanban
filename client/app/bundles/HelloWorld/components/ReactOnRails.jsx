@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import ReactOnRails from 'react_on_rails';
 
 export default class HelloWorld extends React.Component {
   static propTypes = {
