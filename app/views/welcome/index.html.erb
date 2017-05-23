@@ -1,9 +1,9 @@
 <html>
 <h1>Kanban Tracker</h1>
-<p>Sign in with your Google Email Address</p>
+<p id="signInWithGoogleMessage">Sign in with your Google Email Address</p>
 <head>
     <meta name="google-signin-client_id" content="569976604919-hmipa5tk1gjat8h4k13pviegsuo7e4fe.apps.googleusercontent.com">
-    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js' type='text/javascript'></script>
+      <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js' type='text/javascript'></script>
 </head>
 <body>
     <div id= "login" class="g-signin2" data-onsuccess="onSignIn" ></div>
@@ -13,7 +13,11 @@
     document.getElementById('signOutWords').style.visibility = 'hidden';
       
       function onSignIn(googleUser) {
+        document.getElementById('login').style.visibility = 'hidden';
+        document.getElementById('signInWithGoogleMessage').style.visibility = 'hidden';
         document.getElementById('signOutWords').style.visibility = 'visible';
+        document.getElementById('doit_link').style.visibility = 'visible';
+
         var profile = googleUser.getBasicProfile();
           console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
           console.log('Name: ' + profile.getName());
@@ -23,18 +27,60 @@
 
         function signOut() {
             document.getElementById('signOutWords').style.visibility = 'hidden';
+            document.getElementById('doit_link').style.visibility = 'hidden';
             var auth2 = gapi.auth2.getAuthInstance();
             auth2.signOut().then(function () {
                 console.log('User signed out.');
             });
         }
     </script>
-    <form>
+
+<form>
       <p>
         <label for='token'>User API Token:</label>
         <input type='text' id='token' />
       </p>
     </form>
 
+    <a href='#' id='doit_link'>Fetch Story Names from Project</a>
+
+    <div style='margin:40px'>
+      <p id='result_title'></p>
+      <ul id='result_area'>
+      </ul>
+    </div>
+
+    <script type="text/javascript">
+      function executeTrackerApiFetch() {
+        // get parameters
+        var token = $('#token').val();
+
+        // compose request URL
+        var url = 'https://www.pivotaltracker.com/services/v5';
+        url += '/projects/'
+
+        // do API request to get story names
+        $.ajax({
+          url: url,
+          beforeSend: function(xhr) {
+            xhr.setRequestHeader('X-TrackerToken', token);
+          }
+        }).done(displayTrackerApiResponse);
+      }
+
+      function displayTrackerApiResponse(stories) {
+        $('#result_title').html('Unaccepted stories from Project');
+
+        var html = '';
+        for (var i=0; i < stories.length;i++) {
+          html += '<li>' + stories[i].name + '</li>';
+        }
+        $('#result_area').html(html);
+      }
+
+      $(function() {
+        $('#doit_link').click(executeTrackerApiFetch);
+      });
+    </script>
 </body>
 </html>

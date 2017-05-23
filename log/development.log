@@ -1584,3 +1584,213 @@ Processing by WelcomeController#index as HTML
 Completed 200 OK in 14ms (Views: 12.0ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:33:14 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 249ms (Views: 127.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:33:15 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 34ms (Views: 32.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:33:17 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 15.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:33:17 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 15ms (Views: 13.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:33:17 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 18ms (Views: 16.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:33:18 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 22ms (Views: 20.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:33:18 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 26ms (Views: 23.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:37:10 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 25ms (Views: 20.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:39:37 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 12ms (Views: 10.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:39:58 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 13ms (Views: 10.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:43:29 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 12ms (Views: 11.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:43:42 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 16ms (Views: 13.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:43:50 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 12ms (Views: 10.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:43:59 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 13ms (Views: 11.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:45:14 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 12ms (Views: 10.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:46:00 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 13ms (Views: 11.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:46:14 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 15ms (Views: 12.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:47:23 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 325ms (Views: 173.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:47:30 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 13ms (Views: 11.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:48:07 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 12ms (Views: 10.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:48:10 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 12ms (Views: 10.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:48:15 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 12ms (Views: 10.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:48:48 -0600
+Processing by WelcomeController#index as HTML
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:48:48 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 16ms (Views: 14.3ms)
+
+
+Completed 200 OK in 26ms (Views: 21.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:51:39 -0600
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:51:39 -0600
+Processing by WelcomeController#index as HTML
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.0ms)
+Completed 200 OK in 21ms (Views: 19.5ms)
+
+
+Completed 200 OK in 20ms (Views: 15.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:51:54 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 19ms (Views: 16.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:52:53 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 14ms (Views: 12.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:53:04 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+Started GET "/" for 127.0.0.1 at 2017-05-23 10:53:04 -0600
+  Rendered welcome/index.html.erb within layouts/application (0.7ms)
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 25ms (Views: 22.7ms)
+
+
+Completed 200 OK in 22ms (Views: 20.4ms)
+
+
