@@ -10,8 +10,10 @@
     <div id= "signOutWords" class="hidden" onclick="signOut();">Sign out</div>
     <script>
 
-      var profile = googleUser.getBasicProfile();
+      
       function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log("SIGN IN HAPPENED");
           console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
           console.log('Name: ' + profile.getName());
           console.log('Image URL: ' + profile.getImageUrl());
