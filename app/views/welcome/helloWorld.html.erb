@@ -1,0 +1,13 @@
+<h1>List of Projects</h1>
+
+<h3>Choose a Project</h3>
+
+<ul >
+   <% @b.each do |c| %>
+   <li><%= link_to c["name"], {:action => 'helloWorld'} -%></li>
+   <% end %>
+</ul>
+
+
+
+

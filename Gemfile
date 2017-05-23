@@ -62,4 +62,6 @@ gem "react_on_rails", "~> 7"
 
 #Custom Gems
 gem 'mongoid', git: 'https://github.com/mongodb/mongoid.git'
+gem 'json'
+gem 'httparty'
 
