@@ -3291,3 +3291,94 @@ Processing by WelcomeController#helloWorld as HTML
 Completed 200 OK in 215ms (Views: 16.2ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:46:54 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (516.9ms)
+Completed 200 OK in 775ms (Views: 622.3ms)
+
+
+Started GET "/welcome/helloWorld" for 127.0.0.1 at 2017-05-23 15:47:20 -0600
+Processing by WelcomeController#helloWorld as HTML
+  Rendering welcome/helloWorld.html.erb within layouts/application
+  Rendered welcome/helloWorld.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 370ms (Views: 24.2ms)
+
+
+Started GET "/welcome/helloWorld" for 127.0.0.1 at 2017-05-23 15:47:24 -0600
+Processing by WelcomeController#helloWorld as HTML
+  Rendering welcome/helloWorld.html.erb within layouts/application
+  Rendered welcome/helloWorld.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 313ms (Views: 19.4ms)
+
+
+Started GET "/welcome/helloWorld" for 127.0.0.1 at 2017-05-23 15:47:27 -0600
+Processing by WelcomeController#helloWorld as HTML
+  Rendering welcome/helloWorld.html.erb within layouts/application
+  Rendered welcome/helloWorld.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 306ms (Views: 14.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:47:35 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 25ms (Views: 22.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:47:46 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 23ms (Views: 20.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:48:35 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 28ms (Views: 25.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:48:39 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 28ms (Views: 25.9ms)
+
+
+Started GET "/welcome/helloWorld" for 127.0.0.1 at 2017-05-23 15:48:47 -0600
+Processing by WelcomeController#helloWorld as HTML
+  Rendering welcome/helloWorld.html.erb within layouts/application
+  Rendered welcome/helloWorld.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 320ms (Views: 14.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:48:58 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 20ms (Views: 17.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:48:59 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 30ms (Views: 27.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-23 15:49:03 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 27ms (Views: 21.9ms)
+
+
+Started GET "/welcome/helloWorld" for 127.0.0.1 at 2017-05-23 15:49:12 -0600
+Processing by WelcomeController#helloWorld as HTML
+  Rendering welcome/helloWorld.html.erb within layouts/application
+  Rendered welcome/helloWorld.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 311ms (Views: 16.0ms)
+
+
