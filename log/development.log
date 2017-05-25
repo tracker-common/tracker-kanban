@@ -4656,3 +4656,1097 @@ app/views/welcome/index.html.erb:45: syntax error, unexpected '<', expecting ')'
 app/views/welcome/index.html.erb:56: unknown regexp options - javacrpt
 app/views/welcome/index.html.erb:56: syntax error, unexpected tSTRING_BEG, expecting ')'
 app/views/welcome/index.html.erb:56: unterminated string meets end of file
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:10:21 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 127ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:45: syntax error, unexpected '<', expecting ')'
+  <p>'.freeze;@output_buffer.appe
+   ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:56: unknown regexp options - javacrpt
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:56: syntax error, unexpected tSTRING_BEG, expecting ')'
+<script type="text/javascript">
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:56: unterminated string meets end of file):
+  
+app/views/welcome/index.html.erb:45: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:56: unknown regexp options - javacrpt
+app/views/welcome/index.html.erb:56: syntax error, unexpected tSTRING_BEG, expecting ')'
+app/views/welcome/index.html.erb:56: unterminated string meets end of file
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:15:34 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 12ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:32: syntax error, unexpected keyword_end
+eze;@output_buffer.append=(end);@output_buffer.safe_append='
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:92: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:94: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/welcome/index.html.erb:32: syntax error, unexpected keyword_end
+app/views/welcome/index.html.erb:92: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/welcome/index.html.erb:94: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:15:53 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (616.8ms)
+  Rendered welcome/index.html.erb within layouts/application (877.9ms)
+Completed 500 Internal Server Error in 882ms
+
+
+  
+ActionView::Template::Error (undefined local variable or method `project' for #<#<Class:0x007f9352912a98>:0x007f9357478a50>
+Did you mean?  proc):
+    1: <%= form_with(model: project, local: true) do |form| %>
+    2:   <% if blog.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb___54734437392380582_70135420662980'
+app/views/welcome/index.html.erb:29:in `_app_views_welcome_index_html_erb__3387268826968324767_70135400614540'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:16:31 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (3.2ms)
+  Rendered welcome/index.html.erb within layouts/application (7.1ms)
+Completed 500 Internal Server Error in 11ms
+
+
+  
+ActionView::Template::Error (undefined method `errors' for nil:NilClass):
+    1: <%= form_with(model: @project, local: true) do |form| %>
+    2:   <% if blog.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
+    5: 
+  
+app/views/welcome/_form.html.erb:2:in `block in _app_views_welcome__form_html_erb___54734437392380582_70135437584580'
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb___54734437392380582_70135437584580'
+app/views/welcome/index.html.erb:29:in `_app_views_welcome_index_html_erb__3387268826968324767_70135433758720'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:16:43 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (23.9ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (27.8ms)
+Completed 200 OK in 59ms (Views: 57.7ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:17:25 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:20:14 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (3.7ms)
+  Rendered welcome/index.html.erb within layouts/application (8.4ms)
+Completed 500 Internal Server Error in 13ms
+
+
+  
+ActionView::Template::Error (First argument in form cannot contain nil or be empty):
+    1: <%= form_for @project do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb___54734437392380582_70135415735100'
+app/views/welcome/index.html.erb:29:in `_app_views_welcome_index_html_erb__3387268826968324767_70135375926620'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:20:31 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (3.6ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 27ms (Views: 25.4ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:21:03 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/welcome" for 127.0.0.1 at 2017-05-25 10:22:14 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/welcome"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:22:18 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.3ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 26ms (Views: 24.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:22:38 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.6ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (7.6ms)
+Completed 200 OK in 25ms (Views: 23.2ms)
+
+
+Started GET "/welcome" for 127.0.0.1 at 2017-05-25 10:22:42 -0600
+  
+ActionController::RoutingError (No route matches [GET] "/welcome"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/welcome/index?render=helloWorld" for 127.0.0.1 at 2017-05-25 10:22:46 -0600
+Processing by WelcomeController#index as HTML
+  Parameters: {"render"=>"helloWorld"}
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (1.7ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 25ms (Views: 23.2ms)
+
+
+Started GET "/welcome/index" for 127.0.0.1 at 2017-05-25 10:24:27 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (1.7ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 21ms (Views: 19.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:24:33 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (1.8ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 21ms (Views: 19.6ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:24:37 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:30:15 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:30:18 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.5ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 29ms (Views: 23.5ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:30:23 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:31:12 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (1.9ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 22ms (Views: 20.9ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:31:16 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:31:43 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.1ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.9ms)
+Completed 200 OK in 33ms (Views: 31.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:32:45 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (3.2ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 27ms (Views: 21.7ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:32:51 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:33:57 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.0ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 26ms (Views: 20.3ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:34:01 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:35:04 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (0.8ms)
+  Rendered welcome/index.html.erb within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 14ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/_form.html.erb:14: syntax error, unexpected ')', expecting =>
+ion=>helloWorld, form.submit );@output_buffer.safe_append='
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/_form.html.erb:16: syntax error, unexpected keyword_end, expecting ')'
+'.freeze; end 
+             ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/_form.html.erb:18: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/_form.html.erb:20: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/welcome/_form.html.erb:14: syntax error, unexpected ')', expecting =>
+app/views/welcome/_form.html.erb:16: syntax error, unexpected keyword_end, expecting ')'
+app/views/welcome/_form.html.erb:18: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/welcome/_form.html.erb:20: syntax error, unexpected keyword_end, expecting ')'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__3387268826968324767_70135444538680'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:36:08 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (0.6ms)
+  Rendered welcome/index.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 10ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/_form.html.erb:1: syntax error, unexpected ':', expecting keyword_end
+odel: @project, local: true) :action => 'create' do |form| @
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/_form.html.erb:1: syntax error, unexpected keyword_do, expecting keyword_end
+: true) :action => 'create' do |form| @output_buffer.safe_ap
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/_form.html.erb:18: syntax error, unexpected keyword_ensure, expecting end-of-input
+          ensure
+                ^):
+  
+app/views/welcome/_form.html.erb:1: syntax error, unexpected ':', expecting keyword_end
+app/views/welcome/_form.html.erb:1: syntax error, unexpected keyword_do, expecting keyword_end
+app/views/welcome/_form.html.erb:18: syntax error, unexpected keyword_ensure, expecting end-of-input
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__3387268826968324767_70135438797520'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:36:30 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.1ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 21ms (Views: 19.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:36:39 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (1.8ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 22ms (Views: 20.2ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:36:43 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:37:28 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.0ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.5ms)
+Completed 200 OK in 23ms (Views: 21.0ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:37:32 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:39:31 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.3ms)
+  Rendered welcome/index.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 16ms
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"welcome"}):
+    1: <h1>Add new book</h1>
+    2: 
+    3: <%= form_tag :action => 'create' do %>
+    4: <p><label for = "book_title">Title</label>:
+    5: 
+    6: <%= text_field 'books', 'title' %></p>
+  
+app/views/welcome/_form.html.erb:3:in `_app_views_welcome__form_html_erb___54734437392380582_70135435829320'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__3387268826968324767_70135438713100'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:40:00 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (1.8ms)
+  Rendered welcome/index.html.erb within layouts/application (6.2ms)
+Completed 500 Internal Server Error in 11ms
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"welcome"}):
+    1: <h1>Add new book</h1>
+    2: 
+    3: <%= form_tag :action => 'create' do %>
+    4: <p><label for = "book_title">Title</label>:
+    5: 
+    6: <%= text_field 'books', 'title' %></p>
+  
+app/views/welcome/_form.html.erb:3:in `_app_views_welcome__form_html_erb___54734437392380582_70135423121520'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__3387268826968324767_70135436862320'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:40:14 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (6.6ms)
+  Rendered welcome/index.html.erb within layouts/application (11.3ms)
+Completed 500 Internal Server Error in 20ms
+
+
+  
+ActionView::Template::Error (undefined method `map' for nil:NilClass):
+     9: <%= text_field 'books', 'price' %></p>
+    10: <p><label for = "book_subject_id">Subject</label>:
+    11: 
+    12: <%= collection_select(:books, :subject_id, @subjects, :id, :name, prompt: true) %></p>
+    13: <p><label for = "book_description">Description</label><br/>
+    14: 
+    15: <%= text_area 'books', 'description' %></p>
+  
+app/views/welcome/_form.html.erb:12:in `block in _app_views_welcome__form_html_erb___54734437392380582_70135434756800'
+app/views/welcome/_form.html.erb:3:in `_app_views_welcome__form_html_erb___54734437392380582_70135434756800'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__3387268826968324767_70135434936600'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:40:53 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (2.1ms)
+  Rendered welcome/index.html.erb within layouts/application (6.3ms)
+Completed 500 Internal Server Error in 11ms
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"list", :controller=>"welcome"}):
+    12: <%= submit_tag "Create" %>
+    13: 
+    14: <% end -%>
+    15: <%= link_to 'Back', {:action => 'list'} %>
+  
+app/views/welcome/_form.html.erb:15:in `_app_views_welcome__form_html_erb___54734437392380582_70135437271320'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__3387268826968324767_70135432930140'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:40:58 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (0.9ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 22ms (Views: 20.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:42:08 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (0.9ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 19ms (Views: 17.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:42:51 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (0.9ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 20ms (Views: 18.5ms)
+
+
+Started POST "/welcome/create" for 127.0.0.1 at 2017-05-25 10:42:54 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/create"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:43:46 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (1.9ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 25ms (Views: 19.2ms)
+
+
+Started POST "/welcome/index" for 127.0.0.1 at 2017-05-25 10:43:53 -0600
+  
+ActionController::RoutingError (No route matches [POST] "/welcome/index"):
+  
+actionpack (5.1.1) lib/action_dispatch/middleware/debug_exceptions.rb:63:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:28:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.1) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.1) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.1) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.0) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.3) lib/rack/method_override.rb:22:in `call'
+rack (2.0.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.1) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.1) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.3) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.1) lib/rails/engine.rb:522:in `call'
+puma (3.8.2) lib/puma/configuration.rb:224:in `call'
+puma (3.8.2) lib/puma/server.rb:600:in `handle_request'
+puma (3.8.2) lib/puma/server.rb:435:in `process_client'
+puma (3.8.2) lib/puma/server.rb:299:in `block in run'
+puma (3.8.2) lib/puma/thread_pool.rb:120:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:55:23 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (4.5ms)
+  Rendered welcome/index.html.erb within layouts/application (208.6ms)
+Completed 500 Internal Server Error in 398ms
+
+
+  
+ActionView::Template::Error (undefined method `label' for nil:NilClass):
+    1: <%= form_tag("welcome/save_token", method: "post")  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+    5:     <%= form.text_field :username, id: :user_name %>
+    6:   </div> 
+    7: 
+  
+app/views/welcome/_form.html.erb:4:in `block in _app_views_welcome__form_html_erb___336675681845469286_70172144780760'
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb___336675681845469286_70172144780760'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb___2875888926450230978_70172127626560'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:58:10 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (23.3ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (31.8ms)
+Completed 200 OK in 63ms (Views: 61.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:00:25 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (13.0ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (199.5ms)
+Completed 200 OK in 436ms (Views: 259.6ms)
+
+
+Started POST "/welcome" for 127.0.0.1 at 2017-05-25 11:00:52 -0600
+Processing by WelcomeController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"sJ0TDaANaraAuLDsbyhZGX5V42anL+QsqtUa6xa4ExgW2FQnZQjdb2NYZNy/LbocFu32HzXQ7Q+HC7+x8c1LYw==", "username"=>"ethan", "token"=>"test", "commit"=>"Save "}
+Completed 400 Bad Request in 6ms
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: project):
+  
+app/controllers/welcome_controller.rb:46:in `project_params'
+app/controllers/welcome_controller.rb:14:in `create'
+Started GET "/welcome" for 127.0.0.1 at 2017-05-25 11:08:38 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (261.4ms)
+  Rendered welcome/index.html.erb within layouts/application (266.2ms)
+Completed 500 Internal Server Error in 275ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007ff2a2069d88>:0x007ff2a205beb8>):
+    1: <%= form_with(model: @user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb__3236157492775277605_70339962581820'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__2692460500090868215_70340038590500'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:08:40 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (339.1ms)
+  Rendered welcome/index.html.erb within layouts/application (345.3ms)
+Completed 500 Internal Server Error in 350ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007ff2a2069d88>:0x007ff298d238f8>):
+    1: <%= form_with(model: @user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb__3236157492775277605_70339961014220'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__2692460500090868215_70339961485700'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:09:06 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (261.6ms)
+  Rendered welcome/index.html.erb within layouts/application (266.0ms)
+Completed 500 Internal Server Error in 270ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007ff2a2069d88>:0x007ff2a3098a88>):
+    1: <%= form_with(model: user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb__3236157492775277605_70340018791340'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__2692460500090868215_70340047063640'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:09:11 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (249.0ms)
+  Rendered welcome/index.html.erb within layouts/application (253.9ms)
+Completed 500 Internal Server Error in 259ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007ff2a2069d88>:0x007ff29f9583e8>):
+    1: <%= form_with(model: @user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb__3236157492775277605_70339975398380'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__2692460500090868215_70340018095880'
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:09:36 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (247.5ms)
+  Rendered welcome/index.html.erb within layouts/application (254.1ms)
+Completed 500 Internal Server Error in 264ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007ff2a2501af8>:0x007ff2a24efdd0>):
+    1: <%= form_with(model: @user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb__3236157492775277605_70340040841180'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb__2692460500090868215_70340040987080'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:09:46 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (361.8ms)
+  Rendered welcome/index.html.erb within layouts/application (548.7ms)
+Completed 500 Internal Server Error in 739ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007f994a1127a0>:0x007f994a0f0ce0>):
+    1: <%= form_with(model: @user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb___2697749720805485610_70148134756700'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb___2310519126211797621_70148175042940'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:10:33 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (257.0ms)
+  Rendered welcome/index.html.erb within layouts/application (262.0ms)
+Completed 500 Internal Server Error in 272ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007f994b9189d0>:0x007f994b910208>):
+    1: <%= form_with(model: @user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb___2697749720805485610_70148197309860'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb___2310519126211797621_70148187279540'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:11:56 -0600
+  
+ArgumentError (You should not use the `match` method in your router without specifying an HTTP method.
+If you want to expose your action to both GET and POST, add `via: [:get, :post]` option.
+If you want to expose your action to GET, use `get` in the router:
+  Instead of: match "controller#action"
+  Do: get "controller#action"):
+  
+config/routes.rb:5:in `block in <top (required)>'
+config/routes.rb:1:in `<top (required)>'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:12:07 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (249.7ms)
+  Rendered welcome/index.html.erb within layouts/application (255.5ms)
+Completed 500 Internal Server Error in 266ms
+
+
+  
+ActionView::Template::Error (undefined method `users_path' for #<#<Class:0x007f99492f8408>:0x007f99492ee700>
+Did you mean?  user_path):
+    1: <%= form_with(model: @user, local: true)  do |form| %>
+    2: 
+    3:   <div class="field">
+    4:     <%= form.label :username %>
+  
+app/views/welcome/_form.html.erb:1:in `_app_views_welcome__form_html_erb___2697749720805485610_70148188555480'
+app/views/welcome/index.html.erb:26:in `_app_views_welcome_index_html_erb___2310519126211797621_70148167288400'
+Started POST "/__web_console/repl_sessions/bc660ba4b87cac27d8d8167d21f69882/trace" for 127.0.0.1 at 2017-05-25 11:12:55 -0600
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:17:42 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form2.html.erb (1.4ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (10.1ms)
+Completed 200 OK in 58ms (Views: 47.8ms)
+
+
+Started POST "/welcome/save_token" for 127.0.0.1 at 2017-05-25 11:17:45 -0600
+Processing by WelcomeController#save_token as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7SIs7FwlIwv/FzkVaHGbPw4NCpJKu+pLnKGM+4M8URJLZ2vGmSCU0hz37SW4dHg6ZrUf69hE42ixfymhZEkJaQ==", "token"=>"asdf", "commit"=>"Save"}
+No template found for WelcomeController#save_token, rendering head :no_content
+Completed 204 No Content in 49ms
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:18:32 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form2.html.erb (0.6ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 26ms (Views: 20.7ms)
+
+
+Started POST "/welcome/save_token" for 127.0.0.1 at 2017-05-25 11:18:36 -0600
+Processing by WelcomeController#save_token as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"a23WggVPpMbEdg234rABe0MgY5BXSzphLhfOCBDr+PzNKJGowEoTHyeW2YcyteJ+K5h26cW0M0IDyWtS956ghw==", "token"=>"tokeiasdfasdf", "commit"=>"Save"}
+No template found for WelcomeController#save_token, rendering head :no_content
+Completed 204 No Content in 50ms
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:20:20 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form2.html.erb (0.8ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 26ms (Views: 20.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:20:31 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form2.html.erb (1.2ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 28ms (Views: 22.8ms)
+
+
+Started POST "/welcome/save_token" for 127.0.0.1 at 2017-05-25 11:20:34 -0600
+Processing by WelcomeController#save_token as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"jgJ3Sff8PMZn0xNnVmxox/9VyBzvUWItEUkCupPZ/NQoRzBjMvmLH4Qzx1eGaYvCl+3dZX2uaw48l6fgdKykrw==", "token"=>"Elkjalkjfdklasd", "commit"=>"Save"}
+Completed 500 Internal Server Error in 1ms
+
+
+  
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  
+app/controllers/welcome_controller.rb:21:in `new'
+app/controllers/welcome_controller.rb:21:in `save_token'
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:23:16 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form2.html.erb (0.6ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 20ms (Views: 18.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:24:45 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form2.html.erb (0.6ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 18ms (Views: 16.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 11:25:13 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/_form.html.erb (0.7ms) [cache miss]
+  Rendered welcome/index.html.erb within layouts/application (5.0ms)
+Completed 200 OK in 20ms (Views: 18.2ms)
+
+

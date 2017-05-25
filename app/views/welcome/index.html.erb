@@ -23,33 +23,7 @@
     <a href=" " id="signOutWords" onclick="signOut();">Sign out</a>
 
 
-    <div class="form-group">
-
-    <p id="APIKeyInput">
-
-    <%= text_field :token,  placeholder: "Put API Token Here", class: "form-control"%>
-      
-    </p>
-    <p id="retrieveProjectButton">
-    
-    <%= link_to "Retrieve Projects", {:action => 'helloWorld'}%>
-      
-    </p>
-    </div>
-
-
-
-<%=form_with(model: project) do |form| %>
-  <p><%=form.text_field :title # Will reference @post.title as normal%></p>
-
-  <p><%=form.submit%></p>
-<%=end%>
-
-
-
-
-
-
+<%= render 'form', user: @user %>
 
 
 
@@ -58,9 +32,11 @@
      document.getElementById('retrieveProjectButton').style.visibility = 'hidden';
      document.getElementById('APIKeyInput').style.visibility = 'hidden';
       
+     var profile;
+
       function onSignIn(googleUser) {
 
-        var profile = googleUser.getBasicProfile();
+        profile = googleUser.getBasicProfile();
         $('#helloUser').html('Hello ' + profile.getName() + '. <br>Welcome to Kanban Tracker');
         $('#signInWithGoogleMessage').html('You are now signed in');
         document.getElementById('googleSignInButton').style.visibility = 'hidden';
@@ -74,6 +50,9 @@
           console.log('Image URL: ' + profile.getImageUrl());
           console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
         }
+
+
+
 
         function signOut() {
             document.getElementById('signOutWords').style.visibility = 'hidden';

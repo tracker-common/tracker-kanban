@@ -1,0 +1,11 @@
+<%= form_tag('welcome/save_token', method: 'post')  do |form| %>
+
+
+  <div class="actions">
+    <%= label_tag(:token, "Token:") %>
+    <%= text_field_tag(:token) %>
+    <%= submit_tag("Save") %>
+  </div>
+
+  
+<% end %>

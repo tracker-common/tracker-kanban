@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   
+
+  resources :welcome
   get 'welcome/index'
   get 'welcome/helloWorld'
+  post 'welcome/save_token'
   root 'welcome#index'
 
 

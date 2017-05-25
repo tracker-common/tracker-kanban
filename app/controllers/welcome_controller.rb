@@ -5,20 +5,39 @@ class WelcomeController < ApplicationController
   	include JSON
 
   def index
-  	  @projectToken = Project.new
+  	puts "This was seen"
+  	  @user = User.new
   end
 
 
   def create
+  	puts "THIS IS A TEST"
+  	@projectToken = User.new(user_params)
+  end
+
+  def save_token
+  	puts "I AM THE GREETEST"
+  	puts params
+  	@user = User.new(params)
+  	@user.save
+  end
+
+
+  def user_path
   end
 
 
 # 
   def helloWorld
-  	puts "THIS IS A TEST"
 
   	pp params
-  	@projectToken = Project.new(project_params)
+  	@projectToken = User.new(user_params)
+
+
+  	if @projectToken.save
+  		outs "WAS SAVED from hello world"
+  	end
+
 
   	
 
@@ -31,8 +50,8 @@ class WelcomeController < ApplicationController
   	 # end
   end
 
-  def project_params
-      params.require(:project).permit(:token)
+  def user_params
+      params.require(:user).permit(:username,:token)
   end
 
 end
