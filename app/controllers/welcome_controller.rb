@@ -1,26 +1,34 @@
-
+require 'pp'
 
 class WelcomeController < ApplicationController
   	include HTTParty
   	include JSON
 
   def index
-  	@b
+  	  @projectToken = Project.new
   end
 
-  def book_param
-      params.require(:project).permit(:token, :id)
-  end
 
+# 
   def helloWorld
-  	  	response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/", headers: {"X-TrackerToken" => "5798b625220e53fc6203c7cb17ad32ab"})
-  	  	json = JSON.parse(response.body)
-  	  	print("#{json[0]["name"]}")
-  	  	@b = Array.new
-  	  	json.each do |value|
-  	  		@b.push(value)
-  	  	end
+  	puts "THIS IS A TEST"
+
+  	pp params
+  	@projectToken = Project.new(project_params)
+
+  	
+
+  	 # response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/", headers: {"X-TrackerToken" => "#{params[:token]}"})
+  	 # json = JSON.parse(response.body)
+  	 # print("#{json[0]["name"]}")
+  	 # @b = Array.new
+  	 # json.each do |value|
+  	 #  	@b.push(value)
+  	 # end
   end
 
+  def project_params
+      params.require(:project).permit(:token)
+  end
 
 end

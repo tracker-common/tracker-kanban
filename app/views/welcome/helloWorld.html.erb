@@ -2,6 +2,9 @@
 
 <h3>Choose a Project</h3>
 
+
+<% puts params[:token] %>
+
 <ul >
    <% @b.each do |c| %>
    <li><%= link_to c["name"], {:action => 'helloWorld'} -%></li>
