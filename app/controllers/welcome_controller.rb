@@ -9,6 +9,10 @@ class WelcomeController < ApplicationController
   end
 
 
+  def create
+  end
+
+
 # 
   def helloWorld
   	puts "THIS IS A TEST"

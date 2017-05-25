@@ -4446,3 +4446,213 @@ ActionController::ParameterMissing (param is missing or the value is empty: proj
   
 app/controllers/welcome_controller.rb:31:in `project_params'
 app/controllers/welcome_controller.rb:17:in `helloWorld'
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2017-05-25 09:51:37 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+Started GET "/" for 127.0.0.1 at 2017-05-25 09:51:38 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (60.0ms)
+Completed 500 Internal Server Error in 65ms
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"welcome"}):
+    39: 
+    40: 
+    41: 
+    42: <%= form_tag :action => 'create' do %>
+    43:   <p><label for = "book_title">Title</label>:
+    44: 
+    45: 
+  Rendered welcome/index.html.erb within layouts/application (237.1ms)
+  
+app/views/welcome/index.html.erb:42:in `_app_views_welcome_index_html_erb__2646109050253298846_70315498655400'
+Completed 500 Internal Server Error in 443ms
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"create", :controller=>"welcome"}):
+    39: 
+    40: 
+    41: 
+    42: <%= form_tag :action => 'create' do %>
+    43:   <p><label for = "book_title">Title</label>:
+    44: 
+    45: 
+  
+app/views/welcome/index.html.erb:42:in `_app_views_welcome_index_html_erb__2646109050253298846_70315448499460'
+Started GET "/" for 127.0.0.1 at 2017-05-25 09:51:46 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 43ms (Views: 41.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 09:54:30 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 22ms (Views: 20.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 09:54:33 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 22ms (Views: 20.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:00:09 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 12ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+  <p>'.freeze;@output_buffer.appe
+   ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:46: unknown regexp option - p
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+ <script type="text/javascript">
+  ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+     document.getElementById(\'signOutWords\').style.visibil
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:46: unknown regexp option - p
+app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:00:32 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 6ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+  <p>'.freeze;@output_buffer.appe
+   ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:46: unknown regexp option - p
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+ <script type="text/javascript">
+  ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+     document.getElementById(\'signOutWords\').style.visibil
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:46: unknown regexp option - p
+app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:00:44 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (0.9ms)
+Completed 500 Internal Server Error in 5ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+  <p>'.freeze;@output_buffer.appe
+   ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:46: unknown regexp option - p
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+ <script type="text/javascript">
+  ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+     document.getElementById(\'signOutWords\').style.visibil
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:46: unknown regexp option - p
+app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:01:04 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.2ms)
+Completed 500 Internal Server Error in 6ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+  <p>'.freeze;@output_buffer.appe
+   ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:46: unknown regexp option - p
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+ <script type="text/javascript">
+  ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+     document.getElementById(\'signOutWords\').style.visibil
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+          ensure
+                ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+          end
+             ^):
+  
+app/views/welcome/index.html.erb:44: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:46: unknown regexp option - p
+app/views/welcome/index.html.erb:57: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:58: syntax error, unexpected $undefined, expecting ')'
+app/views/welcome/index.html.erb:105: syntax error, unexpected keyword_ensure, expecting ')'
+app/views/welcome/index.html.erb:107: syntax error, unexpected keyword_end, expecting ')'
+Started GET "/" for 127.0.0.1 at 2017-05-25 10:01:07 -0600
+Processing by WelcomeController#index as HTML
+  Rendering welcome/index.html.erb within layouts/application
+  Rendered welcome/index.html.erb within layouts/application (1.0ms)
+Completed 500 Internal Server Error in 5ms
+
+
+  
+SyntaxError (/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:45: syntax error, unexpected '<', expecting ')'
+  <p>'.freeze;@output_buffer.appe
+   ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:56: unknown regexp options - javacrpt
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:56: syntax error, unexpected tSTRING_BEG, expecting ')'
+<script type="text/javascript">
+                              ^
+/Users/ethanbonin/Documents/Pivotal/tracker-kanban/app/views/welcome/index.html.erb:56: unterminated string meets end of file):
+  
+app/views/welcome/index.html.erb:45: syntax error, unexpected '<', expecting ')'
+app/views/welcome/index.html.erb:56: unknown regexp options - javacrpt
+app/views/welcome/index.html.erb:56: syntax error, unexpected tSTRING_BEG, expecting ')'
+app/views/welcome/index.html.erb:56: unterminated string meets end of file

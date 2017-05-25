@@ -38,6 +38,21 @@
     </div>
 
 
+
+<%=form_with(model: project) do |form| %>
+  <p><%=form.text_field :title # Will reference @post.title as normal%></p>
+
+  <p><%=form.submit%></p>
+<%=end%>
+
+
+
+
+
+
+
+
+
  <script type="text/javascript">
      document.getElementById('signOutWords').style.visibility = 'hidden';
      document.getElementById('retrieveProjectButton').style.visibility = 'hidden';
