@@ -4,12 +4,15 @@ class HomeController < ApplicationController
   include JSON
 
   def show
+
+
+  print ("CURRENT USER: #{pp @current_user}")
+
+
   	if session[:user_id] == nil
   		render :layout => 'signed_out'
   	else
-  		puts "USER #{session[:user_id]["$oid"]}"
 		@user = User.find_by(_id: session[:user_id]["$oid"])
-		puts "USER TOKEN IS #{@user.api_token}"
  		if @user.api_token != " "
  			goToToken(@user.api_token)
  		else

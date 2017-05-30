@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
   post 'home/save_token'
+  get 'home/save_token'
   get 'home/delete_token'
 
   get 'project_page/home'
