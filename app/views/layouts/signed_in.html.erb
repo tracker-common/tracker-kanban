@@ -1,13 +1,7 @@
 Signed in as <strong><%= current_user.name %></strong>!
 <%= link_to "Sign out", signout_path, id: "sign_out" %>
 
+<%= render 'form' %>
 
-<%= form_tag('home/save_token', method: 'post')  do |form| %>
-  <div class="actions", id="APITokenInput">
-    <%= label_tag(:token, "Token:") %>
-    <%= text_field_tag(:token) %>
-   <%= submit_tag("Submit/Retrieve Projects")%>
-  </div>
-<% end %>
 
 

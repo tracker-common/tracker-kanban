@@ -7,7 +7,9 @@ class HomeController < ApplicationController
   	if session[:user_id] == nil
   		puts "User is not signed in"
   	else
-		@user = User.find_by(id: session[:user_id]["$oid"])
+  		puts "USER #{session[:user_id]["$oid"]}"
+		@user = User.find_by(_id: session[:user_id]["$oid"])
+		puts "USER TOKEN IS #{@user.api_token}"
  		if @user.api_token != " "
  			goToToken(@user.api_token)
  		else
