@@ -1,0 +1,49 @@
+development:
+  # Configure available database clients. (required)
+  clients:
+    # Defines the default client. (required)
+    default:
+      # Defines the name of the default database that Mongoid can connect to.
+      # (required).
+      database: CloudFoundry_j58dt49e_sblt5d6g
+   
+      hosts:
+        - ds143201.mlab.com:43201
+      options:
+
+        user: 'tracker_kanban_app'
+
+        # The password of the user for authentication.
+        password: 'P1votal_FS'
+
+  options:
+ 
+test:
+  clients:
+    default:
+      database: newproject_test
+      hosts:
+        - localhost:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
+
+production:
+  # Configure available database clients. (required)
+  clients:
+    # Defines the default client. (required)
+    default:
+      # Defines the name of the default database that Mongoid can connect to.
+      # (required).
+      database: CloudFoundry_j58dt49e_sblt5d6g
+      # Provides the hosts the default client can connect to. Must be an array
+      # of host:port pairs. (required)
+      hosts:
+        - ds143201.mlab.com:43201
+      options:
+
+        user: 'tracker_kanban_app'
+
+        # The password of the user for authentication.
+        password: 'P1votal_FS'
