@@ -1,5 +1,20 @@
-Signed in as <strong><%= current_user.name %></strong>!
-<%= link_to "Sign out", signout_path, id: "sign_out" %>
+<head>
+	<%= favicon_link_tag 'icon.jpg' %>
+	<style type="text/css">
+		body {
+			font-family: Helvetica, sans-serif;
+			font-size: 20px;
+			color: #4878A7;
+			text-align: center;
+		}
+	</style>
+</head>
+<title>Kanban Tracker - Submit Token</title>
+<%= image_tag("tracker-logo.png") %>
+<h2>
+	Signed in as <strong><%= current_user.name %></strong>!
+	<%= link_to "Sign out", signout_path, id: "sign_out" %>
+</h2>
 
 
 <%= form_tag('home/save_token', method: 'post')  do |form| %>

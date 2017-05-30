@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 
   def show
   	if session[:user_id] == nil
-  		puts "User is not signed in"
+  		render :layout => 'signed_out'
   	else
 		@user = User.find_by(id: session[:user_id]["$oid"])
  		if @user.api_token != " "
