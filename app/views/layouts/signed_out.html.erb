@@ -1,0 +1,15 @@
+<head>
+	<style type="text/css">
+		body {
+			font-family: Helvetica, sans-serif;
+			font-size: 20px;
+			color: #4878A7;
+			text-align: center;
+		}
+	</style>
+</head>
+
+<%= image_tag("tracker-logo.png") %>
+<h1>Kanban Tracker</h1>
+<body>Sign in with Google to see your stories.</body>
+<%= button_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", :method => "get" %>
