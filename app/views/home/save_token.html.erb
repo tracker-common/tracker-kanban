@@ -1,0 +1,11 @@
+<% if @projects.to_a.empty? %>
+<h3> Looks like your API key was wrong or you have no projects </h3>
+<% else %>
+<h3>Your Token: <%= @token %></h3>
+<%= link_to "clear token", action: "delete_token" %>
+<ul >
+   <% @projects.each do |c| %>
+   <li><%= link_to c["name"], controller: "project_page", action: "home" %></li>
+   <% end %>
+</ul>
+<% end %>

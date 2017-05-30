@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get 'signout', to: 'sessions#destroy', as: 'signout'
+  post 'home/save_token'
+  get 'home/delete_token'
+
+  get 'project_page/home'
+
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
