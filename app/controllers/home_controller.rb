@@ -4,20 +4,16 @@ class HomeController < ApplicationController
   include JSON
 
   def show
-
-
-  print ("CURRENT USER: #{pp @current_user}")
-
-
+    print ("CURRENT USER: #{session[:user_id]["$oid"]}")
   	if session[:user_id] == nil
   		render :layout => 'signed_out'
   	else
-		@user = User.find_by(_id: session[:user_id]["$oid"])
- 		if @user.api_token != " "
- 			goToToken(@user.api_token)
- 		else
- 			render :layout => 'signed_in'
- 		end  		
+		  @user = User.find_by(_id: session[:user_id]["$oid"])
+ 		 if @user.api_token == " " or @user.api_token == nil
+       render :layout => 'signed_in'
+ 		 else
+       goToToken(@user.api_token)
+ 		 end  		
   	end
   end
 
@@ -43,12 +39,12 @@ class HomeController < ApplicationController
  end
 
  def goToToken(token)
+  puts "INSIDE GOTOTOKEN : #{token}"
  	@token = token
  	response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/", headers: {"X-TrackerToken" => "#{token}"})
     @projects = Array.new
  	puts "RESPONSE CODE: #{response.code}"
  	if response.code == 200
- 		puts "session userid: #{session[:user_id]["$oid"]}"
  		@user = User.find_by(id: session[:user_id]["$oid"])
  		@user.api_token = params[:token]
     	@user.save
