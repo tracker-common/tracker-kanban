@@ -4,7 +4,6 @@ class HomeController < ApplicationController
   include JSON
 
   def show
-    print ("CURRENT USER: #{session[:user_id]["$oid"]}")
   	if session[:user_id] == nil
   		render :layout => 'signed_out'
   	else
