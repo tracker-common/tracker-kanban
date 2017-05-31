@@ -15,6 +15,7 @@ class ProjectPageController < ApplicationController
 			json = JSON.parse(response.body)
 			puts "!!!!NEW JSON IS #{json}"
 			json.each do |value|
+				#stuff
 			end
 		end
 	end
