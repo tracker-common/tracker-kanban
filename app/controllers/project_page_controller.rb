@@ -5,10 +5,8 @@ class ProjectPageController < ApplicationController
 	def home
 		@project_id = params[:id]["id"]
 		@project_name = params[:id]["name"]
-		@token = params[:token]
-
-		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/stories", headers: {"X-TrackerToken" => "#{@token}"})
 			@stories = Array.new
+		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state)", headers: {"X-TrackerToken" => "#{@token}"})
 		if response.code == 200
 			json = JSON.parse(response.body)
 			puts "!!!!NEW JSON IS #{json}"
@@ -17,9 +15,4 @@ class ProjectPageController < ApplicationController
 			end
 		end
 	end
-
-	def show_stories
-		#render 'show_stories'
-	end
-
 end
