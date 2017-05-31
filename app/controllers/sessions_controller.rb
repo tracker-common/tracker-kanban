@@ -11,17 +11,19 @@ class SessionsController < ApplicationController
     	session[:user_id] = user.uid
     	redirect_to root_path
   	end
-
-
-
   end
 
     def checkUser(auth)
-    	if User.where(uid: auth.uid).nil?
-    		return false
-    	else
-    		return true
-    	end
+      puts "Checking if User exists #{auth.uid}"
+      @user = User.where(uid: auth.uid)
+
+      if @user.count >= 1
+        puts "USER DOES EXISTS!!!!!"
+        return true
+      else
+        puts "USER DOES NOT EXISTS!!!!!"
+        return false
+      end
     end
   
 

@@ -42,8 +42,8 @@ class HomeController < ApplicationController
  	if response.code == 200
  		json = JSON.parse(response.body)
     	puts "JSON IS #{json}"    
-  json.each do |value|
-      		@projects.push(value)
+    json.each do |value|
+      	@projects.push(value)
     	end
     else
     	@projects.clear

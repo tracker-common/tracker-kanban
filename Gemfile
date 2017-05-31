@@ -57,3 +57,5 @@ gem 'httparty'
 gem "react-rails"
 gem 'bootstrap-sass'
 gem "omniauth-google-oauth2", "~> 0.2.1"
+gem 'bootstrap'
+gem 'jquery-rails'
