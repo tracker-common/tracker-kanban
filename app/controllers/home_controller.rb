@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   	if session[:user_id] == nil
   		render :layout => 'signed_out'
   	else
-		  @user = User.find_by(uid: session[:user_id])
+		 @user = User.find_by(uid: session[:user_id])
  		 if @user.api_token == " " or @user.api_token == nil
        render :layout => 'signed_in'""
  		 else

@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
   	end
 
 
+
   end
 
     def checkUser(auth)
