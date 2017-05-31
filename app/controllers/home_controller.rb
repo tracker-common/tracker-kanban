@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   	if session[:user_id] == nil
   		render :layout => 'signed_out'
   	else
-		  @user = User.find_by(_id: session[:user_id]["$oid"])
+		  @user = User.find_by(uid: session[:user_id])
  		 if @user.api_token == " " or @user.api_token == nil
        render :layout => 'signed_in'
  		 else
@@ -20,10 +20,8 @@ class HomeController < ApplicationController
  	@token = params[:token]
  	response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/", headers: {"X-TrackerToken" => "#{params[:token]}"})
     @projects = Array.new
- 	puts "RESPONSE CODE: #{response.code}"
  	if response.code == 200
- 		puts "session userid: #{session[:user_id]["$oid"]}"
- 		@user = User.find_by(id: session[:user_id]["$oid"])
+ 		@user = User.find_by(uid: session[:user_id])
  		@user.api_token = params[:token]
     	@user.save
  		json = JSON.parse(response.body)
@@ -38,15 +36,12 @@ class HomeController < ApplicationController
  end
 
  def goToToken(token)
-  puts "INSIDE GOTOTOKEN : #{token}"
  	@token = token
  	response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/", headers: {"X-TrackerToken" => "#{token}"})
     @projects = Array.new
- 	puts "RESPONSE CODE: #{response.code}"
  	if response.code == 200
- 		@user = User.find_by(id: session[:user_id]["$oid"])
- 		@user.api_token = params[:token]
-    	@user.save
+    @user = User.find_by(uid: session[:user_id])
+    @user.save
  		json = JSON.parse(response.body)
     	puts "JSON IS #{json}"    
     	json.each do |value|
@@ -59,7 +54,7 @@ class HomeController < ApplicationController
  end
 
  def delete_token
- 	@user = User.find_by(id: session[:user_id]["$oid"])
+  @user = User.find_by(uid: session[:user_id])
  	@user.api_token = " "
  	@user.save!
 
