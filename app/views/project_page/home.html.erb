@@ -1,2 +1,5 @@
 <h1>You are viewing Project: <%= @project_name %> </h1>
+
 <h3><%=@stories.to_json%></h3>
+
+<%= react_component 'PROJECT', { data: @stories} %>
