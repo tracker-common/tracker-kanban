@@ -9,7 +9,7 @@ class HomeController < ApplicationController
   	else
 		  @user = User.find_by(uid: session[:user_id])
  		 if @user.api_token == " " or @user.api_token == nil
-       render :layout => 'signed_in'
+       render :layout => 'signed_in'""
  		 else
        goToToken(@user.api_token)
  		 end  		
