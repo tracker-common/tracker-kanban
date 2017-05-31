@@ -21,7 +21,8 @@
 <%= link_to "clear token", action: "delete_token" %>
 <ul >
    <% @projects.each do |c| %>
-   <li><%= link_to c["name"], controller: "project_page", action: "home", id: c %></li>
+   <%= puts "THE TOKEN ID IS: #{@token}" %>
+   <li><%= link_to c["name"], controller: "project_page", action: "home", id: c, token: @token %></li>
    <% end %>
 </ul>
 <% end %>

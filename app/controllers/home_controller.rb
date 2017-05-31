@@ -24,7 +24,7 @@ class HomeController < ApplicationController
  		@user = User.find_by(uid: session[:user_id])
  		@user.api_token = params[:token]
     	@user.save
- 		json = JSON.parse(response.body)
+ 		  json = JSON.parse(response.body)
     	puts "JSON IS #{json}"    
     	json.each do |value|
       		@projects.push(value)
