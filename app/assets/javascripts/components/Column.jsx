@@ -3,9 +3,13 @@ class Column extends React.Component{
     return (
       <div className="column_layout">
         <p className="column_title">
-          {this.props.column["current_state"]}
-          <Card />
+            {this.props.data["name"]}
         </p>
+        {this.props.data.stories.map(function(card, i){
+          return (
+            <Card card={card} key={i}/>
+          )
+        })}
       </div>
     );
   }
