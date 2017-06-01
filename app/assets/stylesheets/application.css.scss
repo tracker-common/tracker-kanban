@@ -4,6 +4,7 @@ body {
 	font-size: 15 px;
 	color: #4878A7;
 	align-items: center;
+	background-color: #cce6ff;
 }
 .sign_in {
 	margin: 0 auto;
@@ -32,9 +33,14 @@ h1 {
 
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	max-width: 400px;
+	max-width: 275px;
 	margin: auto;
 	text-align: center;
+	background-color: white;
+}
+
+.card:hover {
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
 }
 
 .story_name {
@@ -57,6 +63,8 @@ button:hover {
 
 .column_layout {
 	flex-grow: 1;
+	min-width: 300px;
+	max-width: 300px;
 }
 
 .column_title {
