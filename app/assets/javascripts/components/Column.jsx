@@ -2,7 +2,7 @@ class Column extends React.Component{
   render() {
     return (
       <div className="column_layout">
-        <p className="column_title"> Column Title </p>
+        <p className="column_title"> {this.props.name} </p>
         <Card />
       </div>
     );
