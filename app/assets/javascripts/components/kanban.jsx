@@ -25,6 +25,18 @@ class App extends React.Component {
             })}
             </div>
 
+
+            <div className="column_title">
+            FINISHED
+            {this.props.data.finished.map(function(column, i){
+              return (
+                <div className="column_layout">
+                  <Card data={column} key={i}/>
+              </div>
+              )
+            })}
+            </div>
+
             <div className="column_title">
             DELIVERED
             {this.props.data.delivered.map(function(column, i){

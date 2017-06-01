@@ -19,6 +19,7 @@ class ProjectPageController < ApplicationController
 		 unstarted_stories = Array.new
 		 inProgress = Array.new
 		 delivered = Array.new
+		 finished = Array.new
 		 accepted = Array.new
 		 data["stories"].each do |value|
 			 case value["current_state"]
@@ -28,6 +29,8 @@ class ProjectPageController < ApplicationController
 				 inProgress.push(value)
 			 when 'delivered'
 				 delivered.push(value)
+			 when 'finished'
+				 finished.push(value)
 			 when 'accepted'
 				 accepted.push(value)
 			 end
@@ -36,6 +39,7 @@ class ProjectPageController < ApplicationController
 		 data_filtered["unstarted"] = unstarted_stories
 		 data_filtered["inProgress"] = inProgress
 		 data_filtered["delivered"] = delivered
+		 data_filtered["finished"] = finished
 		 data_filtered["accepted"] = accepted
 		 return data_filtered
    end

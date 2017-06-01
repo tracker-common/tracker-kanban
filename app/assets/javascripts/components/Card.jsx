@@ -3,7 +3,11 @@ class Card extends React.Component {
     return (
         <div className="card">
           <p className="story_name"> {this.props.data["name"]} </p>
+          <p className="summary"> {this.props.data["current_state"]} </p>
           <p><button>Button</button></p>
+
+
+
         </div>
     );
   }
