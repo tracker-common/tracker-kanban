@@ -2,27 +2,50 @@
 class App extends React.Component {
    render() {
       return (
-         <div>
-            <Header/>
-            <div className="column_container">
-            {console.log(this.props.data)}
-                  {this.props.data.map(function(column, i){
+         <div className="column_container">
+            <div className="column_title">
+            STORIES
+                  {this.props.data.unstarted.map(function(column, i){
                     return (
-                      <Column name={column} key={i}/>
+                      <div className="column_layout">
+                        <Card data={column} key={i}/>
+                    </div>
                     )
                   })}
-              </div>
-            <Column />
-         </div>
-      );
-   }
-}
+            </div>
 
-class Header extends React.Component {
-   render() {
-      return (
-         <div>
-            <h1>Header</h1>
+            <div className="column_title">
+            IN-PROGRESS
+            {this.props.data.inProgress.map(function(column, i){
+              return (
+                <div className="column_layout">
+                  <Card data={column} key={i}/>
+              </div>
+              )
+            })}
+            </div>
+
+            <div className="column_title">
+            DELIVERED
+            {this.props.data.delivered.map(function(column, i){
+              return (
+                <div className="column_layout">
+                  <Card data={column} key={i}/>
+              </div>
+              )
+            })}
+            </div>
+
+            <div className="column_title">
+            ACCEPTED
+            {this.props.data.accepted.map(function(column, i){
+              return (
+                <div className="column_layout">
+                  <Card data={column} key={i}/>
+              </div>
+              )
+            })}
+            </div>
          </div>
       );
    }

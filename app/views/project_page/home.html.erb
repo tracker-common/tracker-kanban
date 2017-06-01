@@ -1,7 +1,3 @@
 <div class="project_view"><%= @project_name %> </div>
 
-<%@data_filtered.each do |value|%>
-<div><%=value%>< /br></div>
-<%end%>
-
-<!-- <%= react_component('App', data: @data) %> -->
+<%= react_component('App', data: @data_filtered) %>

@@ -7,6 +7,7 @@ class ProjectPageController < ApplicationController
 		@project_name = params[:id]["name"]
 		@token = params[:token]
 	  @data_unfiltered = {}
+	  @data = {columns:["READY", "IN PROGRESS", "FINISHED", "DELIVERED", "DONE"]}
 		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state)", headers: {"X-TrackerToken" => "#{@token}"})
 	  json = JSON.parse(response.body)
 		@data_unfiltered = json
