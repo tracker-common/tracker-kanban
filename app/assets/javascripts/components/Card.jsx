@@ -1,5 +1,6 @@
 class Card extends React.Component {
-  render(){
+
+  render() {
     return (
         <div className="card">
           <p className="story_name"> {this.props.card["name"]} </p>
