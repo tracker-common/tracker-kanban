@@ -30,7 +30,7 @@ class ProjectPageController < ApplicationController
 			case value["story_type"]
 				when 'bug', 'feature', 'chore'
 					case value["current_state"]
-					when 'unstarted', 'unscheduled', 'rejected'
+					when 'unstarted', 'rejected'
 						unstarted_stories[:stories].push(value)
 					when 'started'
 						inProgress[:stories].push(value)
