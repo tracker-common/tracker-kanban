@@ -11,6 +11,10 @@ body {
 	align-content: center;
 }
 
+.sign_out {
+	margin-left: 15px;
+}
+
 h1 {
 	font-size: 30 px;
 	font: Helvetica;
@@ -28,8 +32,7 @@ h1 {
 
 .card {
 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	max-width: 300px;
-	max-height: 500px;
+	max-width: 400px;
 	margin: auto;
 	text-align: center;
 }
@@ -53,9 +56,15 @@ button:hover {
 }
 
 .column_layout {
-	flex-direction: row;
+	flex-grow: 1;
 }
+
 .column_title {
 	font-size: 25px;
 	text-align: center;
+}
+
+.column_container {
+	display: flex;
+	flex-direction: row;
 }
