@@ -2,6 +2,15 @@
   "name": "kanban",
   "private": true,
   "dependencies": {
-    "react-bootstrap-table": "^3.3.7"
+    "postcss": "^6.0.1",
+    "postcss-cssnext": "^2.11.0",
+    "react": "^15.5.4",
+    "react-bootstrap-table": "^3.3.7",
+    "react-css-modules": "^4.3.0",
+    "react-dom": "^15.5.4",
+    "react-toolbox": "^2.0.0-beta.12"
+  },
+  "devDependencies": {
+    "postcss-loader": "^2.0.5"
   }
 }
