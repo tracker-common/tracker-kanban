@@ -5,6 +5,7 @@ class Column extends React.Component{
         <p className="column_title">
           {this.props.name}
           <Card />
+          <Card />
         </p>
       </div>
     );
