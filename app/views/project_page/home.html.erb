@@ -1,7 +1,3 @@
 <h1>You are viewing Project: <%= @project_name %> </h1>
 
-<%= react_component('Kanban', text: 'Hello World') %>
-
-<h3><%=@stories.to_json%></h3>
-
-<%= react_component 'PROJECT', { data: @stories} %>
+<%= react_component('App', data: @data) %>

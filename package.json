@@ -1,5 +1,7 @@
 {
   "name": "kanban",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "react-bootstrap-table": "^3.3.7"
+  }
 }

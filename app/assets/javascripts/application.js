@@ -19,3 +19,5 @@
 //= require react
 //= require react_ujs
 //= require jquery
+//= require ReactDnDHTML5Backend.min.js
+//= require ReactDnD
