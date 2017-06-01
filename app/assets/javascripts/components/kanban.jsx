@@ -11,6 +11,7 @@ class App extends React.Component {
                     )
                   })}
               </div>
+            <Column />
          </div>
       );
    }
@@ -24,14 +25,6 @@ class Header extends React.Component {
          </div>
       );
    }
-}
-
-class Column extends React.Component {
-  render() {
-    return (
-      <div className="column"> {this.props.name} </div>
-    )
-  }
 }
 
 class TableRow extends React.Component {
