@@ -6,8 +6,7 @@ class Card extends React.Component {
       if (this.props.card["current_state"] === 'delivered'){
         return (
           <span>
-          <p><button>Accept</button></p>
-          <p><button onClick={this.handleClick}>Reject</button></p>
+          <p><button>Accept</button> <button onClick={this.handleClick}>Reject</button></p>
           </span>
         );
       }
