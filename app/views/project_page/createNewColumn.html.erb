@@ -1,4 +1,27 @@
-<h1> HELLO WORLD! </h1>
+<h3> Add a custom column for: <%= params["name"] %></h3>
 
+<%= form_tag('createNewColumn', method: 'post')  do |form| %>
+  <div class="actions", id="APITokenInput">
+    <br/>
+    <br/>
+    <%= label_tag(:name, "Custom Column Name:") %>
+    <%= text_field_tag(:name) %>
+    <br/>
+    <br/>
 
-<%= button_to "Submit"%>
+    <% params["labels"].each do |value| %>
+    <%= radio_button_tag(:label, "#{value}", "#{value}") %>
+    <%= label_tag(:label, "#{value}") %>
+    <%end%>
+    <br/>
+    <br/>
+
+    <% params["states"].each do |value| %>
+    <%= radio_button_tag(:state, "#{value}", "#{value}") %>
+    <%= label_tag(:state, "#{value}") %>
+    <%end%>
+    <br/>
+    <br/>
+   <%= submit_tag("Submit New Column")%>
+  </div>
+<% end %>
