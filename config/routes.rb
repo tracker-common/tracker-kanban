@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   get 'project_page/home'
 
+  get 'project_page/createNewColumn'
+
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]

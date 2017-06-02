@@ -8,12 +8,12 @@ class ProjectPageController < ApplicationController
 		@token = params[:token]
 	  @data_unfiltered = {}
 
-
 	  # @data = {columns:["READY", "IN PROGRESS", "FINISHED", "DELIVERED", "DONE"]}
 		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type)", headers: {"X-TrackerToken" => "#{@token}"})
 	  json = JSON.parse(response.body)
 		# @data_unfiltered = json
 		@data_filtered = filterData(json)
+
 	 end
 
 
@@ -23,8 +23,6 @@ class ProjectPageController < ApplicationController
 		 finished = {name: "FINISHED", stories:[]}
 		 delivered = {name: "DELIVERED", stories:[]}
 		 accepted = {name: "DONE", stories:[]}
-
-		 puts data
 
 		data["stories"].each do |value|
 			case value["story_type"]
@@ -43,9 +41,6 @@ class ProjectPageController < ApplicationController
 					end
 			end
 		end
-
-
-
 		 data_filtered = {columns:[]}
 		 data_filtered[:columns].push(unstarted_stories)
 		 data_filtered[:columns].push(inProgress)
@@ -54,4 +49,11 @@ class ProjectPageController < ApplicationController
 		 data_filtered[:columns].push(accepted)
 		 return data_filtered
    end
+
+
+	 def createNewColumn
+		 
+	 end
+
+
 end

@@ -1,4 +1,5 @@
 <div class="project_view"><%= @project_name %> </div>
 
+<%= link_to "New Column", action: "createNewColumn" %>
 
 <%= react_component('App', data: @data_filtered) %>
