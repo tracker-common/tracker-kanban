@@ -32,7 +32,7 @@ h1 {
 }
 
 .card {
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
 	transition: 0.3s;
 	width: 280px;
 	margin: auto;
@@ -42,7 +42,7 @@ h1 {
 }
 
 .card:hover {
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 6px 12px 0 rgba(0,0,0,0.7);
 }
 
 .story_name {
@@ -53,10 +53,22 @@ h1 {
 }
 
 .summary {
-	font-size: 10px;
+	font-size: 12px;
 	text-align: left;
 	color: black;
 	margin-left: 15px;
+}
+
+.feature::before{
+	content: "\02B50";
+}
+
+.bug::before {
+	content: "\01F41E"
+}
+
+.chore::before {
+	content: "\02699"
 }
 
 button:hover {
