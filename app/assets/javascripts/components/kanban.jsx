@@ -6,6 +6,7 @@ class App extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
+    this.handlePositionChange = this.handlePositionChange.bind(this);
   }
 
   handleChange(event) {
@@ -20,6 +21,10 @@ class App extends React.Component {
     this.setState({column_name: event.target.value});
   }
 
+  handlePositionChange(event){
+    this.setState({postion_value: event.target.value});
+  }
+
   handleSubmit(event){
     if (this.state.label_value == ''){
       this.setState({label_value: this.props.d[0]});
@@ -30,7 +35,8 @@ class App extends React.Component {
         project_id: this.props.data.project_id,
         state_value: this.state.state_value,
         column_name: this.state.column_name,
-        label_value: this.state.label_value
+        label_value: this.state.label_value,
+        postion_value: this.state.postion_value,
       },
       url: '/project_page/createNewColumn',
     });
@@ -78,13 +84,27 @@ class App extends React.Component {
              </select>
            </label>
            <br/>
-           </div>      <div style={{display: 'flex', justifyContent: 'center'}}>
+           </div>
+           <div style={{display: 'flex', justifyContent: 'center'}}>
            <label>
              Pick the label:
              <select value={this.state.label_value} onChange={this.handleLabelChange} name="label_value">
                {this.props.d.map(function(label, i){
                  return (
                    <option value={label}>{label}</option>
+                 )
+               })}
+             </select>
+           </label>
+           <br/>
+           </div>
+           <div style={{display: 'flex', justifyContent: 'center'}}>
+           <label>
+             Pick the Position:
+             <select value={this.state.postion_value} onChange={this.handlePositionChange} name="postion_value">
+               {this.props.data.columns.map(function(label, i){
+                 return (
+                   <option value={i}>{(i+1)}</option>
                  )
                })}
              </select>

@@ -16,6 +16,7 @@ class ProjectPageController < ApplicationController
 		if checkInDatabase(json)
 				data = Project.find_by(id: json["id"])
 				@data_filtered = formatData(data)
+				puts "THE DATA INSIDE IS #{@data_filtered[:columns][1]}"
 		else
 		    @data_filtered = filterData(json)
 		end
@@ -140,11 +141,12 @@ class ProjectPageController < ApplicationController
 		 data = Project.find_by(id: params[:project_id].to_i)
 		 column = {column_name: params[:column_name],
 			 				 label_value: params[:label_value],
-			 				 state_value: params[:state_value]}
+			 				 state_value: params[:state_value],
+						 	 position_value: params[:position_value]}
 		  @data_filtered = formatData(data, column)
 			@d = grabLabelsFromDatabase(data)
 			@project_name = data["name"]
-			updateDatabase(@data_filtered, data)
+			# updateDatabase(@data_filtered, data)
 	 end
 
 	 def grabLabelsFromDatabase(data)
