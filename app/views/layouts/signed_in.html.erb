@@ -7,13 +7,24 @@
 			color: #4878A7;
 			text-align: center;
 		}
+		body::before {
+			content: " ";
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  opacity: 0.5;
+		  z-index: -1;
+		  background: url(http://wallpapercave.com/wp/eFsi7Wi.jpg);
+		}
 	</style>
 </head>
 <title>Kanban Tracker - Submit Token</title>
 <%= image_tag("tracker-logo.png") %>
 <div class="sign_out">
 	Signed in as <strong><%= current_user.name %></strong>!
-	<%= link_to "Sign out", signout_path, id: "sign_out" %>
+	<%= link_to "Sign out", signout_path, id: "sign_out" %> <br /> <br /> <br />
 </div>
 
 <%= render 'form' %>
