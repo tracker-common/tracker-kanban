@@ -96,7 +96,6 @@ class App extends React.Component {
            <input type="submit" value="Submit" />
            </div>
          </form>
-
        );
      } else {
        return null;

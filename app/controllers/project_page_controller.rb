@@ -64,10 +64,15 @@ class ProjectPageController < ApplicationController
 									column[:stories].push(story)
 								end
 							end #do label
-					 	end
+						end
+						if(!c_column[:stories].include?(story))
+							column[:stories].push(story)
+						end
 					 end #column[:stories]
 					 data_filtered[:columns].push(column)
-					 data_filtered[:columns].push(c_column)
+					 if c_column[:stories].any?
+						 data_filtered[:columns].push(c_column)
+					 end
 				 else
 					 column = {name: "", stories: []}
 					 column[:name] = value["name"]
@@ -137,11 +142,27 @@ class ProjectPageController < ApplicationController
 			 				 label_value: params[:label_value],
 			 				 state_value: params[:state_value]}
 		  @data_filtered = formatData(data, column)
+			@d = grabLabelsFromDatabase(data)
 			@project_name = data["name"]
-			# updateDatabase(@data_filtered, data)
-			# redirect_to 'home'
-
+			updateDatabase(@data_filtered, data)
 	 end
+
+	 def grabLabelsFromDatabase(data)
+		 label_titles = Set.new
+		 data.columns.each do |value|
+		 value["stories"].each do |story|
+				 if story["labels"][0] != nil
+						label_titles.add(story["labels"][0]["name"])
+				 end
+			 end
+		 end
+		 array = []
+		 label_titles.each do |value|
+			 array.push(value)
+		 end
+		 return array
+	 end
+
 
 	 def checkInDatabase(data)
 		 project = Project.where(id: data["id"])
