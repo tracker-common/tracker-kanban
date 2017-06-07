@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: 'design'};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: ''};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -21,7 +21,9 @@ class App extends React.Component {
   }
 
   handleSubmit(event){
-
+    if (this.state.label_value == ''){
+      this.setState({label_value: this.props.d[0]});
+    }
     $.ajax({
       method: 'GET',
       data: {
@@ -32,9 +34,6 @@ class App extends React.Component {
       },
       url: '/project_page/createNewColumn',
     });
-    console.log("State: " + this.state.state_value);
-    console.log("column Name: " + this.state.column_name);
-    console.log("Label Value: " + this.state.state_value);
   }
 
 
@@ -83,9 +82,11 @@ class App extends React.Component {
            <label>
              Pick the label:
              <select value={this.state.label_value} onChange={this.handleLabelChange} name="label_value">
-               <option value="design">design</option>
-               <option value="needs design">needs design</option>
-               <option value="story cards">story cards</option>
+               {this.props.d.map(function(label, i){
+                 return (
+                   <option value={label}>{label}</option>
+                 )
+               })}
              </select>
            </label>
            <br/>

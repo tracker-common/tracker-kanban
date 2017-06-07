@@ -32,9 +32,7 @@ class ProjectPageController < ApplicationController
 			label_titles.each do |value|
 				array.push(value)
 			end
-			states = ["unstarted", "started", "finished", "delivered", "accepted", "rejected"]
-			d = {name: data["name"], labels: array, id: data["id"], states: states}
-			return d
+			return array
 	 end
 
 	 def formatData(data, custom_column=nil)
@@ -50,22 +48,21 @@ class ProjectPageController < ApplicationController
 		 else
 			 data_filtered = {project_id: data["id"], columns:[]}
 			 c_column = {name: custom_column[:column_name], stories: []}
-
 			 data.columns.each do |value|
+				 column = {name: "", stories: []}
+				 column[:name] = value["name"]
 				 v = custom_column[:state_value]
 				 name = translation_states[v.to_sym]
 				 if value["name"] == name
-					 column = {name: "", stories: []}
-					 column[:name] = value["name"]
 					 value["stories"].each do |story|
 					 	if story[:current_state] == custom_column[:state_value]
 							story[:labels].each do |label|
 								if label[:name] == custom_column[:label_value]
 									c_column[:stories].push(story)
-								else
-									column[:stories].push(story)
 								end
 							end #do label
+						else
+							column[:stories].push(story)
 					 	end
 
 					 end #column[:stories]
@@ -141,8 +138,8 @@ class ProjectPageController < ApplicationController
 			 				 state_value: params[:state_value]}
 		  @data_filtered = formatData(data, column)
 			@project_name = data["name"]
-			updateDatabase(@data_filtered, data)
-			redirect_to 'home'
+			# updateDatabase(@data_filtered, data)
+			# redirect_to 'home'
 
 	 end
 
