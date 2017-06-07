@@ -61,10 +61,10 @@ class ProjectPageController < ApplicationController
 									c_column[:stories].push(story)
 								end
 							end #do label
-						else
+						end
+						if(!c_column[:stories].include?(story))
 							column[:stories].push(story)
-					 	end
-
+						end
 					 end #column[:stories]
 					 data_filtered[:columns].push(column)
 					 data_filtered[:columns].push(c_column)
