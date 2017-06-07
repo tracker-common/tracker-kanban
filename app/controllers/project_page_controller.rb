@@ -49,7 +49,6 @@ class ProjectPageController < ApplicationController
 		 else
 			 data_filtered = {project_id: data["id"], columns:[]}
 			 c_column = {name: custom_column[:column_name], stories: []}
-
 			 data.columns.each do |value|
 				 v = custom_column[:state_value]
 				 name = translation_states[v.to_sym]
@@ -72,7 +71,8 @@ class ProjectPageController < ApplicationController
 					 end #column[:stories]
 					 data_filtered[:columns].push(column)
 					 if c_column[:stories].any?
-						 data_filtered[:columns].push(c_column)
+					 	c_column[:stories] = c_column[:stories].uniq
+						data_filtered[:columns].insert(0, c_column)
 					 end
 				 else
 					 column = {name: "", stories: []}
@@ -81,6 +81,7 @@ class ProjectPageController < ApplicationController
 					 data_filtered[:columns].push(column)
 				 end
 			 end #data.columns
+			 data_filtered[:columns].insert(custom_column[:position_value].to_i, data_filtered[:columns].delete_at(0))
 		 end #else
 
 		 return data_filtered
@@ -146,7 +147,7 @@ class ProjectPageController < ApplicationController
 		  @data_filtered = formatData(data, column)
 			@d = grabLabelsFromDatabase(data)
 			@project_name = data["name"]
-			# updateDatabase(@data_filtered, data)
+			updateDatabase(@data_filtered, data)
 	 end
 
 	 def grabLabelsFromDatabase(data)

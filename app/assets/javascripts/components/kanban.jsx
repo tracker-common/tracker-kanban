@@ -22,7 +22,7 @@ class App extends React.Component {
   }
 
   handlePositionChange(event){
-    this.setState({postion_value: event.target.value});
+    this.setState({position_value: event.target.value});
   }
 
   handleSubmit(event){
@@ -36,7 +36,7 @@ class App extends React.Component {
         state_value: this.state.state_value,
         column_name: this.state.column_name,
         label_value: this.state.label_value,
-        postion_value: this.state.postion_value,
+        position_value: this.state.position_value,
       },
       url: '/project_page/createNewColumn',
     });
@@ -101,12 +101,14 @@ class App extends React.Component {
            <div style={{display: 'flex', justifyContent: 'center'}}>
            <label>
              Pick the Position:
-             <select value={this.state.postion_value} onChange={this.handlePositionChange} name="postion_value">
+             <select value={this.state.position_value} onChange={this.handlePositionChange} name="position_value">
                {this.props.data.columns.map(function(label, i){
                  return (
                    <option value={i}>{(i+1)}</option>
                  )
                })}
+
+                <option value={this.props.data.columns.length}>{this.props.data.columns.length+1}</option>
              </select>
            </label>
            <br/>
