@@ -3,6 +3,8 @@ class ProjectPageController < ApplicationController
 	include HTTParty
 	include JSON
 
+
+
 	def home
 		@project_id = params[:id]["id"]
 		@project_name = params[:id]["name"]
@@ -26,27 +28,60 @@ class ProjectPageController < ApplicationController
 						label_titles.add(value["labels"][0]["name"])
 				end
 			end
-
 			array = []
 			label_titles.each do |value|
 				array.push(value)
 			end
-
 			states = ["unstarted", "started", "finished", "delivered", "accepted", "rejected"]
-
 			d = {name: data["name"], labels: array, id: data["id"], states: states}
 			return d
 	 end
 
-	 def formatData(data)
-		 data_filtered = {columns:[]}
-		 data.columns.each do |value|
-			 column = {name: "", stories: []}
-			 column[:name] = value["name"]
-			 column[:stories] = value["stories"]
-			 data_filtered[:columns].push(column)
-		 end
+	 def formatData(data, custom_column=nil)
+		 translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+		 if custom_column == nil
+			 data_filtered = {project_id: data["id"], columns:[]}
+			 data.columns.each do |value|
+				 column = {name: "", stories: []}
+				 column[:name] = value["name"]
+				 column[:stories] = value["stories"]
+				 data_filtered[:columns].push(column)
+			 end
+		 else
+			 data_filtered = {project_id: data["id"], columns:[]}
+			 c_column = {name: custom_column[:column_name], stories: []}
+
+			 data.columns.each do |value|
+				 v = custom_column[:state_value]
+				 name = translation_states[v.to_sym]
+				 if value["name"] == name
+					 column = {name: "", stories: []}
+					 column[:name] = value["name"]
+					 value["stories"].each do |story|
+					 	if story[:current_state] == custom_column[:state_value]
+							story[:labels].each do |label|
+								if label[:name] == custom_column[:label_value]
+									c_column[:stories].push(story)
+								else
+									column[:stories].push(story)
+								end
+							end #do label
+					 	end
+
+					 end #column[:stories]
+					 data_filtered[:columns].push(column)
+					 data_filtered[:columns].push(c_column)
+				 else
+					 column = {name: "", stories: []}
+					 column[:name] = value["name"]
+					 column[:stories] = value["stories"]
+					 data_filtered[:columns].push(column)
+				 end
+			 end #data.columns
+		 end #else
+
 		 return data_filtered
+
 	 end
 
 
@@ -74,7 +109,7 @@ class ProjectPageController < ApplicationController
 					end
 			end
 		end
-		 data_filtered = {columns:[]}
+		 data_filtered = {project_id: data["id"], columns:[]}
 		 data_filtered[:columns].push(unstarted_stories)
 		 data_filtered[:columns].push(inProgress)
 		 data_filtered[:columns].push(finished)
@@ -92,11 +127,24 @@ class ProjectPageController < ApplicationController
 		 @project.save
 	 end
 
-
-	 def createNewColumn
-		 @data
+	 def updateDatabase(data, name)
+		 @project = Project.find_by(id: name["id"])
+		 @project.columns = data[:columns]
+		 @project.save
 	 end
 
+
+	 def createNewColumn
+		 data = Project.find_by(id: params[:project_id].to_i)
+		 column = {column_name: params[:column_name],
+			 				 label_value: params[:label_value],
+			 				 state_value: params[:state_value]}
+		  @data_filtered = formatData(data, column)
+			@project_name = data["name"]
+			updateDatabase(@data_filtered, data)
+			redirect_to 'home'
+
+	 end
 
 	 def checkInDatabase(data)
 		 project = Project.where(id: data["id"])
