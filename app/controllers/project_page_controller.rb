@@ -71,7 +71,9 @@ class ProjectPageController < ApplicationController
 					 end #column[:stories]
 					 data_filtered[:columns].push(column)
 					 if c_column[:stories].any?
-						 data_filtered[:columns].push(c_column)
+					 	c_column[:stories] = c_column[:stories].uniq
+						data_filtered[:columns].push(c_column)
+
 					 end
 				 else
 					 column = {name: "", stories: []}
