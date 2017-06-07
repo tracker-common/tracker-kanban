@@ -8,7 +8,7 @@ class App extends React.Component {
      console.log('state', this.state)
       return (
         <div>
-          <button onClick={this.doTheThing_.bind(this)}>Click me</button>
+          <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
           <div className="column_container">
                   {this.props.data.columns.map(function(column, i){
@@ -23,16 +23,50 @@ class App extends React.Component {
 
    showForm() {
      if (this.state.showForm) {
-       return (<div>OFREARM</div>);
+       return (
+        <div>
+         <form onSubmit={this.handleSubmit}>
+          <label>
+            Custom Column Name:
+            <input type="text" />
+          </label>
+          <br/>
+
+        <div className="radio">
+          <label>
+            <input type="radio" value="option1" checked={true} />
+            Option 1
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="option2" />
+            Option 2
+          </label>
+        </div>
+        <div className="radio">
+          <label>
+            <input type="radio" value="option3" />
+            Option 3
+          </label>
+        </div>
+          
+          <br/>
+          <input type="submit" value="Submit" />
+        </form>
+
+      </div>
+       );
      } else {
        return null;
      }
    }
 
-   doTheThing_() {
+   createNewColumn_() {
      console.log(this)
      this.setState(prevState => ({
        showForm: !this.state.showForm
      }));
    }
+
 }
