@@ -48,23 +48,23 @@ class ProjectPageController < ApplicationController
 		 else
 			 data_filtered = {project_id: data["id"], columns:[]}
 			 c_column = {name: custom_column[:column_name], stories: []}
+
 			 data.columns.each do |value|
-				 column = {name: "", stories: []}
-				 column[:name] = value["name"]
 				 v = custom_column[:state_value]
 				 name = translation_states[v.to_sym]
 				 if value["name"] == name
+					 column = {name: "", stories: []}
+					 column[:name] = value["name"]
 					 value["stories"].each do |story|
 					 	if story[:current_state] == custom_column[:state_value]
 							story[:labels].each do |label|
 								if label[:name] == custom_column[:label_value]
 									c_column[:stories].push(story)
+								else
+									column[:stories].push(story)
 								end
 							end #do label
-						else
-							column[:stories].push(story)
 					 	end
-
 					 end #column[:stories]
 					 data_filtered[:columns].push(column)
 					 data_filtered[:columns].push(c_column)
