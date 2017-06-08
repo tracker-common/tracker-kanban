@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: ''};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: '', info: this.props.data.columns};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -50,7 +50,7 @@ class App extends React.Component {
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
           <div className="column_container">
-                  {this.props.data.columns.map(function(column, i){
+                  {this.state.info.map(function(column, i){
                     return (
                       <Column data={column} key={i}/>
                     )
