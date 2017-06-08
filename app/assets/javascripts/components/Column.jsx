@@ -16,73 +16,27 @@ class Column extends React.Component{
     }
   }
 
+  editColumn_() {
+    console.log("Column is being edited!")
+    this.setState(prevState => ({
+      showEditForm: !this.state.showEditForm
+    }));
+  }
+
   showEditForm() {
     if(this.state.showEditForm) {
       return (
         <form>
         <div>
             <label>
-              Custom column name:
+              Edit column name:
               <input type="text" value={this.state.column_name} name="column_name" onChange={this.handleColumnNameChange}/>
             </label>
           <br/>
           </div>
-        <div>
-          <label>
-            Pick the story type:
-            <select value={this.state.state_value} name="state_value" onChange={this.handleChange}>
-              <option value="unstarted">unstarted</option>
-              <option value="started">started</option>
-              <option value="delivered">delivered</option>
-              <option value="finished">finished</option>
-              <option value="accepted">accepted</option>
-              <option value="rejected">rejected</option>
-            </select>
-          </label>
-          <br/>
-          </div>
-          <div>
-          <label>
-            Pick the label:
-            <select value={this.state.label_value} onChange={this.handleLabelChange} name="label_value">
-              {this.props.d.map(function(label, i){
-                return (
-                  <option value={label}>{label}</option>
-                )
-              })}
-            </select>
-          </label>
-          <br/>
-          </div>
-          <div>
-          <label>
-            Pick the Position:
-            <select value={this.state.position_value} onChange={this.handlePositionChange} name="position_value">
-              {this.props.data.columns.map(function(label, i){
-                return (
-                  <option value={i}>{(i+1)}</option>
-                )
-              })}
-
-               <option value={this.props.data.columns.length}>{this.props.data.columns.length+1}</option>
-            </select>
-          </label>
-          <br/>
-          </div>
-          <input value={this.props.data.project_id} name="project_id" hidden></input>
-        <div>
-          <input type="submit" value="Submit" />
-          </div>
         </form>
       )
     }
-  }
-
-  editColumn_() {
-    console.log("Column is being edited!")
-    this.setState(prevState => ({
-      showEditForm: !this.state.showEditForm
-    }));
   }
 
   render() {
