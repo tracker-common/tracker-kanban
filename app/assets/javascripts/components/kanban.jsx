@@ -1,12 +1,34 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: ''};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
+  }
+
+  retrieveCards() {
+    var current_cards = this.state.info;
+    var current_state = this.state.state_value;
+    var current_label = this.state.label_value;
+    var custom_stories = []
+    translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+    var state = translation_states[current_state]
+    for (var columns in current_cards) {
+      if (current_cards[columns]["name"] == state) {
+        for (var card_value in current_cards[columns]["stories"]) {
+          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
+            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
+              custom_stories.push(current_cards[columns]["stories"][card_value]);
+              current_cards[columns]["stories"].splice(card_value, 1);
+            }
+          }
+        }
+      }
+    }
+    return custom_stories;
   }
 
   handleChange(event) {
@@ -26,9 +48,13 @@ class App extends React.Component {
   }
 
   handleSubmit(event){
-    if (this.state.label_value == ''){
-      this.setState({label_value: this.props.d[0]});
-    }
+    event.preventDefault();
+    var s = this.retrieveCards()
+    var column = {name: this.state.column_name, stories: s}
+    var l = this.state.info
+    l.splice(this.state.position_value, 0, column);
+    this.setState({info: l})
+
     $.ajax({
       method: 'GET',
       data: {
@@ -42,17 +68,17 @@ class App extends React.Component {
     });
   }
 
-
    render() {
-     console.log('state', this.state)
+    //  console.log('state', this.state)
+    //  console.log(this.props.data.columns)
       return (
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
           <div className="column_container">
-                  {this.props.data.columns.map(function(column, i){
+                  {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} key={i}/>
+                      <Column data={column} key={i} />
                     )
                   })}
           </div>
@@ -125,19 +151,12 @@ class App extends React.Component {
    }
 
    nameChanged(event) {
-      console.log("This was called" + event.target.value);
       this.setState(prevState => ({
         name: event.target.value
       }));
    }
 
-   handleSubmit_() {
-     console.log(this.state.name)
-     console.log("You have clicked submit " );
-   }
-
    createNewColumn_() {
-     console.log("This is being clicked!")
      this.setState(prevState => ({
        showForm: !this.state.showForm
      }));

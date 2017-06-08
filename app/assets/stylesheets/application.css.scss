@@ -86,6 +86,7 @@ h1 {
 button {
 	background-color: #cecece;
 	font-weight: bold;
+	font-size: 20px;
 }
 
 button:hover {
@@ -107,4 +108,8 @@ button:hover {
 .column_container {
 	display: flex;
 	flex-direction: row;
+}
+
+.editButton::before {
+	content: "\0270E";
 }
