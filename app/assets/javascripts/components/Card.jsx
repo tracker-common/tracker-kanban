@@ -37,7 +37,6 @@ class Card extends React.Component {
     }
   }
   renderLabel() {
-    console.log(this.props.card["labels"].length)
     if (this.props.card["labels"].length != 0){
       return (
         <span>
