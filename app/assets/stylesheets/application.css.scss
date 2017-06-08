@@ -65,10 +65,22 @@ h1 {
 }
 
 .summary {
-	font-size: 10px;
+	font-size: 12px;
 	text-align: left;
 	color: black;
 	margin-left: 15px;
+}
+
+.feature::before{
+	content: "\02B50";
+}
+
+.bug::before {
+	content: "\01F41E"
+}
+
+.chore::before {
+	content: "\02699"
 }
 
 button:hover {
