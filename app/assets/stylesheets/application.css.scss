@@ -54,7 +54,7 @@ h1 {
 }
 
 .card:hover {
-	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.5);
+	box-shadow: 0 6px 10px 0 rgba(0,0,0,0.6);
 }
 
 .story_name {
@@ -81,6 +81,11 @@ h1 {
 
 .chore::before {
 	content: "\02699"
+}
+
+button {
+	background-color: #cecece;
+	font-weight: bold;
 }
 
 button:hover {
