@@ -50,7 +50,7 @@ class App extends React.Component {
   handleSubmit(event){
     event.preventDefault();
     var s = this.retrieveCards()
-    var column = {name: this.state.column_name, stories: s }
+    var column = {name: this.state.column_name, stories: s}
     var l = this.state.info
     l.splice(this.state.position_value, 0, column);
     this.setState({info: l})
