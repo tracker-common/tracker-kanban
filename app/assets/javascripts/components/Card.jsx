@@ -1,13 +1,26 @@
 class Card extends React.Component {
-  handleClick() {
-    this.props.card["current_state"] = "rejected"
+  handleRejectClick() {
+    console.log("You have Rejected")
   }
+  handleAcceptClick() {
+    console.log("You have Accepeted")
+  }
+  handleStartClick() {
+    console.log("You have Started")
+  }
+
   renderUserMessage(){
       if (this.props.card["current_state"] === 'delivered'){
         return (
           <span>
-          <p><button>Accept</button></p>
-          <p><button onClick={this.handleClick}>Reject</button></p>
+            <p><button onClick={this.handleAcceptClick}>Accept</button></p>
+            <p><button onClick={this.handleRejectClick}>Reject</button></p>
+          </span>
+        );
+      } else if (this.props.card["current_state"] === 'unstarted') {
+        return (
+          <span>
+            <p><button onClick={this.handleStartClick}>Start</button></p>
           </span>
         );
       }
