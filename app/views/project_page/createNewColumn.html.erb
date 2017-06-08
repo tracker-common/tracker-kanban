@@ -1,27 +1,2 @@
-<h3> Add a custom column for: <%= params["name"] %></h3>
-
-<%= form_tag('createNewColumn', method: 'post')  do |form| %>
-  <div class="actions", id="col">
-    <br/>
-    <br/>
-    <%= label_tag(:name, "Custom Column Name:") %>
-    <%= text_field_tag(:name) %>
-    <br/>
-    <br/>
-
-    <% params["labels"].each do |value| %>
-    <%= radio_button_tag(:label, "#{value}", "#{value}") %>
-    <%= label_tag(:label, "#{value}") %>
-    <%end%>
-    <br/>
-    <br/>
-
-    <% params["states"].each do |value| %>
-    <%= radio_button_tag(:state, "#{value}", "#{value}") %>
-    <%= label_tag(:state, "#{value}") %>
-    <%end%>
-    <br/>
-    <br/>
-   <%= submit_tag("Submit New Column")%>
-  </div>
-<% end %>
+<div class="project_view"><%= @project_name %> </div>
+<%= react_component('App', data: @data_filtered, d:@d) %>

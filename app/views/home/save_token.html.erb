@@ -7,12 +7,26 @@
 			color: #4878A7;
 			text-align: center;
 		}
+		ul {
+			list-style-type: none;
+		}
+		li {
+			width: 400px;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+			transition: 0.3s;
+			margin: auto;
+			background-color: #edf1f7;
+			padding: 10px;
+		}
+		li:hover {
+			box-shadow: 0 6px 10px 0 rgba(0,0,0,0.7);
+		}
 	</style>
 </head>
+
 <title>Kanban Tracker - Projects</title>
 <%= image_tag("tracker-logo.png") %>
 <h2>Welcome to Kanban!</h2>
-
 <% if @projects.to_a.empty? %>
 <h3> Looks like your API key was wrong or you have no projects </h3>
 <%= link_to "Re-input your token", action: "delete_token" %>
@@ -20,10 +34,15 @@
 <%= link_to "Change/Clear Token", action: "delete_token" %>
 <br />
 <br />
-<ul >
-   <% @projects.each do |c| %>
-   <%= puts "THE TOKEN ID IS: #{@token}" %>
-   <li><%= link_to c["name"], controller: "project_page", action: "home", id: c, token: @token %></li>
+
+<body>
+	<ul >
+   	<% @projects.each do |c| %>
+		<li>
+   		<%= puts "THE TOKEN ID IS: #{@token}" %>
+   		<%= link_to c["name"], controller: "project_page", action: "home", id: c, token: @token %>
+		</li><br />
    <% end %>
-</ul>
+	</ul>
+</body>
 <% end %>

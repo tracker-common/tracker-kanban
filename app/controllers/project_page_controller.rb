@@ -3,6 +3,8 @@ class ProjectPageController < ApplicationController
 	include HTTParty
 	include JSON
 
+
+
 	def home
 		@project_id = params[:id]["id"]
 		@project_name = params[:id]["name"]
@@ -14,6 +16,7 @@ class ProjectPageController < ApplicationController
 		if checkInDatabase(json)
 				data = Project.find_by(id: json["id"])
 				@data_filtered = formatData(data)
+				puts "THE DATA INSIDE IS #{@data_filtered[:columns][1]}"
 		else
 		    @data_filtered = filterData(json)
 		end
@@ -26,27 +29,63 @@ class ProjectPageController < ApplicationController
 						label_titles.add(value["labels"][0]["name"])
 				end
 			end
-
 			array = []
 			label_titles.each do |value|
 				array.push(value)
 			end
-
-			states = ["unstarted", "started", "finished", "delivered", "accepted", "rejected"]
-
-			d = {name: data["name"], labels: array, id: data["id"], states: states}
-			return d
+			return array
 	 end
 
-	 def formatData(data)
-		 data_filtered = {columns:[]}
-		 data.columns.each do |value|
-			 column = {name: "", stories: []}
-			 column[:name] = value["name"]
-			 column[:stories] = value["stories"]
-			 data_filtered[:columns].push(column)
-		 end
+	 def formatData(data, custom_column=nil)
+		 translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+		 if custom_column == nil
+			 data_filtered = {project_id: data["id"], columns:[]}
+			 data.columns.each do |value|
+				 column = {name: "", stories: []}
+				 column[:name] = value["name"]
+				 column[:stories] = value["stories"]
+				 data_filtered[:columns].push(column)
+			 end
+		 else
+			 data_filtered = {project_id: data["id"], columns:[]}
+			 c_column = {name: custom_column[:column_name], stories: []}
+			 data.columns.each do |value|
+				 v = custom_column[:state_value]
+				 name = translation_states[v.to_sym]
+				 if value["name"] == name
+					 column = {name: "", stories: []}
+					 column[:name] = value["name"]
+					 value["stories"].each do |story|
+					 	if story[:current_state] == custom_column[:state_value]
+							story[:labels].each do |label|
+								if label[:name] == custom_column[:label_value]
+									c_column[:stories].push(story)
+								else
+									column[:stories].push(story)
+								end
+							end #do label
+						end
+						if(!c_column[:stories].include?(story))
+							column[:stories].push(story)
+						end
+					 end #column[:stories]
+					 data_filtered[:columns].push(column)
+					 if c_column[:stories].any?
+					 	c_column[:stories] = c_column[:stories].uniq
+						data_filtered[:columns].insert(0, c_column)
+					 end
+				 else
+					 column = {name: "", stories: []}
+					 column[:name] = value["name"]
+					 column[:stories] = value["stories"]
+					 data_filtered[:columns].push(column)
+				 end
+			 end #data.columns
+			 data_filtered[:columns].insert(custom_column[:position_value].to_i, data_filtered[:columns].delete_at(0))
+		 end #else
+
 		 return data_filtered
+
 	 end
 
 
@@ -74,7 +113,7 @@ class ProjectPageController < ApplicationController
 					end
 			end
 		end
-		 data_filtered = {columns:[]}
+		 data_filtered = {project_id: data["id"], columns:[]}
 		 data_filtered[:columns].push(unstarted_stories)
 		 data_filtered[:columns].push(inProgress)
 		 data_filtered[:columns].push(finished)
@@ -92,9 +131,39 @@ class ProjectPageController < ApplicationController
 		 @project.save
 	 end
 
+	 def updateDatabase(data, name)
+		 @project = Project.find_by(id: name["id"])
+		 @project.columns = data[:columns]
+		 @project.save
+	 end
+
 
 	 def createNewColumn
-		 @data
+		 data = Project.find_by(id: params[:project_id].to_i)
+		 column = {column_name: params[:column_name],
+			 				 label_value: params[:label_value],
+			 				 state_value: params[:state_value],
+						 	 position_value: params[:position_value]}
+		  @data_filtered = formatData(data, column)
+			@d = grabLabelsFromDatabase(data)
+			@project_name = data["name"]
+			updateDatabase(@data_filtered, data)
+	 end
+
+	 def grabLabelsFromDatabase(data)
+		 label_titles = Set.new
+		 data.columns.each do |value|
+		 value["stories"].each do |story|
+				 if story["labels"][0] != nil
+						label_titles.add(story["labels"][0]["name"])
+				 end
+			 end
+		 end
+		 array = []
+		 label_titles.each do |value|
+			 array.push(value)
+		 end
+		 return array
 	 end
 
 
