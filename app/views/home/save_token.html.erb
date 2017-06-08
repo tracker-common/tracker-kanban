@@ -7,6 +7,17 @@
 			color: #4878A7;
 			text-align: center;
 		}
+		ul {
+			list-style-type: none;
+		}
+		li {
+			width: 400px;
+			box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3);
+			transition: 0.3s;
+			margin: auto;
+			background-color: #edf1f7;
+			padding: 10px;
+		}
 	</style>
 </head>
 <title>Kanban Tracker - Projects</title>
@@ -20,10 +31,14 @@
 <%= link_to "Change/Clear Token", action: "delete_token" %>
 <br />
 <br />
-<ul >
-   <% @projects.each do |c| %>
-   <%= puts "THE TOKEN ID IS: #{@token}" %>
-   <li><%= link_to c["name"], controller: "project_page", action: "home", id: c, token: @token %></li>
+<body>
+	<ul >
+   	<% @projects.each do |c| %>
+		<li className="projectLink">
+   		<%= puts "THE TOKEN ID IS: #{@token}" %>
+   		<%= link_to c["name"], controller: "project_page", action: "home", id: c, token: @token %>
+		</li><br />
    <% end %>
-</ul>
+	</ul>
+</body>
 <% end %>
