@@ -20,10 +20,10 @@
 		}
 	</style>
 </head>
+
 <title>Kanban Tracker - Projects</title>
 <%= image_tag("tracker-logo.png") %>
 <h2>Welcome to Kanban!</h2>
-
 <% if @projects.to_a.empty? %>
 <h3> Looks like your API key was wrong or you have no projects </h3>
 <%= link_to "Re-input your token", action: "delete_token" %>
@@ -31,6 +31,7 @@
 <%= link_to "Change/Clear Token", action: "delete_token" %>
 <br />
 <br />
+
 <body>
 	<ul >
    	<% @projects.each do |c| %>

@@ -89,20 +89,3 @@ button:hover {
 	display: flex;
 	flex-direction: row;
 }
-
-.projectLink {
- 	width: 200px;
- 	height: 40px;
- 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
- 	box-sizing: border-box;
- 	transition: 0.3s;
- 	margin: auto;
- 	text-align: center;
- 	background-color: #ffffff;
- 	font-size: 20px;
- 	min-width: 400px;
- }
-
- .projectLink:hover {
- 	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.6);
- }
