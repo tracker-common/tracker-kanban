@@ -64,14 +64,14 @@ class App extends React.Component {
      if (this.state.showForm) {
        return (
          <form onSubmit={this.handleSubmit} action="/project_page/createNewColumn">
-         <div style={{display: 'flex', justifyContent: 'center'}}>
+         <div>
              <label>
                Custom column name:
                <input type="text" value={this.state.column_name} name="column_name" onChange={this.handleColumnNameChange}/>
              </label>
            <br/>
            </div>
-         <div style={{display: 'flex', justifyContent: 'center'}}>
+         <div>
            <label>
              Pick the story type:
              <select value={this.state.state_value} name="state_value" onChange={this.handleChange}>
@@ -85,7 +85,7 @@ class App extends React.Component {
            </label>
            <br/>
            </div>
-           <div style={{display: 'flex', justifyContent: 'center'}}>
+           <div>
            <label>
              Pick the label:
              <select value={this.state.label_value} onChange={this.handleLabelChange} name="label_value">
@@ -98,7 +98,7 @@ class App extends React.Component {
            </label>
            <br/>
            </div>
-           <div style={{display: 'flex', justifyContent: 'center'}}>
+           <div>
            <label>
              Pick the Position:
              <select value={this.state.position_value} onChange={this.handlePositionChange} name="position_value">
@@ -114,7 +114,7 @@ class App extends React.Component {
            <br/>
            </div>
            <input value={this.props.data.project_id} name="project_id" hidden></input>
-         <div style={{display: 'flex', justifyContent: 'center'}}>
+         <div>
            <input type="submit" value="Submit" />
            </div>
          </form>
