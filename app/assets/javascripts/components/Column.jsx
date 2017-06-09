@@ -7,6 +7,9 @@ class Column extends React.Component{
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log(props.handleUpdate);
+    this.handleUpdate = props.handleUpdate;
+    console.log(this.handleUpdate);
   }
 
   customColEdit() {
@@ -69,24 +72,26 @@ class Column extends React.Component{
   }
 
   handleSubmit(event){
+    this.handleUpdate(this.props.data.name, this.state)
     event.preventDefault();
-    var s = this.retrieveCards()
-    var column = {name: this.state.column_name, stories: s}
-    var l = this.props.filter.columns
-    l.splice(this.state.position_value, 0, column);
-    this.setState({info: l})
+    // console.log("Name state: "+this.state.column_name+" Story state: "+this.state.state_value+" Label state: "+this.state.label_value+" Position state: "+this.state.position_value);
+    // var s = this.retrieveCards()
+    // var column = {name: this.state.column_name, stories: s}
+    // var l = this.props.filter.columns
+    // l.splice(this.state.position_value, 0, column);
+    // this.setState({info: l})
 
-    $.ajax({
-      method: 'PUT',
-      data: {
-        state_value: this.state.state_value,
-        column_name: this.state.column_name,
-        label_value: this.state.label_value,
-        position_value: this.state.position_value,
-      },
-      url: '/project_page/editColumn',
-    });
-    console.log("column has been changed")
+    // $.ajax({
+    //   method: 'PUT',
+    //   data: {
+    //     state_value: this.state.state_value,
+    //     column_name: this.state.column_name,
+    //     label_value: this.state.label_value,
+    //     position_value: this.state.position_value,
+    //   },
+    //   url: '/project_page/editColumn',
+    // });
+    // console.log("column has been changed")
   }
 
   showEditForm() {

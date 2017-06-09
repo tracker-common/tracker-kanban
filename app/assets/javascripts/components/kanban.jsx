@@ -4,6 +4,7 @@ class App extends React.Component {
     this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateColumn = this.updateColumn.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
@@ -31,6 +32,8 @@ class App extends React.Component {
     return custom_stories;
   }
 
+
+
   handleChange(event) {
     this.setState({state_value: event.target.value});
   }
@@ -45,6 +48,10 @@ class App extends React.Component {
 
   handlePositionChange(event){
     this.setState({position_value: event.target.value});
+  }
+
+  updateColumn(name, info){
+    console.log(name, info);
   }
 
   handleSubmit(event){
@@ -81,7 +88,8 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} id={id} filter={filt} key={i} />
+                      <Column data={column} id={id} filter={filt} key={i} handleUpdate={this.updateColumn} />
+
                     )
                   })}
           </div>
