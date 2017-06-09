@@ -1,9 +1,11 @@
 class Column extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: ''}
+    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value:''}
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
+
+
   }
 
   customColEdit() {
@@ -32,6 +34,10 @@ class Column extends React.Component{
 
   handleChange(event) {
     this.setState({state_value: event.target.value});
+  }
+
+  handlePositionChange(event){
+    this.setState({position_value: event.target.value});
   }
 
   showEditForm() {
@@ -63,16 +69,15 @@ class Column extends React.Component{
 
             <div>
             <label>
-              Pick the label:
-              <select value={this.state.label_value} onChange={this.handleLabelChange} name="label_value">
-                {this.props.d.map(function(label, i){
-                  return (
-                    <option value={label}>{label}</option>
+            Pick the position:
+              <select value={this.state.position_value} name="position_value" onChange={this.handlePositionChange}>
+              {this.props.filter.columns.map(function(label, i){
+                return(
+                  <option value={i}>{i+1}</option>
                   )
-                })}
+              })}
               </select>
             </label>
-            <br/>
             </div>
         </form>
       )

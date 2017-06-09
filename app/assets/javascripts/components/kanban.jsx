@@ -71,6 +71,7 @@ class App extends React.Component {
    render() {
      var id = this.props.project_id
      var filt=this.props.data
+     //alert(filt.columns)
     //  console.log('state', this.state)
     //  console.log(this.props.data.columns)
       return (
