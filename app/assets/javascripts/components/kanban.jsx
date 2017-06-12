@@ -1,12 +1,13 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
+    this.requestLiveUpdate = this.requestLiveUpdate.bind(this);
   }
 
   retrieveCards() {
@@ -29,6 +30,10 @@ class App extends React.Component {
       }
     }
     return custom_stories;
+  }
+
+  componentDidMount() {
+    console.log("It mounted");
   }
 
   handleChange(event) {
@@ -68,13 +73,16 @@ class App extends React.Component {
     });
   }
 
+
+
    render() {
-    //  console.log('state', this.state)
+     console.log('state', this.state)
     //  console.log(this.props.data.columns)
       return (
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
+          {this.requestLiveUpdate(this.state)}
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
@@ -84,6 +92,56 @@ class App extends React.Component {
           </div>
         </div>
       );
+   }
+
+   requestLiveUpdate(state) {
+     // setInterval(function(){
+           // get parameters
+          var token = this.props.token;
+          var projectId = this.props.project_id
+
+            // compose request URL
+          var url = 'https://www.pivotaltracker.com/services/v5';
+          url += '/projects/' + projectId;
+          url += '/?fields=name,stories(id,name,current_state,story_type,labels)';
+
+          // do API request to get story names
+          $.ajax({
+            url: url,
+            beforeSend: function(xhr) {
+              xhr.setRequestHeader('X-TrackerToken', token);
+            }
+          }).done(function(project) {
+            let info = state.info;
+            console.log(info);
+
+            for (var index in project["stories"]){
+              let v = project["stories"][index].current_state;
+              switch(v) {
+                 case "unstarted":
+                 for (column_value in info){
+                   if (info[column_value] == "READY") {
+
+                   }
+                 }
+                 break;
+                 case "started":
+                 break;
+                 case "delivered":
+                 break;
+                 case "finished":
+                 break;
+                 case "accepted":
+                 break;
+                 case "rejected":
+                 break;
+                 default:
+               }
+            }
+           });
+
+     // }, 10000);
+
    }
 
    showForm() {

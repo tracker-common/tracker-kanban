@@ -2,14 +2,11 @@ class Column extends React.Component{
   constructor(props) {
     super(props);
     this.state = {showEditForm: false, state_value: '', column_name: '', label_value: ''}
+    this.handleChange = this.handleChange.bind(this);
   }
 
   customColEdit() {
-    if(this.props.data["name"] !== "READY"
-      && this.props.data["name"] !== "IN-PROGRESS"
-      && this.props.data["name"] !== "FINISHED"
-      && this.props.data["name"] !== "DELIVERED"
-      && this.props.data["name"] !== "DONE") {
+    if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
         <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>{this.showEditForm()}</span>
       )
@@ -17,20 +14,26 @@ class Column extends React.Component{
   }
 
   editColumn_() {
-    console.log("Column is being edited!")
     this.setState(prevState => ({
       showEditForm: !this.state.showEditForm
     }));
   }
 
+  handleChange(event) {
+     console.log("You are in Column: ", event.target.value);
+     var value = event.target.value;
+     console.log(this.props.onChangeInput);
+ }
+
   showEditForm() {
+    console.log("X", this.props.callbackFromParent);
     if(this.state.showEditForm) {
       return (
         <form>
         <div>
             <label>
               Edit column name:
-              <input type="text" value={this.state.column_name} name="column_name" onChange={this.handleColumnNameChange}/>
+              <input type="text" value={this.props.value} onChange={this.handleChange}/>
             </label>
           <br/>
           </div>

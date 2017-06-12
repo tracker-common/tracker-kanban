@@ -22,6 +22,10 @@ class ProjectPageController < ApplicationController
 		end
 	 end
 
+	 def show
+		 puts "This was called from SHOW!!!!"
+	 end
+
 	 def grabLabels(data)
 		  label_titles = Set.new
 		 	data["stories"].each do |value|
