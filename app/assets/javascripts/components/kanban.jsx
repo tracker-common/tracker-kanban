@@ -7,7 +7,7 @@ class App extends React.Component {
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
-    this.requestLiveUpdate = this.requestLiveUpdate.bind(this);
+    // this.requestLiveUpdate = this.requestLiveUpdate.bind(this);
   }
 
   retrieveCards() {
@@ -54,11 +54,11 @@ class App extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    var s = this.retrieveCards()
-    var column = {name: this.state.column_name, stories: s}
-    var l = this.state.info
+    var s = this.retrieveCards();
+    var column = {name: this.state.column_name, stories: s};
+    var l = this.state.info;
     l.splice(this.state.position_value, 0, column);
-    this.setState({info: l})
+    this.setState({info: l});
 
     $.ajax({
       method: 'GET',
@@ -85,7 +85,6 @@ class App extends React.Component {
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
-          {this.requestLiveUpdate(this.state)}
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
@@ -97,55 +96,55 @@ class App extends React.Component {
       );
    }
 
-   requestLiveUpdate(state) {
-     // setInterval(function(){
-           // get parameters
-          var token = this.props.token;
-          var projectId = this.props.project_id
-
-            // compose request URL
-          var url = 'https://www.pivotaltracker.com/services/v5';
-          url += '/projects/' + projectId;
-          url += '/?fields=name,stories(id,name,current_state,story_type,labels)';
-
-          // do API request to get story names
-          $.ajax({
-            url: url,
-            beforeSend: function(xhr) {
-              xhr.setRequestHeader('X-TrackerToken', token);
-            }
-          }).done(function(project) {
-            let info = state.info;
-            console.log(info);
-
-            for (var index in project["stories"]){
-              let v = project["stories"][index].current_state;
-              switch(v) {
-                 case "unstarted":
-                 for (column_value in info){
-                   if (info[column_value] == "READY") {
-
-                   }
-                 }
-                 break;
-                 case "started":
-                 break;
-                 case "delivered":
-                 break;
-                 case "finished":
-                 break;
-                 case "accepted":
-                 break;
-                 case "rejected":
-                 break;
-                 default:
-               }
-            }
-           });
-
-     // }, 10000);
-
-   }
+  //  requestLiveUpdate(state) {
+  //    // setInterval(function(){
+  //          // get parameters
+  //         var token = this.props.token;
+  //         var projectId = this.props.project_id
+   //
+  //           // compose request URL
+  //         var url = 'https://www.pivotaltracker.com/services/v5';
+  //         url += '/projects/' + projectId;
+  //         url += '/?fields=name,stories(id,name,current_state,story_type,labels)';
+   //
+  //         // do API request to get story names
+  //         $.ajax({
+  //           url: url,
+  //           beforeSend: function(xhr) {
+  //             xhr.setRequestHeader('X-TrackerToken', token);
+  //           }
+  //         }).done(function(project) {
+  //           let info = state.info;
+  //           console.log(info);
+   //
+  //           for (var index in project["stories"]){
+  //             let v = project["stories"][index].current_state;
+  //             switch(v) {
+  //                case "unstarted":
+  //                for (column_value in info){
+  //                  if (info[column_value] == "READY") {
+   //
+  //                  }
+  //                }
+  //                break;
+  //                case "started":
+  //                break;
+  //                case "delivered":
+  //                break;
+  //                case "finished":
+  //                break;
+  //                case "accepted":
+  //                break;
+  //                case "rejected":
+  //                break;
+  //                default:
+  //              }
+  //           }
+  //          });
+   //
+  //    // }, 10000);
+   //
+  //  }
 
    showForm() {
      if (this.state.showForm) {
