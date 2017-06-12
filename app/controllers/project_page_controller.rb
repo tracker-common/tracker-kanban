@@ -151,7 +151,7 @@ class ProjectPageController < ApplicationController
 		  @data_filtered = formatData(data, column)
 			@d = grabLabelsFromDatabase(data)
 			@project_name = data["name"]
-			#updateDatabase(@data_filtered, data)
+			updateDatabase(@data_filtered, data)
 	 end
 
 	 def grabLabelsFromDatabase(data)

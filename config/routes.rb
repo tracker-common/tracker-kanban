@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'project_page/createNewColumn'
   # post 'project_page/createNewColumn'
 
+  put 'project_page/editColumn'
+
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]

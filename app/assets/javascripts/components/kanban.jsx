@@ -76,7 +76,10 @@ class App extends React.Component {
 
 
    render() {
-     console.log('state', this.state)
+     var id = this.props.project_id
+     var filt=this.props.data
+     //alert(filt.columns)
+    //  console.log('state', this.state)
     //  console.log(this.props.data.columns)
       return (
         <div>
@@ -86,7 +89,7 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} key={i} />
+                      <Column data={column} id={id} filter={filt} key={i} />
                     )
                   })}
           </div>
@@ -169,6 +172,7 @@ class App extends React.Component {
            </label>
            <br/>
            </div>
+
            <div>
            <label>
              Pick the label:
@@ -182,6 +186,7 @@ class App extends React.Component {
            </label>
            <br/>
            </div>
+
            <div>
            <label>
              Pick the Position:
