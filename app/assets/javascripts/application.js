@@ -16,8 +16,6 @@
 //= require react_ujs
 //= require components
 //= require jquery_ujs
-//= require react
-//= require react_ujs
 //= require jquery
 //= require ReactDnDHTML5Backend.min.js
 //= require ReactDnD

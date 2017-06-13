@@ -60,6 +60,8 @@ gem "omniauth-google-oauth2", "~> 0.2.1"
 gem 'bootstrap'
 gem 'react-dnd-rails'
 gem 'react-dnd-html5-backend-rails'
+gem 'webpacker', github: 'rails/webpacker'
+gem 'html5-rails'
 gem 'jquery-rails'
 gem 'thor'
 gem 'railties'
