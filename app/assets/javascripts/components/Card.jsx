@@ -8,44 +8,43 @@ class Card extends React.Component {
     this.handleStartClick - this.handleStartClick.bind(this);
   }
   handleRejectClick(event) {
-    console.log("You have Rejected")
-
+    this.props.onChangeCard(this.props.card["name"] ,this.props.card["current_state"], "rejected");
   }
   handleAcceptClick() {
-    console.log("You have Accepted")
+    this.props.onChangeCard(this.props.card["name"] ,this.props.card["current_state"], "accepted");
   }
   handleStartClick() {
-    console.log("You have Started")
+    this.props.onChangeCard(this.props.card["name"] ,this.props.card["current_state"], "start");
   }
   handleCardLeft() {
-    console.log("Moved card Left")
+    this.props.onChangeCard(this.props.card["name"] ,this.props.card["current_state"], "left");
   }
   handleCardRight() {
-    console.log("Moved card Right")
+    this.props.onChangeCard(this.props.card["name"] ,this.props.card["current_state"], "right");
   }
 
   renderUserMessage(){
       if (this.props.card["current_state"] === 'delivered'){
         return (
           <span>
-            <p><button onClick={this.handleAcceptClick}>Accept</button>
+            <p><button onClick={this.handleAcceptClick.bind(this)}>Accept</button>
             <span> </span>
-            <button onClick={this.handleRejectClick}>Reject</button></p>
+            <button onClick={this.handleRejectClick.bind(this)}>Reject</button></p>
           </span>
         );
-      } else if (this.props.card["current_state"] === 'unstarted') {
+      } else if (this.props.card["current_state"] === 'unstarted' || this.props.card["current_state"] === 'rejected' ) {
         return (
           <span>
-            <p><button onClick={this.handleStartClick}>Start</button></p>
+            <p><button onClick={this.handleStartClick.bind(this)}>Start</button></p>
           </span>
         );
       }
       if (this.props.card["current_state"] !== 'accepted'){
         return (
           <span>
-            <p><button onClick={this.handleCardLeft}>⇦</button>
+            <p><button onClick={this.handleCardLeft.bind(this)}>⇦</button>
             <span> </span>
-            <button onClick={this.handleCardRight}>⇨</button></p>
+            <button onClick={this.handleCardRight.bind(this)}>⇨</button></p>
           </span>
         )
       }

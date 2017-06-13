@@ -7,6 +7,7 @@ class Column extends React.Component{
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleCardChange = this.handleCardChange.bind(this);
   }
 
   customColEdit() {
@@ -171,6 +172,11 @@ class Column extends React.Component{
     }
   }
 
+  handleCardChange(name, current_state, direction){
+    console.log(name + " " + current_state +  " "+ direction);
+    this.props.onChange(name, current_state, direction);
+  }
+
   render() {
     return (
       <div className="column_layout">
@@ -180,9 +186,9 @@ class Column extends React.Component{
         </div>
         {this.props.data.stories.map(function(card, i){
           return (
-            <Card card={card} key={i}/>
+            <Card card={card} key={i} onChangeCard={this.handleCardChange}/>
           )
-        })}
+        }.bind(this))}
       </div>
     );
   }

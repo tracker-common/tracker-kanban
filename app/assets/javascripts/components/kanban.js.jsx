@@ -7,6 +7,8 @@ class App extends React.Component {
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
+    this.handleUpdateCardChange = this.handleUpdateCardChange.bind(this);
+    this.switchColumns = this.switchColumns.bind(this);
   }
 
   retrieveCards() {
@@ -19,14 +21,13 @@ class App extends React.Component {
 
     for (var columns in current_cards) {
       if (current_cards[columns]["name"] == state) {
-         for (var card_value in current_cards[columns]["stories"]) {
-           for (var labels_value in current_cards[columns]["stories"][card_value]["labels"]){
-             if (current_label == current_cards[columns]["stories"][card_value]["labels"][labels_value]["name"]){
-                console.log(current_cards[columns]["stories"][card_value]);
-                custom_stories.push(current_cards[columns]["stories"][card_value]);
-                current_cards[columns]["stories"].splice(card_value, 1);
-                break;
-             }
+        for (var card_value in current_cards[columns]["stories"]) {
+          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
+            console.log("Card Object: " + current_cards[columns]["stories"][card_value] + " label_value: " + label_value)
+            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
+              custom_stories.push(current_cards[columns]["stories"][card_value]);
+              current_cards[columns]["stories"].splice(card_value, 1);
+            }
           }
         }
       }
@@ -35,7 +36,39 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("It mounted");
+    console.log("mounted");
+  }
+
+  handleUpdateCardChange(name, current_state, direction) {
+    translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+    var state = translation_states[current_state]
+
+
+    var current_cards = this.state.info;
+    var temp;
+
+    for (var columns in current_cards) {
+      if (current_cards[columns]["name"] == state) {
+        for (var card_value in current_cards[columns]["stories"]){
+          if (current_cards[columns]["stories"][card_value]["name"] == name){
+            for (var move_to_column in current_cards) {
+              this.switchColumns(state);
+            }
+            console.log('FOUND', card_value)
+            console.log(current_cards[columns]["stories"][card_value])
+          }
+        }
+      }
+    }
+  }
+
+  switchColumns(current_state) {
+    switch (current_state) {
+      case "READY":
+        console.log("Found inside the ready state. Going to be moved into the in progress");
+        break;
+      default:
+    }
   }
 
   handleChange(event) {
@@ -61,8 +94,6 @@ class App extends React.Component {
     var l = this.state.info;
     l.splice(this.state.position_value, 0, column);
     this.setState({info: l});
-
-    console.log("MADE IT HERE");
 
     /* Send the data using post and put the results in a div */
 
@@ -94,9 +125,9 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} id={id} filter={filt} key={i} />
+                      <Column data={column} id={id} filter={filt} key={i} onChange={this.handleUpdateCardChange}/>
                     )
-                  })}
+                  }.bind(this))}
           </div>
         </div>
       );
