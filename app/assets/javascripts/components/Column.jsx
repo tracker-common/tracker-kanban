@@ -6,6 +6,7 @@ class Column extends React.Component{
     this.handleChange = this.handleChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
+    this.handleMaxChange = this.handleMaxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = props.handleUpdate;
   }

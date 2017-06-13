@@ -80,7 +80,9 @@ class App extends React.Component {
       this.setState({label_value: info.label_value}, function () {
         this.setState({position_value: info.position_value}, function () {
           this.setState({column_name: info.column_name}, function() {
-            this.handleChangeStageTwo(info);
+            this.setState({max_value: info.max_value}, function() {
+              this.handleChangeStageTwo(info);
+          });
           });
         });
       });
@@ -107,6 +109,7 @@ class App extends React.Component {
         column_name: this.state.column_name,
         label_value: this.state.label_value,
         position_value: this.state.position_value,
+        max_value: this.state.max_value,
       },
       url: '/project_page/createNewColumn',
     });
