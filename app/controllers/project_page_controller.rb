@@ -167,10 +167,8 @@ class ProjectPageController < ApplicationController
 			 				 state_value: params[:state_value],
 						 	 position_value: params[:position_value]}
 		  data_filtered = formatData(data, column)
-			updateDatabase(data_filtered, data)
+			# updateDatabase(data_filtered, data)
 	 end
-
-
 
 	 def checkInDatabase(data)
 		 project = Project.where(id: data["id"])
@@ -180,8 +178,5 @@ class ProjectPageController < ApplicationController
 			 return false
 		 end
 	 end
-
-
-
 
 end

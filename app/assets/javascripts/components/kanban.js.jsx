@@ -7,7 +7,6 @@ class App extends React.Component {
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
-    // this.requestLiveUpdate = this.requestLiveUpdate.bind(this);
   }
 
   retrieveCards() {
@@ -66,6 +65,7 @@ class App extends React.Component {
     console.log("MADE IT HERE");
 
     /* Send the data using post and put the results in a div */
+
       $.ajax({
         type: "PUT",
         url: '/project_page/createNewColumn',
@@ -101,56 +101,6 @@ class App extends React.Component {
         </div>
       );
    }
-
-  //  requestLiveUpdate(state) {
-  //    // setInterval(function(){
-  //          // get parameters
-  //         var token = this.props.token;
-  //         var projectId = this.props.project_id
-   //
-  //           // compose request URL
-  //         var url = 'https://www.pivotaltracker.com/services/v5';
-  //         url += '/projects/' + projectId;
-  //         url += '/?fields=name,stories(id,name,current_state,story_type,labels)';
-   //
-  //         // do API request to get story names
-  //         $.ajax({
-  //           url: url,
-  //           beforeSend: function(xhr) {
-  //             xhr.setRequestHeader('X-TrackerToken', token);
-  //           }
-  //         }).done(function(project) {
-  //           let info = state.info;
-  //           console.log(info);
-   //
-  //           for (var index in project["stories"]){
-  //             let v = project["stories"][index].current_state;
-  //             switch(v) {
-  //                case "unstarted":
-  //                for (column_value in info){
-  //                  if (info[column_value] == "READY") {
-   //
-  //                  }
-  //                }
-  //                break;
-  //                case "started":
-  //                break;
-  //                case "delivered":
-  //                break;
-  //                case "finished":
-  //                break;
-  //                case "accepted":
-  //                break;
-  //                case "rejected":
-  //                break;
-  //                default:
-  //              }
-  //           }
-  //          });
-   //
-  //    // }, 10000);
-   //
-  //  }
 
    showForm() {
      if (this.state.showForm) {
