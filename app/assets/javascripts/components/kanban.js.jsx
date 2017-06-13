@@ -21,15 +21,21 @@ class App extends React.Component {
 
     for (var columns in current_cards) {
       if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]) {
-          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
-            console.log("Card Object: " + current_cards[columns]["stories"][card_value] + " label_value: " + label_value)
-            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
-              custom_stories.push(current_cards[columns]["stories"][card_value]);
-              current_cards[columns]["stories"].splice(card_value, 1);
-            }
+        var temp_container = current_cards[columns]["stories"]
+        var temp_values = [];
+         for (var card_value in temp_container) {
+           for (var labels_value in temp_container[card_value]["labels"]){
+             if (current_label == temp_container[card_value]["labels"][labels_value]["name"]){
+                temp_values.push(card_value);
+                custom_stories.push(temp_container[card_value]);
+                // current_cards[columns]["stories"].splice(card_value, 1);
+             }
           }
         }
+        for (var i = temp_values.length -1; i >= 0; i--){
+          current_cards[columns]["stories"].splice(temp_values[i],1);
+        }
+
       }
     }
     return custom_stories;
