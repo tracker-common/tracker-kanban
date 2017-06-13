@@ -6,29 +6,35 @@ class ProjectPageController < ApplicationController
 
 
 	def home
-		@project_id = params[:id]["id"]
-		@project_name = params[:id]["name"]
-		@token = params[:token]
-		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type,labels)", headers: {"X-TrackerToken" => "#{@token}"})
-	  json = JSON.parse(response.body)
+		user = User.find_by(uid: session[:user_id])
+		@token = user.api_token
+		@project_id = params[:id]
+		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type,labels),labels", headers: {"X-TrackerToken" => "#{@token}"})
+		json = JSON.parse(response.body)
+		@project_name = json["name"]
 		@d = grabLabels(json)
-
 		if checkInDatabase(json)
 				data = Project.find_by(id: json["id"])
 				@data_filtered = formatData(data)
-				puts "THE DATA INSIDE IS #{@data_filtered[:columns][1]}"
 		else
-		    @data_filtered = filterData(json)
+				@data_filtered = filterData(json)
 		end
+	 end
+
+	 def show
+		 puts "This was called from SHOW!!!!"
+	 end
+
+	 def setUp(token, project_id)
+
 	 end
 
 	 def grabLabels(data)
 		  label_titles = Set.new
-		 	data["stories"].each do |value|
-				if value["labels"][0] != nil
-						label_titles.add(value["labels"][0]["name"])
-				end
+			data["labels"].each do |value|
+				label_titles.add(value["name"])
 			end
+
 			array = []
 			label_titles.each do |value|
 				array.push(value)
@@ -56,18 +62,30 @@ class ProjectPageController < ApplicationController
 					 column = {name: "", stories: []}
 					 column[:name] = value["name"]
 					 value["stories"].each do |story|
-					 	if story[:current_state] == custom_column[:state_value]
-							story[:labels].each do |label|
-								if label[:name] == custom_column[:label_value]
-									c_column[:stories].push(story)
+						 puts "Looking at story: #{story["name"]}"
+						 	if story[:current_state] == custom_column[:state_value]
+
+								if story[:labels].count != 0
+									story[:labels].each do |label|
+										if label[:name] == custom_column[:label_value]
+											c_column[:stories].push(story)
+											puts "BEFORE: #{value["stories"]}"
+											value["stories"].delete(story)
+											puts "AFTER: #{value["stories"]}"
+											break
+										else
+											if(!c_column[:stories].include?(story))
+												column[:stories].push(story)
+											end
+										end
+									end #do label
 								else
-									column[:stories].push(story)
+									if(!c_column[:stories].include?(story))
+										puts "PLACING INSIDE column: #{story}"
+										column[:stories].push(story)
+									end
 								end
-							end #do label
-						end
-						if(!c_column[:stories].include?(story))
-							column[:stories].push(story)
-						end
+							end
 					 end #column[:stories]
 					 data_filtered[:columns].push(column)
 					 if c_column[:stories].any?
@@ -132,9 +150,13 @@ class ProjectPageController < ApplicationController
 	 end
 
 	 def updateDatabase(data, name)
-		 @project = Project.find_by(id: name["id"])
-		 @project.columns = data[:columns]
-		 @project.save
+		 project = Project.find_by(id: name["id"])
+		 project.columns = data[:columns]
+		 project.save
+	 end
+
+	 def update
+		 puts "insdie update"
 	 end
 
 
@@ -144,27 +166,10 @@ class ProjectPageController < ApplicationController
 			 				 label_value: params[:label_value],
 			 				 state_value: params[:state_value],
 						 	 position_value: params[:position_value]}
-		  @data_filtered = formatData(data, column)
-			@d = grabLabelsFromDatabase(data)
-			@project_name = data["name"]
-			#updateDatabase(@data_filtered, data)
+		  data_filtered = formatData(data, column)
+			updateDatabase(data_filtered, data)
 	 end
 
-	 def grabLabelsFromDatabase(data)
-		 label_titles = Set.new
-		 data.columns.each do |value|
-		 value["stories"].each do |story|
-				 if story["labels"][0] != nil
-						label_titles.add(story["labels"][0]["name"])
-				 end
-			 end
-		 end
-		 array = []
-		 label_titles.each do |value|
-			 array.push(value)
-		 end
-		 return array
-	 end
 
 
 	 def checkInDatabase(data)
@@ -175,5 +180,8 @@ class ProjectPageController < ApplicationController
 			 return false
 		 end
 	 end
+
+
+
 
 end

@@ -1,12 +1,13 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
+    // this.requestLiveUpdate = this.requestLiveUpdate.bind(this);
   }
 
   retrieveCards() {
@@ -16,19 +17,26 @@ class App extends React.Component {
     var custom_stories = []
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
     var state = translation_states[current_state]
+
     for (var columns in current_cards) {
       if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]) {
-          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
-            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
-              custom_stories.push(current_cards[columns]["stories"][card_value]);
-              current_cards[columns]["stories"].splice(card_value, 1);
-            }
+         for (var card_value in current_cards[columns]["stories"]) {
+           for (var labels_value in current_cards[columns]["stories"][card_value]["labels"]){
+             if (current_label == current_cards[columns]["stories"][card_value]["labels"][labels_value]["name"]){
+                console.log(current_cards[columns]["stories"][card_value]);
+                custom_stories.push(current_cards[columns]["stories"][card_value]);
+                current_cards[columns]["stories"].splice(card_value, 1);
+                break;
+             }
           }
         }
       }
     }
     return custom_stories;
+  }
+
+  componentDidMount() {
+    console.log("It mounted");
   }
 
   handleChange(event) {
@@ -49,28 +57,36 @@ class App extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    var s = this.retrieveCards()
-    var column = {name: this.state.column_name, stories: s}
-    var l = this.state.info
+    var s = this.retrieveCards();
+    var column = {name: this.state.column_name, stories: s};
+    var l = this.state.info;
     l.splice(this.state.position_value, 0, column);
-    this.setState({info: l})
+    this.setState({info: l});
 
-    $.ajax({
-      method: 'GET',
-      data: {
-        project_id: this.props.data.project_id,
-        state_value: this.state.state_value,
-        column_name: this.state.column_name,
-        label_value: this.state.label_value,
-        position_value: this.state.position_value,
-      },
-      url: '/project_page/createNewColumn',
-    });
+    console.log("MADE IT HERE");
+
+    /* Send the data using post and put the results in a div */
+      $.ajax({
+        type: "PUT",
+        url: '/project_page/createNewColumn',
+        data: {
+          project_id: this.props.data.project_id,
+          state_value: this.state.state_value,
+          column_name: this.state.column_name,
+          label_value: this.state.label_value,
+          position_value: this.state.position_value,
+        },
+        error:function(){
+         alert('Unable to create column and send information.');
+        }
+      });
   }
 
+
+
    render() {
-    //  console.log('state', this.state)
-    //  console.log(this.props.data.columns)
+     var id = this.props.project_id
+     var filt=this.props.data
       return (
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
@@ -78,13 +94,63 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} key={i} />
+                      <Column data={column} id={id} filter={filt} key={i} />
                     )
                   })}
           </div>
         </div>
       );
    }
+
+  //  requestLiveUpdate(state) {
+  //    // setInterval(function(){
+  //          // get parameters
+  //         var token = this.props.token;
+  //         var projectId = this.props.project_id
+   //
+  //           // compose request URL
+  //         var url = 'https://www.pivotaltracker.com/services/v5';
+  //         url += '/projects/' + projectId;
+  //         url += '/?fields=name,stories(id,name,current_state,story_type,labels)';
+   //
+  //         // do API request to get story names
+  //         $.ajax({
+  //           url: url,
+  //           beforeSend: function(xhr) {
+  //             xhr.setRequestHeader('X-TrackerToken', token);
+  //           }
+  //         }).done(function(project) {
+  //           let info = state.info;
+  //           console.log(info);
+   //
+  //           for (var index in project["stories"]){
+  //             let v = project["stories"][index].current_state;
+  //             switch(v) {
+  //                case "unstarted":
+  //                for (column_value in info){
+  //                  if (info[column_value] == "READY") {
+   //
+  //                  }
+  //                }
+  //                break;
+  //                case "started":
+  //                break;
+  //                case "delivered":
+  //                break;
+  //                case "finished":
+  //                break;
+  //                case "accepted":
+  //                break;
+  //                case "rejected":
+  //                break;
+  //                default:
+  //              }
+  //           }
+  //          });
+   //
+  //    // }, 10000);
+   //
+  //  }
 
    showForm() {
      if (this.state.showForm) {
@@ -111,6 +177,7 @@ class App extends React.Component {
            </label>
            <br/>
            </div>
+
            <div>
            <label>
              Pick the label:
@@ -124,6 +191,7 @@ class App extends React.Component {
            </label>
            <br/>
            </div>
+
            <div>
            <label>
              Pick the Position:
