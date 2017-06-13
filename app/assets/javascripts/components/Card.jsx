@@ -1,12 +1,27 @@
 class Card extends React.Component {
-  handleRejectClick() {
+  constructor(props) {
+    super(props);
+    this.handleCardLeft = this.handleCardLeft.bind(this);
+    this.handleCardRight = this.handleCardRight.bind(this);
+    this.handleRejectClick = this.handleRejectClick.bind(this);
+    this.handleAcceptClick = this.handleAcceptClick.bind(this);
+    this.handleStartClick - this.handleStartClick.bind(this);
+  }
+  handleRejectClick(event) {
     console.log("You have Rejected")
+
   }
   handleAcceptClick() {
-    console.log("You have Accepeted")
+    console.log("You have Accepted")
   }
   handleStartClick() {
     console.log("You have Started")
+  }
+  handleCardLeft() {
+    console.log("Moved card Left")
+  }
+  handleCardRight() {
+    console.log("Moved card Right")
   }
 
   renderUserMessage(){
@@ -24,6 +39,15 @@ class Card extends React.Component {
             <p><button onClick={this.handleStartClick}>Start</button></p>
           </span>
         );
+      }
+      if (this.props.card["current_state"] !== 'accepted'){
+        return (
+          <span>
+            <p><button onClick={this.handleCardLeft}>⇦</button>
+            <span> </span>
+            <button onClick={this.handleCardRight}>⇨</button></p>
+          </span>
+        )
       }
   }
   renderStoryType(){
@@ -59,4 +83,4 @@ class Card extends React.Component {
         </div>
     );
   }
-};
+}
