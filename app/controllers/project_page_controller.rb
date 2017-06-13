@@ -6,24 +6,27 @@ class ProjectPageController < ApplicationController
 
 
 	def home
-		@project_id = params[:id]["id"]
-		@project_name = params[:id]["name"]
-		@token = params[:token]
+		user = User.find_by(uid: session[:user_id])
+		@token = user.api_token
+		@project_id = params[:id]
 		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type,labels)", headers: {"X-TrackerToken" => "#{@token}"})
-	  json = JSON.parse(response.body)
+		json = JSON.parse(response.body)
+		@project_name = json["name"]
 		@d = grabLabels(json)
-
 		if checkInDatabase(json)
 				data = Project.find_by(id: json["id"])
 				@data_filtered = formatData(data)
-				puts "THE DATA INSIDE IS #{@data_filtered[:columns][1]}"
 		else
-		    @data_filtered = filterData(json)
+				@data_filtered = filterData(json)
 		end
 	 end
 
 	 def show
 		 puts "This was called from SHOW!!!!"
+	 end
+
+	 def setUp(token, project_id)
+
 	 end
 
 	 def grabLabels(data)
@@ -179,5 +182,8 @@ class ProjectPageController < ApplicationController
 			 return false
 		 end
 	 end
+
+
+
 
 end
