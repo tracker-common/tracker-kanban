@@ -8,6 +8,8 @@ class App extends React.Component {
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
+    this.handleUpdateCardChange = this.handleUpdateCardChange.bind(this);
+    this.switchColumns = this.switchColumns.bind(this);
   }
 
   retrieveCards() {
@@ -17,22 +19,64 @@ class App extends React.Component {
     var custom_stories = []
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
     var state = translation_states[current_state]
+
     for (var columns in current_cards) {
       if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]) {
-          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
-            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
-              custom_stories.push(current_cards[columns]["stories"][card_value]);
-              current_cards[columns]["stories"].splice(card_value, 1);
-            }
+        var temp_container = current_cards[columns]["stories"]
+        var temp_values = [];
+         for (var card_value in temp_container) {
+           for (var labels_value in temp_container[card_value]["labels"]){
+             if (current_label == temp_container[card_value]["labels"][labels_value]["name"]){
+                temp_values.push(card_value);
+                custom_stories.push(temp_container[card_value]);
+                // current_cards[columns]["stories"].splice(card_value, 1);
+             }
           }
         }
+        for (var i = temp_values.length -1; i >= 0; i--){
+          current_cards[columns]["stories"].splice(temp_values[i],1);
+        }
+
       }
     }
     return custom_stories;
   }
 
+  componentDidMount() {
+    console.log("mounted");
+  }
 
+  handleUpdateCardChange(name, current_state, direction) {
+    translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+    var state = translation_states[current_state]
+
+
+    var current_cards = this.state.info;
+    var temp;
+
+    for (var columns in current_cards) {
+      if (current_cards[columns]["name"] == state) {
+        for (var card_value in current_cards[columns]["stories"]){
+          if (current_cards[columns]["stories"][card_value]["name"] == name){
+            for (var move_to_column in current_cards) {
+              this.switchColumns(state);
+            }
+            console.log('FOUND', card_value)
+            console.log(current_cards[columns]["stories"][card_value])
+          }
+        }
+      }
+    }
+  }
+
+  switchColumns(current_state) {
+    switch (current_state) {
+      case "READY":
+        console.log("Found inside the ready state. Going to be moved into the in progress");
+        break;
+      default:
+    }
+  }
 
   handleChange(event) {
     this.setState({state_value: event.target.value});
