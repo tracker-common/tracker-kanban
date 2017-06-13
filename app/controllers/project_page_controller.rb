@@ -138,9 +138,13 @@ class ProjectPageController < ApplicationController
 	 end
 
 	 def updateDatabase(data, name)
-		 @project = Project.find_by(id: name["id"])
-		 @project.columns = data[:columns]
-		 @project.save
+		 project = Project.find_by(id: name["id"])
+		 project.columns = data[:columns]
+		 project.save
+	 end
+
+	 def update
+		 puts "insdie update"
 	 end
 
 
@@ -150,27 +154,10 @@ class ProjectPageController < ApplicationController
 			 				 label_value: params[:label_value],
 			 				 state_value: params[:state_value],
 						 	 position_value: params[:position_value]}
-		  @data_filtered = formatData(data, column)
-			@d = grabLabelsFromDatabase(data)
-			@project_name = data["name"]
-			updateDatabase(@data_filtered, data)
+		  data_filtered = formatData(data, column)
+			# updateDatabase(data_filtered, data)
 	 end
 
-	 def grabLabelsFromDatabase(data)
-		 label_titles = Set.new
-		 data.columns.each do |value|
-		 value["stories"].each do |story|
-				 if story["labels"][0] != nil
-						label_titles.add(story["labels"][0]["name"])
-				 end
-			 end
-		 end
-		 array = []
-		 label_titles.each do |value|
-			 array.push(value)
-		 end
-		 return array
-	 end
 
 
 	 def checkInDatabase(data)

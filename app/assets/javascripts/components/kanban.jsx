@@ -17,14 +17,17 @@ class App extends React.Component {
     var custom_stories = []
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
     var state = translation_states[current_state]
+
     for (var columns in current_cards) {
       if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]) {
-          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
-            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
-              custom_stories.push(current_cards[columns]["stories"][card_value]);
-              current_cards[columns]["stories"].splice(card_value, 1);
-            }
+         for (var card_value in current_cards[columns]["stories"]) {
+           for (var labels_value in current_cards[columns]["stories"][card_value]["labels"]){
+             if (current_label == current_cards[columns]["stories"][card_value]["labels"][labels_value]["name"]){
+                console.log(current_cards[columns]["stories"][card_value]);
+                custom_stories.push(current_cards[columns]["stories"][card_value]);
+                current_cards[columns]["stories"].splice(card_value, 1);
+                break;
+             }
           }
         }
       }
@@ -60,17 +63,23 @@ class App extends React.Component {
     l.splice(this.state.position_value, 0, column);
     this.setState({info: l});
 
-    $.ajax({
-      method: 'GET',
-      data: {
-        project_id: this.props.data.project_id,
-        state_value: this.state.state_value,
-        column_name: this.state.column_name,
-        label_value: this.state.label_value,
-        position_value: this.state.position_value,
-      },
-      url: '/project_page/createNewColumn',
-    });
+    console.log("MADE IT HERE");
+
+    /* Send the data using post and put the results in a div */
+      $.ajax({
+        type: "PUT",
+        url: '/project_page/createNewColumn',
+        data: {
+          project_id: this.props.data.project_id,
+          state_value: this.state.state_value,
+          column_name: this.state.column_name,
+          label_value: this.state.label_value,
+          position_value: this.state.position_value,
+        },
+        error:function(){
+         alert('Unable to create column and send information.');
+        }
+      });
   }
 
 
@@ -78,9 +87,6 @@ class App extends React.Component {
    render() {
      var id = this.props.project_id
      var filt=this.props.data
-     //alert(filt.columns)
-    //  console.log('state', this.state)
-    //  console.log(this.props.data.columns)
       return (
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
