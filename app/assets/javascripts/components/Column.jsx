@@ -9,7 +9,8 @@ class Column extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
     console.log(props.handleUpdate);
     this.handleUpdate = props.handleUpdate;
-    console.log(this.handleUpdate);
+    console.log("YDRGJUH", this.handleUpdate);
+    console.log(props);
   }
 
   customColEdit() {
@@ -72,7 +73,9 @@ class Column extends React.Component{
   }
 
   handleSubmit(event){
-    this.handleUpdate(this.props.data.name, this.state)
+    //this.handleUpdate(this.props.data.name, this.state)
+    var x = this.handleUpdate(this.props.data.name, this.state);
+    console.log(x);
     event.preventDefault();
     // console.log("Name state: "+this.state.column_name+" Story state: "+this.state.state_value+" Label state: "+this.state.label_value+" Position state: "+this.state.position_value);
     // var s = this.retrieveCards()
@@ -166,7 +169,7 @@ class Column extends React.Component{
               <select value={this.state.position_value} name="position_value" onChange={this.handlePositionChange}>
               {this.props.filter.columns.map(function(label, i){
                 return(
-                  <option value={i}>{i+1}</option>
+                  <option value={i} key={i}>{i+1}</option>
                   )
               })}
               </select>

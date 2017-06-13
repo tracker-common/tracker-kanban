@@ -4,7 +4,7 @@ class App extends React.Component {
     this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.updateColumn = this.updateColumn.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
@@ -50,8 +50,8 @@ class App extends React.Component {
     this.setState({position_value: event.target.value});
   }
 
-  updateColumn(name, info){
-    console.log(name, info);
+  handleUpdate(name, info){
+    console.log("&%*(", name, info);
   }
 
   handleSubmit(event){
@@ -81,6 +81,10 @@ class App extends React.Component {
      //alert(filt.columns)
     //  console.log('state', this.state)
     //  console.log(this.props.data.columns)
+
+    var self = this;
+
+
       return (
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
@@ -88,7 +92,8 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} id={id} filter={filt} key={i} handleUpdate={this.updateColumn} />
+                      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                      <Column data={column} id={id} filter={filt} key={i} handleUpdate={self.handleUpdate} />
 
                     )
                   })}
@@ -100,7 +105,7 @@ class App extends React.Component {
    showForm() {
      if (this.state.showForm) {
        return (
-         <form onSubmit={this.handleSubmit} action="/project_page/createNewColumn">
+         <form onSubmit={this.handleSubmit}>
          <div>
              <label>
                Custom column name:
