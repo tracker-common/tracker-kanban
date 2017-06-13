@@ -62,18 +62,30 @@ class ProjectPageController < ApplicationController
 					 column = {name: "", stories: []}
 					 column[:name] = value["name"]
 					 value["stories"].each do |story|
-					 	if story[:current_state] == custom_column[:state_value]
-							story[:labels].each do |label|
-								if label[:name] == custom_column[:label_value]
-									c_column[:stories].push(story)
+						 puts "Looking at story: #{story["name"]}"
+						 	if story[:current_state] == custom_column[:state_value]
+
+								if story[:labels].count != 0
+									story[:labels].each do |label|
+										if label[:name] == custom_column[:label_value]
+											c_column[:stories].push(story)
+											puts "BEFORE: #{value["stories"]}"
+											value["stories"].delete(story)
+											puts "AFTER: #{value["stories"]}"
+											break
+										else
+											if(!c_column[:stories].include?(story))
+												column[:stories].push(story)
+											end
+										end
+									end #do label
 								else
-									column[:stories].push(story)
+									if(!c_column[:stories].include?(story))
+										puts "PLACING INSIDE column: #{story}"
+										column[:stories].push(story)
+									end
 								end
-							end #do label
-						end
-						if(!c_column[:stories].include?(story))
-							column[:stories].push(story)
-						end
+							end
 					 end #column[:stories]
 					 data_filtered[:columns].push(column)
 					 if c_column[:stories].any?
@@ -155,7 +167,7 @@ class ProjectPageController < ApplicationController
 			 				 state_value: params[:state_value],
 						 	 position_value: params[:position_value]}
 		  data_filtered = formatData(data, column)
-			# updateDatabase(data_filtered, data)
+			updateDatabase(data_filtered, data)
 	 end
 
 
