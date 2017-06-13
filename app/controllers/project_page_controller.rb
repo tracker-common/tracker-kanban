@@ -9,7 +9,7 @@ class ProjectPageController < ApplicationController
 		user = User.find_by(uid: session[:user_id])
 		@token = user.api_token
 		@project_id = params[:id]
-		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type,labels)", headers: {"X-TrackerToken" => "#{@token}"})
+		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type,labels),labels", headers: {"X-TrackerToken" => "#{@token}"})
 		json = JSON.parse(response.body)
 		@project_name = json["name"]
 		@d = grabLabels(json)
@@ -31,11 +31,10 @@ class ProjectPageController < ApplicationController
 
 	 def grabLabels(data)
 		  label_titles = Set.new
-		 	data["stories"].each do |value|
-				if value["labels"][0] != nil
-						label_titles.add(value["labels"][0]["name"])
-				end
+			data["labels"].each do |value|
+				label_titles.add(value["name"])
 			end
+
 			array = []
 			label_titles.each do |value|
 				array.push(value)
