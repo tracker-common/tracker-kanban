@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, max_value: 5};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -51,7 +51,10 @@ class App extends React.Component {
   }
 
   handleUpdate(name, info){
-    console.log("&%*(", name, info);
+    console.log("HEY LOOK AT ME! I'M SOME INFORMATION: ", name, info);
+    return(
+      info["column_name"]
+    );
   }
 
   handleSubmit(event){
@@ -76,14 +79,7 @@ class App extends React.Component {
   }
 
    render() {
-     var id = this.props.project_id
-     var filt=this.props.data
-     //alert(filt.columns)
-    //  console.log('state', this.state)
-    //  console.log(this.props.data.columns)
-
     var self = this;
-
 
       return (
         <div>
@@ -93,7 +89,7 @@ class App extends React.Component {
                   {this.state.info.map(function(column, i){
                     return (
                       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                      <Column data={column} id={id} filter={filt} key={i} handleUpdate={self.handleUpdate} />
+                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} />
 
                     )
                   })}
@@ -134,7 +130,7 @@ class App extends React.Component {
              <select value={this.state.label_value} onChange={this.handleLabelChange} name="label_value">
                {this.props.d.map(function(label, i){
                  return (
-                   <option value={label}>{label}</option>
+                   <option value={label} key={i}>{label}</option>
                  )
                })}
              </select>
@@ -148,7 +144,7 @@ class App extends React.Component {
              <select value={this.state.position_value} onChange={this.handlePositionChange} name="position_value">
                {this.props.data.columns.map(function(label, i){
                  return (
-                   <option value={i}>{(i+1)}</option>
+                   <option value={i} key={i}>{(i+1)}</option>
                  )
                })}
 
