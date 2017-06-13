@@ -21,3 +21,4 @@
 //= require jquery
 //= require ReactDnDHTML5Backend.min.js
 //= require ReactDnD
+//= require bootstrap.min
