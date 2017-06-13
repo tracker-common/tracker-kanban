@@ -8,7 +8,6 @@ class Column extends React.Component{
     this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = props.handleUpdate;
-    console.log("IN COLUMN: ", this.handleUpdate);
   }
 
   customColEdit() {
@@ -24,7 +23,6 @@ class Column extends React.Component{
   }
 
   editColumn_() {
-
     var labels = new Set();
     for (var i = 0; i < this.props.filter.columns.length; i++) {
       var value = this.props.filter.columns[i]
@@ -65,13 +63,16 @@ class Column extends React.Component{
     this.setState({label_value: event.target.value});
   }
 
+
   handleMaxChange(event){
     this.setState({max_value: event.target.value});
   }
 
   handleSubmit(event){
-    var x = this.handleUpdate(this.props.data.name, this.state);
-    console.log(x);
+    //this.handleUpdate(this.props.data.name, this.state)
+    //console.log(this.state.column_name)
+    this.handleUpdate(this.props.data.name, this.state, this.state.column_name);
+    //console.log(x);
     event.preventDefault();
   }
 
