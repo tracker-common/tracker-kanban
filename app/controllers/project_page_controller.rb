@@ -43,7 +43,6 @@ class ProjectPageController < ApplicationController
 	 end
 
 	 def formatData(data)
-		 translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
 			 data_filtered = {project_id: data["id"], columns:[]}
 			 data.columns.each do |value|
 				 column = {name: "", stories: []}
@@ -117,7 +116,7 @@ class ProjectPageController < ApplicationController
 
 
 		  data_filtered = makeForDatabase(data, column)
-			# updateDatabase(data_filtered, data)
+			updateDatabase(data_filtered, data)
 	 end
 
 
@@ -160,5 +159,20 @@ class ProjectPageController < ApplicationController
 			 return false
 		 end
 	 end
+
+
+	 def updateDatabaseWithNewCardPlacements
+
+		 puts "THE COLUMN IS #{params[:new_column]}"
+
+		 project = Project.find_by(id: params[:project_id].to_i)
+		 moved_card = project.findAndDeleteStoryID(params[:old_column], params[:story_id])
+		 moved_card["current_state"] = params[:new_state]
+		 puts " THE MOVED CARD IS : #{moved_card}"
+		 project.insertCard(params[:new_column], moved_card)
+		 project.save
+	 end
+
+
 
 end

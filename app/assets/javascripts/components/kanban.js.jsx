@@ -42,7 +42,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("mounted");
   }
 
   handleUpdateCardChange(name, current_state, direction, column_name) {
@@ -52,23 +51,26 @@ class App extends React.Component {
     var temp_card;
 
     for (var columns in current_columns) {
-      // console.log(current_columns)
       if (current_columns[columns]["name"] == column_name) {
         for (var card in current_columns[columns]["stories"]) {
-          console.log("COMPARING: " + name + " vs " + current_columns[columns]["stories"][card]["name"]);
           if (name == current_columns[columns]["stories"][card]["name"]) {
             temp_card = current_columns[columns]["stories"][card];
             current_columns[columns]["stories"].splice(card, 1);
-            this.switchColumns(current_columns, temp_card, direction, current_state);
+            console.log(current_columns[columns]["name"])
+            this.switchColumns(current_columns, temp_card, direction, current_columns[columns]["name"]);
           }
         }
       }
     }
   }
 
-  switchColumns(current_columns, card, direction, current_state) {
+  switchColumns(current_columns, card, direction, current_column) {
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
-    // console.log("CURRENT STATE IS:", direction);
+    var current_state = card["current_state"]
+    var old_c = current_column;
+    var new_column;
+    var story_id = card["id"];
+
     switch (direction) {
       case 'start':
       case 'rejected':
@@ -77,6 +79,7 @@ class App extends React.Component {
           for (var column in current_columns) {
             if (current_columns[column]["name"] == state) {
               current_columns[column]["stories"].push(card);
+              new_column = current_columns[column]["name"];
             }
           }
           this.setState({info: current_columns});
@@ -87,16 +90,19 @@ class App extends React.Component {
       for (var column in current_columns) {
         if (current_columns[column]["name"] == state) {
           current_columns[column]["stories"].push(card);
+          new_column = current_columns[column]["name"];
         }
       }
       this.setState({info: current_columns});
       break;
       case 'rejected_delivered':
+
           card["current_state"] = "rejected";
           var state = translation_states[card["current_state"]];
           for (var column in current_columns) {
             if (current_columns[column]["name"] == state) {
               current_columns[column]["stories"].push(card);
+              new_column = current_columns[column]["name"];
             }
           }
           this.setState({info: current_columns});
@@ -109,6 +115,7 @@ class App extends React.Component {
                   for (var column in current_columns) {
                     if (current_columns[column]["name"] == state) {
                       current_columns[column]["stories"].push(card);
+                      new_column = current_columns[column]["name"];
                     }
                   }
                   this.setState({info: current_columns});
@@ -119,6 +126,7 @@ class App extends React.Component {
                 for (var column in current_columns) {
                   if (current_columns[column]["name"] == state) {
                     current_columns[column]["stories"].push(card);
+                    new_column = current_columns[column]["name"];
                   }
                 }
                 this.setState({info: current_columns});
@@ -135,6 +143,7 @@ class App extends React.Component {
                 for (var column in current_columns) {
                   if (current_columns[column]["name"] == state) {
                     current_columns[column]["stories"].push(card);
+                    new_column = current_columns[column]["name"];
                   }
                 }
                 this.setState({info: current_columns});
@@ -145,6 +154,7 @@ class App extends React.Component {
               for (var column in current_columns) {
                 if (current_columns[column]["name"] == state) {
                   current_columns[column]["stories"].push(card);
+                  new_column = current_columns[column]["name"];
                 }
               }
               this.setState({info: current_columns});
@@ -156,8 +166,30 @@ class App extends React.Component {
       default:
       alert("You are headed into the bleh")
       break;
-
     }
+
+
+    console.log("project id is: ", this.props.data.project_id);
+
+
+    $.ajax({
+      type: "PUT",
+      url: '/project_page/updateDatabaseWithNewCardPlacements',
+      data: {
+        project_id: this.props.data.project_id,
+        story_id: story_id,
+        old_column: old_c,
+        new_column: new_column,
+        new_state: card["current_state"],
+
+      },
+      error:function(){
+       alert('Unable to create column and send information.');
+      }
+    });
+
+
+
   }
 
   handleChange(event) {

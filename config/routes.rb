@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   put 'project_page/editColumn'
 
+  put 'project_page/updateDatabaseWithNewCardPlacements'
+
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
