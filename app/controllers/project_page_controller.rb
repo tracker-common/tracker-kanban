@@ -117,7 +117,7 @@ class ProjectPageController < ApplicationController
 
 
 		  data_filtered = makeForDatabase(data, column)
-			updateDatabase(data_filtered, data)
+			# updateDatabase(data_filtered, data)
 	 end
 
 

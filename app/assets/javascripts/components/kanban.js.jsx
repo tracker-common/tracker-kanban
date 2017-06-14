@@ -45,15 +45,17 @@ class App extends React.Component {
     console.log("mounted");
   }
 
-  handleUpdateCardChange(name, current_state, direction) {
+  handleUpdateCardChange(name, current_state, direction, column_name) {
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
     var state = translation_states[current_state]
     var current_columns = this.state.info;
     var temp_card;
 
     for (var columns in current_columns) {
-      if (current_columns[columns]["name"] == state) {
+      // console.log(current_columns)
+      if (current_columns[columns]["name"] == column_name) {
         for (var card in current_columns[columns]["stories"]) {
+          console.log("COMPARING: " + name + " vs " + current_columns[columns]["stories"][card]["name"]);
           if (name == current_columns[columns]["stories"][card]["name"]) {
             temp_card = current_columns[columns]["stories"][card];
             current_columns[columns]["stories"].splice(card, 1);
@@ -66,7 +68,7 @@ class App extends React.Component {
 
   switchColumns(current_columns, card, direction, current_state) {
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
-    console.log("CURRENT STATE IS:", direction);
+    // console.log("CURRENT STATE IS:", direction);
     switch (direction) {
       case 'start':
       case 'rejected':
@@ -99,7 +101,6 @@ class App extends React.Component {
           }
           this.setState({info: current_columns});
       break;
-
       case 'left':
         switch (current_state) {
           case "started":
@@ -152,10 +153,8 @@ class App extends React.Component {
         break;
       }
     break
-
-
-
       default:
+      alert("You are headed into the bleh")
       break;
 
     }

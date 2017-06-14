@@ -172,9 +172,9 @@ class Column extends React.Component{
     }
   }
 
-  handleCardChange(name, current_state, direction){
-    console.log(name + " " + current_state +  " "+ direction);
-    this.props.onChange(name, current_state, direction);
+  handleCardChange(name, current_state, direction, column_name){
+    console.log(name + " " + current_state +  " "+ direction + " " + column_name);
+    this.props.onChange(name, current_state, direction, column_name);
   }
 
   render() {
@@ -186,7 +186,7 @@ class Column extends React.Component{
         </div>
         {this.props.data.stories.map(function(card, i){
           return (
-            <Card card={card} key={i} onChangeCard={this.handleCardChange}/>
+            <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]}/>
           )
         }.bind(this))}
       </div>
