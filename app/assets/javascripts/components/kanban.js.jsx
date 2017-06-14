@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, max_value: '5'};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: 5};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -47,35 +47,118 @@ class App extends React.Component {
     console.log("mounted");
   }
 
-  handleUpdateCardChange(name, current_state, direction) {
+  handleUpdateCardChange(name, current_state, direction, column_name) {
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
     var state = translation_states[current_state]
+    var current_columns = this.state.info;
+    var temp_card;
 
-
-    var current_cards = this.state.info;
-    var temp;
-
-    for (var columns in current_cards) {
-      if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]){
-          if (current_cards[columns]["stories"][card_value]["name"] == name){
-            for (var move_to_column in current_cards) {
-              this.switchColumns(state);
-            }
-            console.log('FOUND', card_value)
-            console.log(current_cards[columns]["stories"][card_value])
+    for (var columns in current_columns) {
+      // console.log(current_columns)
+      if (current_columns[columns]["name"] == column_name) {
+        for (var card in current_columns[columns]["stories"]) {
+          console.log("COMPARING: " + name + " vs " + current_columns[columns]["stories"][card]["name"]);
+          if (name == current_columns[columns]["stories"][card]["name"]) {
+            temp_card = current_columns[columns]["stories"][card];
+            current_columns[columns]["stories"].splice(card, 1);
+            this.switchColumns(current_columns, temp_card, direction, current_state);
           }
         }
       }
     }
   }
 
-  switchColumns(current_state) {
-    switch (current_state) {
-      case "READY":
-        console.log("Found inside the ready state. Going to be moved into the in progress");
+  switchColumns(current_columns, card, direction, current_state) {
+    translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+    // console.log("CURRENT STATE IS:", direction);
+    switch (direction) {
+      case 'start':
+      case 'rejected':
+          card["current_state"] = "started";
+          var state = translation_states[card["current_state"]];
+          for (var column in current_columns) {
+            if (current_columns[column]["name"] == state) {
+              current_columns[column]["stories"].push(card);
+            }
+          }
+          this.setState({info: current_columns});
+          break;
+      case 'accepted':
+      card["current_state"] = "accepted";
+      var state = translation_states[card["current_state"]];
+      for (var column in current_columns) {
+        if (current_columns[column]["name"] == state) {
+          current_columns[column]["stories"].push(card);
+        }
+      }
+      this.setState({info: current_columns});
+      break;
+      case 'rejected_delivered':
+          card["current_state"] = "rejected";
+          var state = translation_states[card["current_state"]];
+          for (var column in current_columns) {
+            if (current_columns[column]["name"] == state) {
+              current_columns[column]["stories"].push(card);
+            }
+          }
+          this.setState({info: current_columns});
+      break;
+      case 'left':
+        switch (current_state) {
+          case "started":
+                  card["current_state"] = "unstarted";
+                  var state = translation_states[card["current_state"]];
+                  for (var column in current_columns) {
+                    if (current_columns[column]["name"] == state) {
+                      current_columns[column]["stories"].push(card);
+                    }
+                  }
+                  this.setState({info: current_columns});
+                break;
+          case "finished":
+                card["current_state"] = "started";
+                var state = translation_states[card["current_state"]];
+                for (var column in current_columns) {
+                  if (current_columns[column]["name"] == state) {
+                    current_columns[column]["stories"].push(card);
+                  }
+                }
+                this.setState({info: current_columns});
+              break;
+          default:
+          break;
+        }
+      break
+      case 'right':
+      switch (current_state) {
+        case "started":
+                card["current_state"] = "finished";
+                var state = translation_states[card["current_state"]];
+                for (var column in current_columns) {
+                  if (current_columns[column]["name"] == state) {
+                    current_columns[column]["stories"].push(card);
+                  }
+                }
+                this.setState({info: current_columns});
+              break;
+        case "finished":
+              card["current_state"] = "delivered";
+              var state = translation_states[card["current_state"]];
+              for (var column in current_columns) {
+                if (current_columns[column]["name"] == state) {
+                  current_columns[column]["stories"].push(card);
+                }
+              }
+              this.setState({info: current_columns});
+            break;
+        default:
         break;
+      }
+    break
       default:
+      alert("You are headed into the bleh")
+      break;
+
     }
   }
 
@@ -194,31 +277,35 @@ class App extends React.Component {
 
   handleSubmit(event){
     event.preventDefault();
-    this.setState(prevState => ({
-       showForm: !this.state.showForm
-    }));
-    var s = this.retrieveCards()
-    var column = {name: this.state.column_name, stories: s}
-    var l = this.state.info
+    var s = this.retrieveCards();
+    var column = {name: this.state.column_name, stories: s};
+    var l = this.state.info;
     l.splice(this.state.position_value, 0, column);
-    this.setState({info: l})
+    this.setState({info: l});
 
-    $.ajax({
-      method: 'GET',
-      data: {
-        project_id: this.props.data.project_id,
-        state_value: this.state.state_value,
-        column_name: this.state.column_name,
-        label_value: this.state.label_value,
-        position_value: this.state.position_value,
-        max_value: this.state.max_value,
-      },
-      url: '/project_page/createNewColumn',
-    });
+    /* Send the data using post and put the results in a div */
+
+      $.ajax({
+        type: "PUT",
+        url: '/project_page/createNewColumn',
+        data: {
+          project_id: this.props.data.project_id,
+          state_value: this.state.state_value,
+          column_name: this.state.column_name,
+          label_value: this.state.label_value,
+          position_value: this.state.position_value,
+          max_value: this.state.max_value,
+        },
+        error:function(){
+         alert('Unable to create column and send information.');
+        }
+      });
   }
 
+
+
    render() {
-    var self = this;
+     var self = this;
 
       return (
         <div>
@@ -227,11 +314,9 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} />
-
+                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} onChange={this.handleUpdateCardChange}/>
                     )
-                  })}
+                  }.bind(this))}
           </div>
         </div>
       );
@@ -240,7 +325,7 @@ class App extends React.Component {
    showForm() {
      if (this.state.showForm) {
        return (
-         <form onSubmit={this.handleSubmit}>
+         <form onSubmit={this.handleSubmit} action="/project_page/createNewColumn">
          <div>
              <label>
                Custom column name:
@@ -269,7 +354,7 @@ class App extends React.Component {
              <select value={this.state.label_value} onChange={this.handleLabelChange} name="label_value">
                {this.props.d.map(function(label, i){
                  return (
-                   <option value={label} key={i}>{label}</option>
+                   <option value={label}>{label}</option>
                  )
                })}
              </select>
@@ -283,7 +368,7 @@ class App extends React.Component {
              <select value={this.state.position_value} onChange={this.handlePositionChange} name="position_value">
                {this.props.data.columns.map(function(label, i){
                  return (
-                   <option value={i} key={i}>{(i+1)}</option>
+                   <option value={i}>{(i+1)}</option>
                  )
                })}
 
@@ -292,6 +377,7 @@ class App extends React.Component {
            </label>
            <br/>
            </div>
+           <input value={this.props.data.project_id} name="project_id" hidden></input>
          <div>
            <input type="submit" value="Submit" />
            </div>
@@ -313,5 +399,4 @@ class App extends React.Component {
        showForm: !this.state.showForm
      }));
    }
-
 }

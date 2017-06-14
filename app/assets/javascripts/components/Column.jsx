@@ -11,14 +11,11 @@ class Column extends React.Component{
     this.handleUpdate = props.handleUpdate;
     this.handleDelete = props.handleDelete;
     this.handleMaxChange = this.handleMaxChange.bind(this);
+    this.handleCardChange = this.handleCardChange.bind(this);
   }
 
   customColEdit() {
-    if(this.props.data["name"] !== "READY"
-      && this.props.data["name"] !== "IN-PROGRESS"
-      && this.props.data["name"] !== "FINISHED"
-      && this.props.data["name"] !== "DELIVERED"
-      && this.props.data["name"] !== "DONE") {
+    if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
 
         <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>
@@ -117,7 +114,7 @@ class Column extends React.Component{
         <div>
             <label>
               Edit column name:
-              <input type="text" value={this.state.column_name} name="column_name" onChange={this.handleColumnNameChange}/>
+              <input type="text" value={this.props.value} onChange={this.handleChange}/>
             </label>
           <br/>
           </div>
@@ -203,6 +200,11 @@ class Column extends React.Component{
     }
   }
 
+  handleCardChange(name, current_state, direction, column_name){
+    console.log(name + " " + current_state +  " "+ direction + " " + column_name);
+    this.props.onChange(name, current_state, direction, column_name);
+  }
+
   render() {
     var self = this;
     return (
@@ -214,11 +216,10 @@ class Column extends React.Component{
         {this.props.data.stories.map(function(card, i){
           if (i < self.state.max_value){
             return (
-              <Card card={card} key={i}/>
+                <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]}/>
             )
-          }
-        })}
+        }.bind(this))}}
       </div>
     );
   }
-};
+}

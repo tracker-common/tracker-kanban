@@ -39,8 +39,7 @@
 	<ul >
    	<% @projects.each do |c| %>
 		<li>
-   		<%= puts "THE TOKEN ID IS: #{@token}" %>
-   		<%= link_to c["name"], controller: "project_page", action: "home", id: c, token: @token %>
+   		<%= link_to c["name"], controller: "project_page", action: "home", id: c["id"]  %>
 		</li><br />
    <% end %>
 	</ul>

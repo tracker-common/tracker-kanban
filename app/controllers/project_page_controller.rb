@@ -6,29 +6,35 @@ class ProjectPageController < ApplicationController
 
 
 	def home
-		@project_id = params[:id]["id"]
-		@project_name = params[:id]["name"]
-		@token = params[:token]
-		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type,labels)", headers: {"X-TrackerToken" => "#{@token}"})
-	  json = JSON.parse(response.body)
+		user = User.find_by(uid: session[:user_id])
+		@token = user.api_token
+		@project_id = params[:id]
+		response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{@project_id}/?fields=name,stories(id,name,current_state,story_type,labels),labels", headers: {"X-TrackerToken" => "#{@token}"})
+		json = JSON.parse(response.body)
+		@project_name = json["name"]
 		@d = grabLabels(json)
-
 		if checkInDatabase(json)
 				data = Project.find_by(id: json["id"])
 				@data_filtered = formatData(data)
-				puts "THE DATA INSIDE IS #{@data_filtered[:columns][1]}"
 		else
-		    @data_filtered = filterData(json)
+				@data_filtered = filterData(json)
 		end
+	 end
+
+	 def show
+		 puts "This was called from SHOW!!!!"
+	 end
+
+	 def setUp(token, project_id)
+
 	 end
 
 	 def grabLabels(data)
 		  label_titles = Set.new
-		 	data["stories"].each do |value|
-				if value["labels"][0] != nil
-						label_titles.add(value["labels"][0]["name"])
-				end
+			data["labels"].each do |value|
+				label_titles.add(value["name"])
 			end
+
 			array = []
 			label_titles.each do |value|
 				array.push(value)
@@ -36,9 +42,8 @@ class ProjectPageController < ApplicationController
 			return array
 	 end
 
-	 def formatData(data, custom_column=nil)
+	 def formatData(data)
 		 translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
-		 if custom_column == nil
 			 data_filtered = {project_id: data["id"], columns:[]}
 			 data.columns.each do |value|
 				 column = {name: "", stories: []}
@@ -46,46 +51,7 @@ class ProjectPageController < ApplicationController
 				 column[:stories] = value["stories"]
 				 data_filtered[:columns].push(column)
 			 end
-		 else
-			 data_filtered = {project_id: data["id"], columns:[]}
-			 c_column = {name: custom_column[:column_name], stories: []}
-			 data.columns.each do |value|
-				 v = custom_column[:state_value]
-				 name = translation_states[v.to_sym]
-				 if value["name"] == name
-					 column = {name: "", stories: []}
-					 column[:name] = value["name"]
-					 value["stories"].each do |story|
-					 	if story[:current_state] == custom_column[:state_value]
-							story[:labels].each do |label|
-								if label[:name] == custom_column[:label_value]
-									c_column[:stories].push(story)
-								else
-									column[:stories].push(story)
-								end
-							end #do label
-						end
-						if(!c_column[:stories].include?(story))
-							column[:stories].push(story)
-						end
-					 end #column[:stories]
-					 data_filtered[:columns].push(column)
-					 if c_column[:stories].any?
-					 	c_column[:stories] = c_column[:stories].uniq
-						data_filtered[:columns].insert(0, c_column)
-					 end
-				 else
-					 column = {name: "", stories: []}
-					 column[:name] = value["name"]
-					 column[:stories] = value["stories"]
-					 data_filtered[:columns].push(column)
-				 end
-			 end #data.columns
-			 data_filtered[:columns].insert(custom_column[:position_value].to_i, data_filtered[:columns].delete_at(0))
-		 end #else
-
 		 return data_filtered
-
 	 end
 
 
@@ -132,9 +98,13 @@ class ProjectPageController < ApplicationController
 	 end
 
 	 def updateDatabase(data, name)
-		 @project = Project.find_by(id: name["id"])
-		 @project.columns = data[:columns]
-		 @project.save
+		 project = Project.find_by(id: name["id"])
+		 project.columns = data[:columns]
+		 project.save
+	 end
+
+	 def update
+		 puts "insdie update"
 	 end
 
 
@@ -145,10 +115,8 @@ class ProjectPageController < ApplicationController
 			 				 state_value: params[:state_value],
 						 	 position_value: params[:position_value],
 						 	 max_value: params[:max_value]}
-		  @data_filtered = formatData(data, column)
-			@d = grabLabelsFromDatabase(data)
-			@project_name = data["name"]
-			#updateDatabase(@data_filtered, data)
+		  data_filtered = makeForDatabase(data, column)
+			# updateDatabase(data_filtered, data)
 	 end
 
 	 def deleteOldColumn
@@ -165,22 +133,37 @@ class ProjectPageController < ApplicationController
 			#updateDatabase(@data_filtered, data)
 	 end
 
-	 def grabLabelsFromDatabase(data)
-		 label_titles = Set.new
-		 data.columns.each do |value|
-		 value["stories"].each do |story|
-				 if story["labels"][0] != nil
-						label_titles.add(story["labels"][0]["name"])
-				 end
-			 end
-		 end
-		 array = []
-		 label_titles.each do |value|
-			 array.push(value)
-		 end
-		 return array
-	 end
 
+	 def makeForDatabase(data, custom_column)
+		 translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+		 data_filtered = {project_id: data["id"], columns:[]}
+		 c_column = {name: custom_column[:column_name], stories: []}
+		 temp_stories = []
+		 data.columns.each do |value|
+			 v = custom_column[:state_value]
+			 name = translation_states[v.to_sym]
+			 if name == value["name"]
+				 value["stories"].each do |story|
+					 if story[:current_state] == custom_column[:state_value]
+						 if story[:labels].count != 0
+							  story[:labels].each do |label|
+									if label["name"] == custom_column[:label_value]
+										c_column[:stories].push(story)
+										temp_stories.push(story)
+										break
+									end #if label["name"] == custom_column[:label_value]
+								end  #story[:labels].each do |label|
+						 end #if story[:labels].count != 0
+					 end #if story[:current_state] == custom_column[:state_value]
+				 end #value["stories"].each do |story|
+				 temp_stories.each do |story|
+					 value["stories"].delete(story)
+				 end
+			 end # if name == value["name"]
+		 end #data.columns.each do |value|
+		 data.columns.insert(custom_column[:position_value].to_i, c_column)
+		 return data
+ 	 end
 
 	 def checkInDatabase(data)
 		 project = Project.where(id: data["id"])
