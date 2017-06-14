@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   put 'project_page/editColumn'
 
+  put 'project_page/updateDatabaseWithNewCardPlacements'
   delete 'project_page/deleteOldColumn'
 
 

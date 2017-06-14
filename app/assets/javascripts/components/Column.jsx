@@ -201,7 +201,6 @@ class Column extends React.Component{
   }
 
   handleCardChange(name, current_state, direction, column_name){
-    console.log(name + " " + current_state +  " "+ direction + " " + column_name);
     this.props.onChange(name, current_state, direction, column_name);
   }
 

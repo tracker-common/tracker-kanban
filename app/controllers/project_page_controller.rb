@@ -26,7 +26,6 @@ class ProjectPageController < ApplicationController
 	 end
 
 	 def setUp(token, project_id)
-
 	 end
 
 	 def grabLabels(data)
@@ -34,7 +33,6 @@ class ProjectPageController < ApplicationController
 			data["labels"].each do |value|
 				label_titles.add(value["name"])
 			end
-
 			array = []
 			label_titles.each do |value|
 				array.push(value)
@@ -43,7 +41,6 @@ class ProjectPageController < ApplicationController
 	 end
 
 	 def formatData(data)
-		 translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
 			 data_filtered = {project_id: data["id"], columns:[]}
 			 data.columns.each do |value|
 				 column = {name: "", stories: []}
@@ -116,7 +113,7 @@ class ProjectPageController < ApplicationController
 						 	 position_value: params[:position_value],
 						 	 max_value: params[:max_value]}
 		  data_filtered = makeForDatabase(data, column)
-			# updateDatabase(data_filtered, data)
+			updateDatabase(data_filtered, data)
 	 end
 
 	 def deleteOldColumn
@@ -174,4 +171,21 @@ class ProjectPageController < ApplicationController
 		 end
 	 end
 
+	 def updateDatabaseWithNewCardPlacements
+		 project = Project.find_by(id: params[:project_id].to_i)
+		 moved_card = project.findAndDeleteStoryID(params[:old_column], params[:story_id])
+		 moved_card["current_state"] = params[:new_state]
+		 puts " THE MOVED CARD IS : #{moved_card}"
+		 project.insertCard(params[:new_column], moved_card)
+		 project.save
+		 updateTrackerAPI(params[:project_id].to_i, params[:story_id].to_i, params[:new_state], params[:token])
+	 end
+
+	 def updateTrackerAPI(project_id, story_id, new_state, token)
+		 puts "INFORMATION: #{project_id}, #{story_id}, #{new_state}"
+
+		 response = HTTParty.put("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/stories/#{story_id}", headers: {"X-TrackerToken" => "#{token}"}, body: {"current_state":"#{new_state}"})
+		 puts response.body
+
+	 end
 end
