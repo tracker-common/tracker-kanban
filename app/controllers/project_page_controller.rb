@@ -151,6 +151,20 @@ class ProjectPageController < ApplicationController
 			#updateDatabase(@data_filtered, data)
 	 end
 
+	 def deleteOldColumn
+		 #data = Project.find_by(id: params[:project_id].to_i)
+		 #column = {column_name: params[:column_name]}
+			#data.columns.each do |value|
+				#if value[:name] == params[:column_name]
+					#value.delete
+				#end
+			#end
+		  #@data_filtered = formatData(data, column)
+			#@d = grabLabelsFromDatabase(data)
+			#@project_name = data["name"]
+			#updateDatabase(@data_filtered, data)
+	 end
+
 	 def grabLabelsFromDatabase(data)
 		 label_titles = Set.new
 		 data.columns.each do |value|

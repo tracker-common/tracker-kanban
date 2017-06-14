@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   put 'project_page/editColumn'
 
+  delete 'project_page/deleteOldColumn'
+
 
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]

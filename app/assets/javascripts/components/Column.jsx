@@ -9,6 +9,7 @@ class Column extends React.Component{
     this.handleMaxChange = this.handleMaxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = props.handleUpdate;
+    this.handleMaxChange = this.handleMaxChange.bind(this);
   }
 
   customColEdit() {
