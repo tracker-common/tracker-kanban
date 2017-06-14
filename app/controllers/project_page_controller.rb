@@ -156,7 +156,7 @@ class ProjectPageController < ApplicationController
 		 #column = {column_name: params[:column_name]}
 			#data.columns.each do |value|
 				#if value[:name] == params[:column_name]
-					#value.delete
+					#value.destroy
 				#end
 			#end
 		  #@data_filtered = formatData(data, column)

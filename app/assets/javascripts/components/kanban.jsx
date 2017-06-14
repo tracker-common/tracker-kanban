@@ -10,6 +10,7 @@ class App extends React.Component {
     this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleUpdateCardChange = this.handleUpdateCardChange.bind(this);
     this.switchColumns = this.switchColumns.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   retrieveCards() {
@@ -116,6 +117,22 @@ class App extends React.Component {
   }
 
   handleUpdate(name, info){
+    this.handleDelete(name, info);
+
+    this.setState({state_value: info.state_value}, function () {
+      this.setState({label_value: info.label_value}, function () {
+        this.setState({position_value: info.position_value}, function () {
+          this.setState({column_name: info.column_name}, function() {
+            this.setState({max_value: info.max_value}, function() {
+              this.handleChangeStageTwo(info);
+          });
+          });
+        });
+      });
+    });
+  }
+
+  handleDelete(name, info) {
     $.ajax({
       method: 'DELETE',
       data: {
@@ -138,18 +155,6 @@ class App extends React.Component {
       }
     }
     this.setState({info: remColumns})
-
-    this.setState({state_value: info.state_value}, function () {
-      this.setState({label_value: info.label_value}, function () {
-        this.setState({position_value: info.position_value}, function () {
-          this.setState({column_name: info.column_name}, function() {
-            this.setState({max_value: info.max_value}, function() {
-              this.handleChangeStageTwo(info);
-          });
-          });
-        });
-      });
-    });
   }
 
   returnStories(stories) {
@@ -223,7 +228,7 @@ class App extends React.Component {
                   {this.state.info.map(function(column, i){
                     return (
                       //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} />
+                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} />
 
                     )
                   })}

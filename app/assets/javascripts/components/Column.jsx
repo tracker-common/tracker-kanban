@@ -1,7 +1,7 @@
 class Column extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: '5'}
+    this.state = {showEditForm: false, showDeleteForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: '5'}
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -9,6 +9,7 @@ class Column extends React.Component{
     this.handleMaxChange = this.handleMaxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = props.handleUpdate;
+    this.handleDelete = props.handleDelete;
     this.handleMaxChange = this.handleMaxChange.bind(this);
   }
 
@@ -19,9 +20,18 @@ class Column extends React.Component{
       && this.props.data["name"] !== "DELIVERED"
       && this.props.data["name"] !== "DONE") {
       return (
-        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>{this.showEditForm()}</span>
+
+        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>
+        <span> </span>
+        <button onClick={this.deleColumn_.bind(this)}>X</button>{this.showEditForm()}{this.showDeleteForm()}</span>
       )
     }
+  }
+
+  deleColumn_() {
+    this.setState(prevState => ({
+      showDeleteForm: !this.state.showDeleteForm
+    }));
   }
 
   editColumn_() {
@@ -46,6 +56,14 @@ class Column extends React.Component{
       label_value: lTitles[0],
       state_value: "unstarted",
     }));
+  }
+
+  handleDelete_() {
+    this.setState(prevState => ({
+       showDeleteForm: !this.state.showDeleteForm
+    }));
+    this.handleDelete(this.props.data.name, this.state);
+    event.preventDefault();
   }
 
   handleColumnNameChange(event){
@@ -73,7 +91,7 @@ class Column extends React.Component{
     this.setState(prevState => ({
        showEditForm: !this.state.showEditForm
     }));
-    this.handleUpdate(this.props.data.name, this.state, this.state.column_name);
+    this.handleUpdate(this.props.data.name, this.state);
     event.preventDefault();
   }
 
@@ -168,6 +186,20 @@ class Column extends React.Component{
             <input type="submit" value="Submit" />
           </div>
         </form>
+      )
+    }
+  }
+
+  showDeleteForm() {
+    if (this.state.showDeleteForm) {
+      return (
+        <div className="deleForm">
+        Are you sure you want to delete this column?
+        <br />
+        <button onClick={this.handleDelete_.bind(this)}>Yes</button>
+        <span>  </span>
+        <button onClick={this.deleColumn_.bind(this)}>No</button>
+        </div>
       )
     }
   }
