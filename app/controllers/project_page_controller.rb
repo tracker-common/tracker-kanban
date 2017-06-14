@@ -143,7 +143,8 @@ class ProjectPageController < ApplicationController
 		 column = {column_name: params[:column_name],
 			 				 label_value: params[:label_value],
 			 				 state_value: params[:state_value],
-						 	 position_value: params[:position_value]}
+						 	 position_value: params[:position_value],
+						 	 max_value: params[:max_value]}
 		  @data_filtered = formatData(data, column)
 			@d = grabLabelsFromDatabase(data)
 			@project_name = data["name"]

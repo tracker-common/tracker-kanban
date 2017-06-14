@@ -1,7 +1,7 @@
 class Column extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: 5}
+    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: '5'}
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -44,7 +44,6 @@ class Column extends React.Component{
       column_name: this.props.data["name"],
       label_value: lTitles[0],
       state_value: "unstarted",
-      max_value: 3
     }));
   }
 
@@ -70,10 +69,10 @@ class Column extends React.Component{
   }
 
   handleSubmit(event){
-    //this.handleUpdate(this.props.data.name, this.state)
-    //console.log(this.state.column_name)
+    this.setState(prevState => ({
+       showEditForm: !this.state.showEditForm
+    }));
     this.handleUpdate(this.props.data.name, this.state, this.state.column_name);
-    //console.log(x);
     event.preventDefault();
   }
 
@@ -118,9 +117,9 @@ class Column extends React.Component{
               </select>
             </label>
             <br/>
-            </div>
+          </div>
 
-            <div>
+          <div>
             <label>
             Pick the label:
               <select value={this.state.label_value} name="label_value" onChange={this.handleLabelChange}>
@@ -131,9 +130,9 @@ class Column extends React.Component{
               })}
               </select>
             </label>
-            </div>
+          </div>
 
-            <div>
+          <div>
             <label>
             Pick the position:
               <select value={this.state.position_value} name="position_value" onChange={this.handlePositionChange}>
@@ -144,9 +143,9 @@ class Column extends React.Component{
               })}
               </select>
             </label>
-            </div>
+          </div>
 
-            <div>
+          <div>
             <label>
             Max stories shown:
               <select value={this.state.max_value} name="max_value" onChange={this.handleMaxChange}>
@@ -163,10 +162,10 @@ class Column extends React.Component{
               </select>
             </label>
             <br/>
-            </div>
-            <div>
-              <input type="submit" value="Submit" />
-            </div>
+          </div>
+          <div>
+            <input type="submit" value="Submit" />
+          </div>
         </form>
       )
     }

@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, max_value: 5};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, max_value: '5'};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -131,14 +131,13 @@ class App extends React.Component {
         });
       });
     });
-    //this.setState(prevState => ({
-      //state_value: 'finished',
-      //label_value: 'hello world'
-    //}));
   }
 
   handleSubmit(event){
     event.preventDefault();
+    this.setState(prevState => ({
+       showForm: !this.state.showForm
+    }));
     var s = this.retrieveCards()
     var column = {name: this.state.column_name, stories: s}
     var l = this.state.info
