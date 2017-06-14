@@ -114,7 +114,7 @@ class Column extends React.Component{
         <div>
             <label>
               Edit column name:
-              <input type="text" value={this.props.value} onChange={this.handleChange}/>
+              <input type="text" value={this.state.column_name} name="column_name" onChange={this.handleColumnNameChange}/>
             </label>
           <br/>
           </div>
@@ -216,9 +216,10 @@ class Column extends React.Component{
         {this.props.data.stories.map(function(card, i){
           if (i < self.state.max_value){
             return (
-                <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]}/>
+                <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={self.state.column_name}/>
             )
-        }.bind(this))}}
+          }
+        })}
       </div>
     );
   }
