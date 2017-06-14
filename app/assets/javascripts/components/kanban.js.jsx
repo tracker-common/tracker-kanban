@@ -21,15 +21,21 @@ class App extends React.Component {
 
     for (var columns in current_cards) {
       if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]) {
-          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
-            console.log("Card Object: " + current_cards[columns]["stories"][card_value] + " label_value: " + label_value)
-            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
-              custom_stories.push(current_cards[columns]["stories"][card_value]);
-              current_cards[columns]["stories"].splice(card_value, 1);
-            }
+        var temp_container = current_cards[columns]["stories"]
+        var temp_values = [];
+         for (var card_value in temp_container) {
+           for (var labels_value in temp_container[card_value]["labels"]){
+             if (current_label == temp_container[card_value]["labels"][labels_value]["name"]){
+                temp_values.push(card_value);
+                custom_stories.push(temp_container[card_value]);
+                // current_cards[columns]["stories"].splice(card_value, 1);
+             }
           }
         }
+        for (var i = temp_values.length -1; i >= 0; i--){
+          current_cards[columns]["stories"].splice(temp_values[i],1);
+        }
+
       }
     }
     return custom_stories;
@@ -42,32 +48,116 @@ class App extends React.Component {
   handleUpdateCardChange(name, current_state, direction) {
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
     var state = translation_states[current_state]
+    var current_columns = this.state.info;
+    var temp_card;
 
-
-    var current_cards = this.state.info;
-    var temp;
-
-    for (var columns in current_cards) {
-      if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]){
-          if (current_cards[columns]["stories"][card_value]["name"] == name){
-            for (var move_to_column in current_cards) {
-              this.switchColumns(state);
-            }
-            console.log('FOUND', card_value)
-            console.log(current_cards[columns]["stories"][card_value])
+    for (var columns in current_columns) {
+      if (current_columns[columns]["name"] == state) {
+        for (var card in current_columns[columns]["stories"]) {
+          if (name == current_columns[columns]["stories"][card]["name"]) {
+            temp_card = current_columns[columns]["stories"][card];
+            current_columns[columns]["stories"].splice(card, 1);
+            this.switchColumns(current_columns, temp_card, direction, current_state);
           }
         }
       }
     }
   }
 
-  switchColumns(current_state) {
-    switch (current_state) {
-      case "READY":
-        console.log("Found inside the ready state. Going to be moved into the in progress");
+  switchColumns(current_columns, card, direction, current_state) {
+    translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+    console.log("CURRENT STATE IS:", direction);
+    switch (direction) {
+      case 'start':
+      case 'rejected':
+          card["current_state"] = "started";
+          var state = translation_states[card["current_state"]];
+          for (var column in current_columns) {
+            if (current_columns[column]["name"] == state) {
+              current_columns[column]["stories"].push(card);
+            }
+          }
+          this.setState({info: current_columns});
+          break;
+      case 'accepted':
+      card["current_state"] = "accepted";
+      var state = translation_states[card["current_state"]];
+      for (var column in current_columns) {
+        if (current_columns[column]["name"] == state) {
+          current_columns[column]["stories"].push(card);
+        }
+      }
+      this.setState({info: current_columns});
+      break;
+      case 'rejected_delivered':
+          card["current_state"] = "rejected";
+          var state = translation_states[card["current_state"]];
+          for (var column in current_columns) {
+            if (current_columns[column]["name"] == state) {
+              current_columns[column]["stories"].push(card);
+            }
+          }
+          this.setState({info: current_columns});
+      break;
+
+      case 'left':
+        switch (current_state) {
+          case "started":
+                  card["current_state"] = "unstarted";
+                  var state = translation_states[card["current_state"]];
+                  for (var column in current_columns) {
+                    if (current_columns[column]["name"] == state) {
+                      current_columns[column]["stories"].push(card);
+                    }
+                  }
+                  this.setState({info: current_columns});
+                break;
+          case "finished":
+                card["current_state"] = "started";
+                var state = translation_states[card["current_state"]];
+                for (var column in current_columns) {
+                  if (current_columns[column]["name"] == state) {
+                    current_columns[column]["stories"].push(card);
+                  }
+                }
+                this.setState({info: current_columns});
+              break;
+          default:
+          break;
+        }
+      break
+      case 'right':
+      switch (current_state) {
+        case "started":
+                card["current_state"] = "finished";
+                var state = translation_states[card["current_state"]];
+                for (var column in current_columns) {
+                  if (current_columns[column]["name"] == state) {
+                    current_columns[column]["stories"].push(card);
+                  }
+                }
+                this.setState({info: current_columns});
+              break;
+        case "finished":
+              card["current_state"] = "delivered";
+              var state = translation_states[card["current_state"]];
+              for (var column in current_columns) {
+                if (current_columns[column]["name"] == state) {
+                  current_columns[column]["stories"].push(card);
+                }
+              }
+              this.setState({info: current_columns});
+            break;
+        default:
         break;
+      }
+    break
+
+
+
       default:
+      break;
+
     }
   }
 
