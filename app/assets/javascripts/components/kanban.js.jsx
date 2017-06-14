@@ -181,6 +181,7 @@ class App extends React.Component {
         old_column: old_c,
         new_column: new_column,
         new_state: card["current_state"],
+        token: this.props.token,
 
       },
       error:function(){
