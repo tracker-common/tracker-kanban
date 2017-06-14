@@ -63,7 +63,6 @@ class Column extends React.Component{
        showDeleteForm: !this.state.showDeleteForm
     }));
     this.handleDelete(this.props.data.name, this.state);
-    event.preventDefault();
   }
 
   handleColumnNameChange(event){
