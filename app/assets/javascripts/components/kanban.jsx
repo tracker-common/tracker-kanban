@@ -133,6 +133,9 @@ class App extends React.Component {
       if (this.state.info[col]["name"] != this.state.column_name) {
         remColumns.push(this.state.info[col]);
       }
+      else if (this.state.info[col]["stories"].length > 0) {
+        this.returnStories(this.state.info[col]["stories"])
+      }
     }
     this.setState({info: remColumns})
 
@@ -147,6 +150,41 @@ class App extends React.Component {
         });
       });
     });
+  }
+
+  returnStories(stories) {
+    for (var i in stories) {
+      var story = stories[i]
+      var col_name = ""
+
+      switch (story["current_state"]) {
+        case 'unstarted':
+        case 'rejected':
+          col_name = "READY"
+          break;
+        case 'started':
+          col_name = "IN-PROGRESS"
+          break;
+        case 'delivered':
+          col_name = "DELIVERED"
+          break;
+        case 'finished':
+          col_name = "FINISHED"
+          break;
+        case 'accepted':
+          col_name = "DONE"
+          break;
+        default:
+          alert("error in returning story cards! find me in returnStories() in kanban.jsx")
+          break;
+      }
+
+      for (var j in this.state.info) {
+        if (this.state.info[j]["name"] == col_name) {
+          this.state.info[j]["stories"].push(story)
+        }
+      }
+    }
   }
 
   handleSubmit(event){
