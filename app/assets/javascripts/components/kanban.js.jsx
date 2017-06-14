@@ -208,7 +208,7 @@ class App extends React.Component {
           this.setState({column_name: info.column_name}, function() {
             this.setState({max_value: info.max_value}, function() {
               this.handleChangeStageTwo(info);
-          });
+            });
           });
         });
       });
@@ -230,7 +230,7 @@ class App extends React.Component {
 
     var remColumns = []
     for (var col in this.state.info) {
-      if (this.state.info[col]["name"] != this.state.column_name) {
+      if (this.state.info[col]["name"] != name) {
         remColumns.push(this.state.info[col]);
       }
       else if (this.state.info[col]["stories"].length > 0) {
