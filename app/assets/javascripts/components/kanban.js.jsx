@@ -9,6 +9,7 @@ class App extends React.Component {
     this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleUpdateCardChange = this.handleUpdateCardChange.bind(this);
     this.switchColumns = this.switchColumns.bind(this);
+    this.requestLiveUpdates = this.requestLiveUpdates.bind(this);
   }
 
   retrieveCards() {
@@ -244,6 +245,7 @@ class App extends React.Component {
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
+          {this.requestLiveUpdates()}
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
