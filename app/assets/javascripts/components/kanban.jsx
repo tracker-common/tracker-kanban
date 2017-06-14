@@ -50,17 +50,16 @@ class App extends React.Component {
     this.setState({position_value: event.target.value});
   }
 
-  handleChangeStageTwo(info) {
-    console.log(this.state)
+  handleChangeStageTwo() {
     //console.log(this)
     var s = this.retrieveCards()
-    var column = {name: info.column_name, stories: s}
+    var column = {name: this.state.column_name, stories: s}
     var l = this.state.info
     l.splice(this.state.position_value, 0, column);
     this.setState({info: l})
 
-    /*$.ajax({
-      method: 'PUT',
+    $.ajax({
+      method: 'GET',
       data: {
         project_id: this.props.data.project_id,
         state_value: this.state.state_value,
@@ -68,27 +67,40 @@ class App extends React.Component {
         label_value: this.state.label_value,
         position_value: this.state.position_value,
       },
-      url: '/project_page/editColumn',
-    });*/
+      url: '/project_page/createNewColumn',
+    });
   }
 
   handleUpdate(name, info){
-    //console.log(name);
-    //event.preventDefault();
-    console.log(this.state)
+    $.ajax({
+      method: 'DELETE',
+      data: {
+        project_id: this.props.data.project_id,
+        state_value: this.state.state_value,
+        column_name: this.state.column_name,
+        label_value: this.state.label_value,
+        position_value: this.state.position_value,
+      },
+      url: '/project_page/deleteOldColumn',
+    });
+
+    var remColumns = []
+    for (var col in this.state.info) {
+      if (this.state.info[col]["name"] != this.state.column_name) {
+        remColumns.push(this.state.info[col]);
+      }
+    }
+    this.setState({info: remColumns})
+
     this.setState({state_value: info.state_value}, function () {
       this.setState({label_value: info.label_value}, function () {
         this.setState({position_value: info.position_value}, function () {
           this.setState({column_name: info.column_name}, function() {
-            this.handleChangeStageTwo(info);
+            this.handleChangeStageTwo();
           });
         });
       });
     });
-    //this.setState(prevState => ({
-      //state_value: 'finished',
-      //label_value: 'hello world'
-    //}));
   }
 
   handleSubmit(event){
