@@ -17,6 +17,7 @@ body::before {
  	z-index: -1;
  	background-image: url(http://wallpapercave.com/wp/eFsi7Wi.jpg);
 	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .sign_in {
@@ -100,7 +101,6 @@ button:hover {
 .column_layout {
 	flex-grow: 1;
 	width: 320px;
-	border: 2px dashed #fff;
 }
 
 .column_title {
@@ -122,4 +122,8 @@ button:hover {
 .editColumnForm {
 	font-size: 15px;
 	text-align: left;
+}
+
+.deleForm {
+	font-size: 20px;
 }

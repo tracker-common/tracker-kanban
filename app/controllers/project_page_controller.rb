@@ -110,11 +110,24 @@ class ProjectPageController < ApplicationController
 		 column = {column_name: params[:column_name],
 			 				 label_value: params[:label_value],
 			 				 state_value: params[:state_value],
-						 	 position_value: params[:position_value]}
-
-
+						 	 position_value: params[:position_value],
+						 	 max_value: params[:max_value]}
 		  data_filtered = makeForDatabase(data, column)
 			updateDatabase(data_filtered, data)
+	 end
+
+	 def deleteOldColumn
+		 #data = Project.find_by(id: params[:project_id].to_i)
+		 #column = {column_name: params[:column_name]}
+			#data.columns.each do |value|
+				#if value[:name] == params[:column_name]
+					#value.destroy
+				#end
+			#end
+		  #@data_filtered = formatData(data, column)
+			#@d = grabLabelsFromDatabase(data)
+			#@project_name = data["name"]
+			#updateDatabase(@data_filtered, data)
 	 end
 
 

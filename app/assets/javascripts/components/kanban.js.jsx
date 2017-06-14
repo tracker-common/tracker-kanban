@@ -1,15 +1,21 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: 5};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
     this.handleUpdateCardChange = this.handleUpdateCardChange.bind(this);
     this.switchColumns = this.switchColumns.bind(this);
     this.requestLiveUpdates = this.requestLiveUpdates.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  requestLiveUpdates() {
+    console.log("requesting live update");
   }
 
   retrieveCards() {
@@ -210,8 +216,108 @@ class App extends React.Component {
     this.setState({position_value: event.target.value});
   }
 
+  handleChangeStageTwo() {
+    //console.log(this)
+    var s = this.retrieveCards()
+    var column = {name: this.state.column_name, stories: s}
+    var l = this.state.info
+    l.splice(this.state.position_value, 0, column);
+    this.setState({info: l})
+
+    $.ajax({
+      method: 'GET',
+      data: {
+        project_id: this.props.data.project_id,
+        state_value: this.state.state_value,
+        column_name: this.state.column_name,
+        label_value: this.state.label_value,
+        position_value: this.state.position_value,
+      },
+      url: '/project_page/createNewColumn',
+    });
+  }
+
+  handleUpdate(name, info){
+    this.handleDelete(name, info);
+
+    this.setState({state_value: info.state_value}, function () {
+      this.setState({label_value: info.label_value}, function () {
+        this.setState({position_value: info.position_value}, function () {
+          this.setState({column_name: info.column_name}, function() {
+            this.setState({max_value: info.max_value}, function() {
+              this.handleChangeStageTwo(info);
+            });
+          });
+        });
+      });
+    });
+  }
+
+  handleDelete(name, info) {
+    $.ajax({
+      method: 'DELETE',
+      data: {
+        project_id: this.props.data.project_id,
+        state_value: this.state.state_value,
+        column_name: this.state.column_name,
+        label_value: this.state.label_value,
+        position_value: this.state.position_value,
+      },
+      url: '/project_page/deleteOldColumn',
+    });
+
+    var remColumns = []
+    for (var col in this.state.info) {
+      if (this.state.info[col]["name"] != name) {
+        remColumns.push(this.state.info[col]);
+      }
+      else if (this.state.info[col]["stories"].length > 0) {
+        this.returnStories(this.state.info[col]["stories"])
+      }
+    }
+    this.setState({info: remColumns})
+  }
+
+  returnStories(stories) {
+    for (var i in stories) {
+      var story = stories[i]
+      var col_name = ""
+
+      switch (story["current_state"]) {
+        case 'unstarted':
+        case 'rejected':
+          col_name = "READY"
+          break;
+        case 'started':
+          col_name = "IN-PROGRESS"
+          break;
+        case 'delivered':
+          col_name = "DELIVERED"
+          break;
+        case 'finished':
+          col_name = "FINISHED"
+          break;
+        case 'accepted':
+          col_name = "DONE"
+          break;
+        default:
+          alert("error in returning story cards! find me in returnStories() in kanban.jsx")
+          break;
+      }
+
+      for (var j in this.state.info) {
+        if (this.state.info[j]["name"] == col_name) {
+          this.state.info[j]["stories"].push(story)
+        }
+      }
+    }
+  }
+
   handleSubmit(event){
     event.preventDefault();
+    this.setState(prevState => ({
+      showForm: !this.state.showForm
+    }));
     var s = this.retrieveCards();
     var column = {name: this.state.column_name, stories: s};
     var l = this.state.info;
@@ -229,6 +335,7 @@ class App extends React.Component {
           column_name: this.state.column_name,
           label_value: this.state.label_value,
           position_value: this.state.position_value,
+          max_value: this.state.max_value,
         },
         error:function(){
          alert('Unable to create column and send information.');
@@ -239,8 +346,8 @@ class App extends React.Component {
 
 
    render() {
-     var id = this.props.project_id
-     var filt=this.props.data
+     var self = this;
+
       return (
         <div>
           <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
@@ -249,7 +356,7 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} id={id} filter={filt} key={i} onChange={this.handleUpdateCardChange}/>
+                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} onChange={this.handleUpdateCardChange}/>
                     )
                   }.bind(this))}
           </div>
