@@ -13,7 +13,7 @@ class Column extends React.Component{
   customColEdit() {
     if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
-        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>{this.showEditForm()}</span>
+        <span><button className="editButton" onClick={this.editColumn_.bind(this)}>✎</button>{this.showEditForm()}</span>
       )
     }
   }

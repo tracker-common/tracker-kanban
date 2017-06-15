@@ -4,7 +4,6 @@
 		body {
 			font-family: Helvetica, sans-serif;
 			font-size: 20px;
-			color: #4878A7;
 			text-align: center;
 		}
 		body::before {
@@ -16,13 +15,13 @@
  		  height: 100%;
  		  opacity: 0.5;
  		  z-index: -1;
- 		  background: url(http://wallpapercave.com/wp/eFsi7Wi.jpg);
+ 		  background: #eee;
  		}
 	</style>
 </head>
 <title>Kanban Tracker - Welcome</title>
 <%= image_tag("tracker-logo.png") %>
-<h1>Kanban Tracker</h1>
+<h1>Kanban Board</h1>
 <p> <br /> </p>
 <body>Sign in with Google to see your stories.<br /> <br /></body>
 <%= button_to "Sign in with Google", "/auth/google_oauth2", id: "sign_in", :method => "get" %>

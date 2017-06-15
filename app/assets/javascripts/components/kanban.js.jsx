@@ -242,7 +242,7 @@ class App extends React.Component {
      var filt=this.props.data
       return (
         <div>
-          <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
+          <button className="create_column" onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
           <div className="column_container">
                   {this.state.info.map(function(column, i){
@@ -258,7 +258,7 @@ class App extends React.Component {
    showForm() {
      if (this.state.showForm) {
        return (
-         <form onSubmit={this.handleSubmit} action="/project_page/createNewColumn">
+         <form className="create_form" onSubmit={this.handleSubmit} action="/project_page/createNewColumn">
          <div>
              <label>
                Custom column name:

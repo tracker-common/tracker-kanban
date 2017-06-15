@@ -27,24 +27,24 @@ class Card extends React.Component {
       if (this.props.card["current_state"] === 'delivered'){
         return (
           <span>
-            <p><button onClick={this.handleAcceptClick.bind(this)}>Accept</button>
+            <p><button className="reject_button" onClick={this.handleRejectClick.bind(this)}>Reject</button>
             <span> </span>
-            <button onClick={this.handleRejectClick.bind(this)}>Reject</button></p>
+            <button className="accept_button" onClick={this.handleAcceptClick.bind(this)}>Accept</button></p>
           </span>
         );
       } else if (this.props.card["current_state"] === 'unstarted' || this.props.card["current_state"] === 'rejected' ) {
         return (
           <span>
-            <p><button onClick={this.handleStartClick.bind(this)}>Start</button></p>
+            <p><button className="start_button" onClick={this.handleStartClick.bind(this)}>Start</button></p>
           </span>
         );
       }
       if (this.props.card["current_state"] !== 'accepted'){
         return (
           <span>
-            <p><button onClick={this.handleCardLeft.bind(this)}>⇦</button>
+            <p><button className="direction_button_right" onClick={this.handleCardRight.bind(this)}>⇨</button>
             <span> </span>
-            <button onClick={this.handleCardRight.bind(this)}>⇨</button></p>
+            <button className="direction_button_left" onClick={this.handleCardLeft.bind(this)}>⇦</button></p>
           </span>
         )
       }
@@ -72,11 +72,11 @@ class Card extends React.Component {
   render() {
     return (
         <div className="card">
-          <p className="story_name">
+          <p className="card_title">
             {this.renderStoryType()}
-            {this.props.card["name"]}
+            {this.props.card["story_type"]}
           </p>
-          <p className="summary"> {this.props.card["current_state"]} </p>
+          <p className="name"> {this.props.card["name"]} </p>
           {this.renderLabel()}
           {this.renderUserMessage()}
         </div>

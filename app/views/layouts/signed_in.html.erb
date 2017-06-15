@@ -4,7 +4,6 @@
 		body {
 			font-family: Helvetica, sans-serif;
 			font-size: 20px;
-			color: #4878A7;
 			text-align: center;
 		}
 		body::before {
@@ -16,15 +15,15 @@
  		  height: 100%;
  		  opacity: 0.5;
  		  z-index: -1;
- 		  background: url(http://wallpapercave.com/wp/eFsi7Wi.jpg);
+ 		  background: #eee;
  		}
 	</style>
 </head>
 <title>Kanban Tracker - Submit Token</title>
 <%= image_tag("tracker-logo.png") %>
-<div class="sign_out">
+<header class="sign_out">
 	Signed in as <strong><%= current_user.name %></strong>!
 	<%= link_to "Sign out", signout_path, id: "sign_out" %> <br /> <br /> <br />
-</div>
+</header>
 
 <%= render 'form' %>
