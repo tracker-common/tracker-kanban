@@ -195,6 +195,13 @@ button:hover {
 	font-size: 15px;
 }
 
+.deleButton {
+  float: right;
+	border-radius: 5px;
+	background-color: #eee;
+	font-size: 15px;
+}
+
 .remove_column {
 	float: right;
 	border-radius: 5px;
@@ -206,6 +213,10 @@ button:hover {
 	font-size: 15px;
 	text-align: left;
   margin-left: 10px;
+}
+
+.editButton::before {
+	content: "\0270E";
 }
 
 .deleForm {
