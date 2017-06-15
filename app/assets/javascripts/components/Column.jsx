@@ -91,21 +91,6 @@ class Column extends React.Component{
   }
 
   showEditForm() {
-    var labels = new Set();
-    for (var i = 0; i < this.props.filter.columns.length; i++) {
-      var value = this.props.filter.columns[i]
-      for (var j = 0; j < value["stories"].length; j++) {
-        var story = value["stories"][j]
-        if (story["labels"][0] != null) {
-          labels.add(story["labels"][0]["name"])
-        }
-      }
-    }
-    var lTitles = [];
-    labels.forEach(function(value) {
-      lTitles.push(value);
-    });
-
     if(this.state.showEditForm) {
 
       return (
@@ -137,7 +122,7 @@ class Column extends React.Component{
             <label>
             Pick the label:
               <select value={this.state.label_value} name="label_value" onChange={this.handleLabelChange}>
-              {lTitles.map(function(label, i){
+              {this.props.labels.map(function(label, i){
                 return(
                   <option value={label} key={i}>{label}</option>
                   )

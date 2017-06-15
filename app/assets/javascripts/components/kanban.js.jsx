@@ -377,7 +377,7 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} onChange={this.handleUpdateCardChange}/>
+                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} onChange={this.handleUpdateCardChange} labels={self.props.d}/>
                     )
                   }.bind(this))}
           </div>
