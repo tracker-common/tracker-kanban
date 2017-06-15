@@ -1,28 +1,65 @@
 class Column extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: 0}
+    this.state = {showEditForm: false, showDeleteForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: '5'}
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
     this.handlePositionChange = this.handlePositionChange.bind(this);
+    this.handleMaxChange = this.handleMaxChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUpdate = props.handleUpdate;
+    this.handleDelete = props.handleDelete;
+    this.handleMaxChange = this.handleMaxChange.bind(this);
     this.handleCardChange = this.handleCardChange.bind(this);
   }
 
   customColEdit() {
     if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
-        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>{this.showEditForm()}</span>
+
+        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>
+        <span> </span>
+        <button onClick={this.deleColumn_.bind(this)}>X</button>{this.showEditForm()}{this.showDeleteForm()}</span>
       )
     }
   }
 
+  deleColumn_() {
+    this.setState(prevState => ({
+      showDeleteForm: !this.state.showDeleteForm
+    }));
+  }
+
   editColumn_() {
+    var labels = new Set();
+    for (var i = 0; i < this.props.filter.columns.length; i++) {
+      var value = this.props.filter.columns[i]
+      for (var j = 0; j < value["stories"].length; j++) {
+        var story = value["stories"][j]
+        if (story["labels"][0] != null) {
+          labels.add(story["labels"][0]["name"])
+        }
+      }
+    }
+    var lTitles = [];
+    labels.forEach(function(value) {
+      lTitles.push(value);
+    });
+
     this.setState(prevState => ({
       showEditForm: !this.state.showEditForm,
-      column_name: this.props.data["name"]
+      column_name: this.props.data["name"],
+      label_value: lTitles[0],
+      state_value: "unstarted",
     }));
+  }
+
+  handleDelete_() {
+    this.setState(prevState => ({
+       showDeleteForm: !this.state.showDeleteForm
+    }));
+    this.handleDelete(this.props.data.name, this.state);
   }
 
   handleColumnNameChange(event){
@@ -41,61 +78,20 @@ class Column extends React.Component{
     this.setState({label_value: event.target.value});
   }
 
-  retrieveCards() {
-    console.log("retrieving");
-    var current_cards = this.props.filter.columns;
-    var current_state = this.state.state_value;
-    var current_label = this.state.label_value;
-    var custom_stories = []
-    translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
-    var state = translation_states[current_state]
-    for (var columns in current_cards) {
-      if (current_cards[columns]["name"] == state) {
-        for (var card_value in current_cards[columns]["stories"]) {
-          for (var label_value in current_cards[columns]["stories"][card_value]["labels"]) {
-            if (current_label == current_cards[columns]["stories"][card_value]["labels"][label_value]["name"]) {
-              custom_stories.push(current_cards[columns]["stories"][card_value]);
-              current_cards[columns]["stories"].splice(card_value, 1);
-            }
-          }
-        }
-      }
-    }
-    return custom_stories;
+
+  handleMaxChange(event){
+    this.setState({max_value: event.target.value});
   }
 
   handleSubmit(event){
+    this.setState(prevState => ({
+       showEditForm: !this.state.showEditForm
+    }));
+    this.handleUpdate(this.props.data.name, this.state);
     event.preventDefault();
-    var s = this.retrieveCards()
-    var column = {name: this.state.column_name, stories: s}
-    var l = this.props.filter.columns
-    l.splice(this.state.position_value, 0, column);
-    this.setState({info: l})
-
-    $.ajax({
-      method: 'PUT',
-      data: {
-        state_value: this.state.state_value,
-        column_name: this.state.column_name,
-        label_value: this.state.label_value,
-        position_value: this.state.position_value,
-      },
-      url: '/project_page/editColumn',
-    });
-    console.log("column has been changed")
   }
 
   showEditForm() {
-    var labels = new Set();
-    for (var i = 0; i < this.props.filter.columns.length; i++) {
-      var value = this.props.filter.columns[i]
-      for (var j = 0; j < value["stories"].length; j++) {
-        var story = value["stories"][j]
-        if (story["labels"][0] != null) {
-          labels.add(story["labels"][0]["name"])
-        }
-      }
-    }
     var labels = new Set();
     for (var i = 0; i < this.props.filter.columns.length; i++) {
       var value = this.props.filter.columns[i]
@@ -118,7 +114,7 @@ class Column extends React.Component{
         <div>
             <label>
               Edit column name:
-              <input type="text" value={this.props.value} onChange={this.handleChange}/>
+              <input type="text" value={this.state.column_name} name="column_name" onChange={this.handleColumnNameChange}/>
             </label>
           <br/>
           </div>
@@ -136,38 +132,70 @@ class Column extends React.Component{
               </select>
             </label>
             <br/>
-            </div>
+          </div>
 
-            <div>
+          <div>
             <label>
             Pick the label:
               <select value={this.state.label_value} name="label_value" onChange={this.handleLabelChange}>
               {lTitles.map(function(label, i){
                 return(
-                  <option value={label}>{label}</option>
+                  <option value={label} key={i}>{label}</option>
                   )
               })}
               </select>
             </label>
-            </div>
+          </div>
 
-            <div>
+          <div>
             <label>
             Pick the position:
               <select value={this.state.position_value} name="position_value" onChange={this.handlePositionChange}>
               {this.props.filter.columns.map(function(label, i){
                 return(
-                  <option value={i}>{i+1}</option>
+                  <option value={i} key={i}>{i+1}</option>
                   )
               })}
               </select>
             </label>
-            </div>
+          </div>
 
-            <div>
-              <input type="submit" value="Submit" />
-            </div>
+          <div>
+            <label>
+            Max stories shown:
+              <select value={this.state.max_value} name="max_value" onChange={this.handleMaxChange}>
+                <option value={1}>{1}</option>
+                <option value={2}>{2}</option>
+                <option value={3}>{3}</option>
+                <option value={4}>{4}</option>
+                <option value={5}>{5}</option>
+                <option value={6}>{6}</option>
+                <option value={7}>{7}</option>
+                <option value={8}>{8}</option>
+                <option value={9}>{9}</option>
+                <option value={10}>{10}</option>
+              </select>
+            </label>
+            <br/>
+          </div>
+          <div>
+            <input type="submit" value="Submit" />
+          </div>
         </form>
+      )
+    }
+  }
+
+  showDeleteForm() {
+    if (this.state.showDeleteForm) {
+      return (
+        <div className="deleForm">
+        Are you sure you want to delete this column?
+        <br />
+        <button onClick={this.handleDelete_.bind(this)}>Yes</button>
+        <span>  </span>
+        <button onClick={this.deleColumn_.bind(this)}>No</button>
+        </div>
       )
     }
   }

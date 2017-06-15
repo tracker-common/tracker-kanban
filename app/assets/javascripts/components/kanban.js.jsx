@@ -254,16 +254,17 @@ class App extends React.Component {
   }
 
   handleDelete(name, info) {
+    console.log(info);
     $.ajax({
       method: 'DELETE',
       data: {
         project_id: this.props.data.project_id,
-        state_value: this.state.state_value,
-        column_name: this.state.column_name,
-        label_value: this.state.label_value,
-        position_value: this.state.position_value,
+        name_of_col: name,
       },
       url: '/project_page/deleteOldColumn',
+      error:function(){
+       alert('Unable to Delete column and send information.');
+      }
     });
 
     var remColumns = []
