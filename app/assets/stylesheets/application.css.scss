@@ -110,6 +110,7 @@ h1 {
 	font-size: 15px;
 	font-weight: bold;
 	color: white;
+  margin-right: 5px;
 }
 
 .reject_button {
@@ -194,7 +195,7 @@ button:hover {
 }
 
 .column_title::after {
-	content: "   •••";
+	content: "   • • •";
 }
 
 .column_container {
@@ -204,13 +205,6 @@ button:hover {
 
 .editButton {
 	float: right;
-	border-radius: 5px;
-	background-color: #eee;
-	font-size: 15px;
-}
-
-.deleButton {
-  float: right;
 	border-radius: 5px;
 	background-color: #eee;
 	font-size: 15px;
@@ -228,22 +222,24 @@ button:hover {
 	font-size: 15px;
 	text-align: left;
   margin-left: 10px;
-}
-
-.editButton::before {
-	content: "\0270E";
+  margin-top: 5px;
 }
 
 .deleForm {
 	font-size: 15px;
+  margin-top: 15px;
+  min-width: 28px;
+  min-height: 28px;
 }
 
 .delete_yes {
   border-radius: 5px;
+  text-align: center;
   color: #fff;
   font-weight: bold;
   background-color: #639118;
-	font-size: 15px;
+  min-width: 28px;
+  min-height: 28px;
 }
 
 .delete_no {
@@ -251,5 +247,14 @@ button:hover {
   color: #fff;
   font-weight: bold;
   background-color: #A5223B;
-	font-size: 15px;
+  min-width: 28px;
+  min-height: 28px;
+}
+
+.labels {
+  color: #fff;
+  background-color: #EE8022;
+  border-radius: 5px;
+  text-align: center;
+  width: auto;
 }

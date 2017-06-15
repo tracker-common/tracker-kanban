@@ -18,9 +18,9 @@ class Column extends React.Component{
     if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
 
-        <span><button className="deleButton" onClick={this.deleColumn_.bind(this)}>X</button>
+        <span><button className="remove_column" onClick={this.deleColumn_.bind(this)}>✖</button>
         <span> </span>
-        <button className="editButton" onClick={this.editColumn_.bind(this)}></button>{this.showEditForm()}{this.showDeleteForm()}</span>
+        <button className="editButton" onClick={this.editColumn_.bind(this)}>✎</button>{this.showEditForm()}{this.showDeleteForm()}</span>
       )
     }
   }
@@ -178,7 +178,7 @@ class Column extends React.Component{
           </div>
             <br/>
           <div>
-            <input type="submit" value="Submit" />
+            <input className="submit_button" type="submit" value="Submit" />
           </div>
         </form>
       )
