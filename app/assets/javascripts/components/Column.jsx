@@ -17,10 +17,9 @@ class Column extends React.Component{
   customColEdit() {
     if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
-
-        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>
+        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}>✎</button>
         <span> </span>
-        <button onClick={this.deleColumn_.bind(this)}>X</button>{this.showEditForm()}{this.showDeleteForm()}</span>
+        <button className="remove_column" onClick={this.deleColumn_.bind(this)}>X</button>{this.showEditForm()}{this.showDeleteForm()}</span>
       )
     }
   }
@@ -191,9 +190,9 @@ class Column extends React.Component{
         <div className="deleForm">
         Are you sure you want to delete this column?
         <br />
-        <button onClick={this.handleDelete_.bind(this)}>Yes</button>
+        <button className="delete_yes" onClick={this.handleDelete_.bind(this)}>✓</button>
         <span>  </span>
-        <button onClick={this.deleColumn_.bind(this)}>No</button>
+        <button className="delete_no" onClick={this.deleColumn_.bind(this)}>✗</button>
         </div>
       )
     }

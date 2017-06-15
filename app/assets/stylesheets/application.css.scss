@@ -152,6 +152,20 @@ h1 {
   border-radius: 5px;
   margin-left: 25px;
   font-size: 15px;
+  background-color: #4878A7;
+  color: #fff;
+  font-weight: bold;
+}
+
+.create_form {
+  margin-left: 28px;
+}
+
+.submit_button {
+  border-radius: 5px;
+  background-color: #4878A7;
+  color: #fff;
+  font-weight: bold;
 }
 
 button:hover {
@@ -196,10 +210,11 @@ button:hover {
 }
 
 .remove_column {
-	float: right;
+	float: left;
 	border-radius: 5px;
 	background-color: #eee;
 	font-size: 15px;
+  margin-right: 5px;
 }
 
 .editColumnForm {
@@ -209,5 +224,21 @@ button:hover {
 }
 
 .deleForm {
-	font-size: 20px;
+	font-size: 15px;
+}
+
+.delete_yes {
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #639118;
+	font-size: 15px;
+}
+
+.delete_no {
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  background-color: #A5223B;
+	font-size: 15px;
 }
