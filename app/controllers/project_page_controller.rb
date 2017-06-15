@@ -110,11 +110,21 @@ class ProjectPageController < ApplicationController
 		 column = {column_name: params[:column_name],
 			 				 label_value: params[:label_value],
 			 				 state_value: params[:state_value],
-						 	 position_value: params[:position_value]}
-
-
+						 	 position_value: params[:position_value],
+						 	 max_value: params[:max_value]}
 		  data_filtered = makeForDatabase(data, column)
 			updateDatabase(data_filtered, data)
+	 end
+
+	 def deleteOldColumn
+		 project = Project.find_by(id: params[:project_id].to_i)
+		  puts "COLUMNS BEFORE DELETIONS: #{project.columns}"
+	 	 card_set = project.findAndDeleteColumn(params[:name_of_col])
+		 if card_set.count != 0
+			 project.insertCardSet(card_set)
+		 end
+
+		project.save
 	 end
 
 
