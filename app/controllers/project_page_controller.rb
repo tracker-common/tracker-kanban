@@ -183,6 +183,17 @@ class ProjectPageController < ApplicationController
 
 		 response = HTTParty.put("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/stories/#{story_id}", headers: {"X-TrackerToken" => "#{token}"}, body: {"current_state":"#{new_state}"})
 		 puts response.body
-
 	 end
+
+   def RequestLiveUpdate
+		 puts "Requesting Live Update!!! "
+		 token = params[:token]
+		 project_id = params[:project_id]
+		 response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/activity?date_format=millis,occured_after=1497551331003", headers: {"X-TrackerToken" => "#{token}"})
+		 json = JSON.parse(response.body)
+		 puts json
+	 end
+
+
+
 end

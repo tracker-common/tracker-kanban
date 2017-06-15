@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   delete 'project_page/deleteOldColumn'
 
 
+  get 'project_page/RequestLiveUpdate'
+
+
   resources :sessions, only: [:create, :destroy]
   resource :home, only: [:show]
 
