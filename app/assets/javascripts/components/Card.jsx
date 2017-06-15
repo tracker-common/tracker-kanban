@@ -64,7 +64,7 @@ class Card extends React.Component {
     if (this.props.card["labels"].length != 0){
       return (
         <span>
-        <p className="labels">{this.props.card["labels"][0]["name"]}</p>
+        <p>{this.props.card["labels"][0]["name"]}</p>
         </span>
       );
     }
