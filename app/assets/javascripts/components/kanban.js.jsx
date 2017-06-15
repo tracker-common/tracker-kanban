@@ -108,7 +108,7 @@ class App extends React.Component {
           var state = translation_states[card["current_state"]];
           for (var column in current_columns) {
             if (current_columns[column]["name"] == state) {
-              current_columns[column]["stories"].push(card);
+              current_columns[column]["stories"].splice(0, 0, card);
               new_column = current_columns[column]["name"];
             }
           }
@@ -119,7 +119,7 @@ class App extends React.Component {
       var state = translation_states[card["current_state"]];
       for (var column in current_columns) {
         if (current_columns[column]["name"] == state) {
-          current_columns[column]["stories"].push(card);
+          current_columns[column]["stories"].splice(0, 0, card);
           new_column = current_columns[column]["name"];
         }
       }
@@ -131,7 +131,7 @@ class App extends React.Component {
           var state = translation_states[card["current_state"]];
           for (var column in current_columns) {
             if (current_columns[column]["name"] == state) {
-              current_columns[column]["stories"].push(card);
+              current_columns[column]["stories"].splice(0, 0, card);
               new_column = current_columns[column]["name"];
             }
           }
@@ -144,7 +144,7 @@ class App extends React.Component {
                   var state = translation_states[card["current_state"]];
                   for (var column in current_columns) {
                     if (current_columns[column]["name"] == state) {
-                      current_columns[column]["stories"].push(card);
+                      current_columns[column]["stories"].splice(0, 0, card);
                       new_column = current_columns[column]["name"];
                     }
                   }
@@ -155,7 +155,7 @@ class App extends React.Component {
                 var state = translation_states[card["current_state"]];
                 for (var column in current_columns) {
                   if (current_columns[column]["name"] == state) {
-                    current_columns[column]["stories"].push(card);
+                    current_columns[column]["stories"].splice(0, 0, card);
                     new_column = current_columns[column]["name"];
                   }
                 }
@@ -172,7 +172,7 @@ class App extends React.Component {
                 var state = translation_states[card["current_state"]];
                 for (var column in current_columns) {
                   if (current_columns[column]["name"] == state) {
-                    current_columns[column]["stories"].push(card);
+                    current_columns[column]["stories"].splice(0, 0, card);
                     new_column = current_columns[column]["name"];
                   }
                 }
@@ -183,7 +183,7 @@ class App extends React.Component {
               var state = translation_states[card["current_state"]];
               for (var column in current_columns) {
                 if (current_columns[column]["name"] == state) {
-                  current_columns[column]["stories"].push(card);
+                  current_columns[column]["stories"].splice(0, 0, card);
                   new_column = current_columns[column]["name"];
                 }
               }

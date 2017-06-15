@@ -5,7 +5,7 @@ class Card extends React.Component {
     this.handleCardRight = this.handleCardRight.bind(this);
     this.handleRejectClick = this.handleRejectClick.bind(this);
     this.handleAcceptClick = this.handleAcceptClick.bind(this);
-    this.handleStartClick - this.handleStartClick.bind(this);
+    this.handleStartClick = this.handleStartClick.bind(this);
   }
   handleRejectClick(event) {
     this.props.onChangeCard(this.props.card["name"] ,this.props.card["current_state"], "rejected_delivered", this.props.columnName);
