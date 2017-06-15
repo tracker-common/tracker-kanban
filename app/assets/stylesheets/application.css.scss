@@ -33,7 +33,7 @@ h1 {
 }
 
 .drop_item:hover {
-  background-color: #C0C0C0;
+  background-color: #eee;
   color: #fff;
 }
 
@@ -249,4 +249,8 @@ button:hover {
   background-color: #A5223B;
   min-width: 28px;
   min-height: 28px;
+}
+
+.labels {
+  font-size: 10px;
 }
