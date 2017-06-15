@@ -62,7 +62,7 @@ class App extends React.Component {
              }
           }
         }
-        for (var i = temp_values.length -1; i >= 0; i--){
+        for (var i = temp_values.length - 1; i >= 0; i--){
           current_cards[columns]["stories"].splice(temp_values[i],1);
         }
 
@@ -377,7 +377,7 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} onChange={this.handleUpdateCardChange}/>
+                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} position_value={i} onChange={this.handleUpdateCardChange}/>
                     )
                   }.bind(this))}
           </div>
