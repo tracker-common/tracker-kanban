@@ -1,7 +1,7 @@
 class Column extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: '5'}
+    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: '10'}
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -213,7 +213,7 @@ class Column extends React.Component{
         {this.props.data.stories.map(function(card, i){
           if (i < self.state.max_value){
             return (
-              <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={self.state.column_name}/>
+              <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]}/>
             )
           }
         }.bind(this))}

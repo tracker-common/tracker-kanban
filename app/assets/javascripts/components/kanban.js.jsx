@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: '5'};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: '10'};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -252,17 +252,17 @@ class App extends React.Component {
   }
 
   handleDelete(name, info) {
+       console.log(info);
     $.ajax({
       method: 'DELETE',
       data: {
         project_id: this.props.data.project_id,
-        state_value: this.state.state_value,
-        column_name: this.state.column_name,
-        label_value: this.state.label_value,
-        position_value: this.state.position_value,
-        max_value: this.state.max_value,
+        name_of_col: name,
       },
       url: '/project_page/deleteOldColumn',
+      error:function(){
+       alert('Unable to Delete column and send information.');
+      }
     });
 
     var remColumns = []
