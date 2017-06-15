@@ -123,6 +123,7 @@ class ProjectPageController < ApplicationController
 		 if card_set.count != 0
 			 project.insertCardSet(card_set)
 		 end
+
 		project.save
 	 end
 

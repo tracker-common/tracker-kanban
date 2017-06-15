@@ -17,6 +17,7 @@ class Column extends React.Component{
   customColEdit() {
     if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
+
         <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>
         <span> </span>
         <button onClick={this.deleColumn_.bind(this)}>X</button>{this.showEditForm()}{this.showDeleteForm()}</span>
@@ -132,7 +133,7 @@ class Column extends React.Component{
             <br/>
           </div>
 
-            <div>
+          <div>
             <label>
             Pick the label:
               <select value={this.state.label_value} name="label_value" onChange={this.handleLabelChange}>
@@ -151,7 +152,7 @@ class Column extends React.Component{
               <select value={this.state.position_value} name="position_value" onChange={this.handlePositionChange}>
               {this.props.filter.columns.map(function(label, i){
                 return(
-                  <option value={i}>{i+1}</option>
+                  <option value={i} key={i}>{i+1}</option>
                   )
               })}
               </select>
@@ -175,7 +176,7 @@ class Column extends React.Component{
               </select>
             </label>
           </div>
-
+            <br/>
           <div>
             <input type="submit" value="Submit" />
           </div>

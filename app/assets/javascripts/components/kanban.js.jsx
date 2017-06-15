@@ -252,7 +252,6 @@ class App extends React.Component {
   }
 
   handleDelete(name, info) {
-       console.log(info);
     $.ajax({
       method: 'DELETE',
       data: {
