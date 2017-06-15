@@ -442,7 +442,7 @@ class App extends React.Component {
            </div>
            <input value={this.props.data.project_id} name="project_id" hidden></input>
          <div>
-           <input type="submit" value="Submit" />
+           <input className="submit_button" type="submit" value="Submit" />
            </div>
          </form>
        );

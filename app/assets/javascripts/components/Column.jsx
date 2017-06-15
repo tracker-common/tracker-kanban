@@ -191,9 +191,9 @@ class Column extends React.Component{
         <div className="deleForm">
         Are you sure you want to delete this column?
         <br />
-        <button onClick={this.handleDelete_.bind(this)}>Yes</button>
+        <button className="delete_yes" onClick={this.handleDelete_.bind(this)}>✓</button>
         <span>  </span>
-        <button onClick={this.deleColumn_.bind(this)}>No</button>
+        <button className="delete_no" onClick={this.deleColumn_.bind(this)}>✗</button>
         </div>
       )
     }
