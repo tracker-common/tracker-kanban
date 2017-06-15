@@ -113,7 +113,7 @@ class ProjectPageController < ApplicationController
 						 	 position_value: params[:position_value],
 						 	 max_value: params[:max_value]}
 		  data_filtered = makeForDatabase(data, column)
-			updateDatabase(data_filtered, data)
+			#updateDatabase(data_filtered, data)
 	 end
 
 	 def deleteOldColumn

@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: 5};
+    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: '5'};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -195,9 +195,6 @@ class App extends React.Component {
        alert('Unable to create column and send information.');
       }
     });
-
-
-
   }
 
   handleChange(event) {
@@ -232,6 +229,7 @@ class App extends React.Component {
         column_name: this.state.column_name,
         label_value: this.state.label_value,
         position_value: this.state.position_value,
+        max_value: this.state.max_value,
       },
       url: '/project_page/createNewColumn',
     });
@@ -262,6 +260,7 @@ class App extends React.Component {
         column_name: this.state.column_name,
         label_value: this.state.label_value,
         position_value: this.state.position_value,
+        max_value: this.state.max_value,
       },
       url: '/project_page/deleteOldColumn',
     });
@@ -381,8 +380,8 @@ class App extends React.Component {
              <select value={this.state.state_value} name="state_value" onChange={this.handleChange}>
                <option value="unstarted">unstarted</option>
                <option value="started">started</option>
-               <option value="delivered">delivered</option>
                <option value="finished">finished</option>
+               <option value="delivered">delivered</option>
                <option value="accepted">accepted</option>
                <option value="rejected">rejected</option>
              </select>
