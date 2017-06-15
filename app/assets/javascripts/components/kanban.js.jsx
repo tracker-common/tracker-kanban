@@ -371,7 +371,7 @@ class App extends React.Component {
 
       return (
         <div>
-          <button onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
+          <button className="create_column" onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
           {this.requestLiveUpdates()}
           <div className="column_container">
@@ -388,7 +388,7 @@ class App extends React.Component {
    showForm() {
      if (this.state.showForm) {
        return (
-         <form onSubmit={this.handleSubmit} action="/project_page/createNewColumn">
+         <form className="create_form" onSubmit={this.handleSubmit} action="/project_page/createNewColumn">
          <div>
              <label>
                Custom column name:

@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/mongodb/mongoid.git
-  revision: 643a0ebf39bf4f2af139e14807712454e1fe159c
+  revision: a26341e3fd2aad7d7281f5855b75342b4275721c
   specs:
     mongoid (6.2.0)
       activemodel (~> 5.1)
@@ -8,7 +8,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/webpacker.git
-  revision: da4e5103adb39bc8f3180c22424dd42531f0fcdb
+  revision: 017e8f3acbd5caa58f791a264cd18183272807f9
   specs:
     webpacker (2.0)
       activesupport (>= 4.2)

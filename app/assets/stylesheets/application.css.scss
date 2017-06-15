@@ -1,23 +1,40 @@
 @import "bootstrap";
-body {
-	font: Helvetica;
-	font-size: 15 px;
-	color: #4878A7;
-	align-items: center;
+html, body, #app {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-body::before {
-	content: "";
-	position: fixed;
-  top: 0;
- 	left: 0;
- 	width: 100%;
- 	height: 100%;
-	background-size: cover;
- 	opacity: 0.5;
- 	z-index: -1;
- 	background-image: url(http://wallpapercave.com/wp/eFsi7Wi.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
+
+body {
+  background: #eee;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1 {
+  font-weight: 200;
+  color: #3b414c;
+  font-size: 20px;
+}
+
+.dropdown {
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
+  background-color: #4878A7;
+  border-radius: 5px;
+}
+
+.drop_item {
+  width: 200px;
+  transition: 0.3s;
+  margin: auto;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.drop_item:hover {
+  background-color: #C0C0C0;
+  color: #fff;
 }
 
 .sign_in {
@@ -26,36 +43,46 @@ body::before {
 	align-content: center;
 }
 
-.sign_out {
-	margin-left: 15px;
+.top_nav {
+	background-color: #4878A7;
+	overflow: hidden;
 }
 
-h1 {
-	font-size: 30 px;
-	font: Helvetica;
-	color: #4878A7;
-	align-items: center;
+.top_nav a {
+	float: right;
+  display: block;
+  color: #4878A7;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
 }
 
 .project_view {
 	font: Helvetica;
 	font-weight: bold;
 	font-size: 35px;
-	color: #4878A7;
 	text-align: center;
 }
 
 .card {
-	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-	transition: 0.3s;
-	width: 300px;
-	margin: auto;
-	text-align: center;
-	background-color: white;
-	border-left: 6px solid #4878a7;
-	border-radius: 6px;
-	padding-left: 6px;
-	padding-right: 6px;
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  padding: 10px 10px 10px 15px;
+  margin: 0 0 10px 0;
+  overflow: auto;
+  border: 1px solid #e5e5df;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  max-width: 350px;
+	min-height: 150px;
+}
+
+.card_title {
+  font-weight: bold;
+	font-size: 20px;
+  border-bottom: solid 5px transparent;
 }
 
 .card:hover {
@@ -69,45 +96,91 @@ h1 {
 	color: #4878A7;
 }
 
-.summary {
-	font-size: 12px;
+.name {
+	font-size: 15px;
 	text-align: left;
 	color: black;
-	margin-left: 15px;
+	border-top: dashed 1px #eee;
 }
 
-.feature::before{
-	content: "\02B50";
-}
-
-.bug::before {
-	content: "\01F41E"
-}
-
-.chore::before {
-	content: "\02699"
-}
-
-button {
-	background-color: #cecece;
+.accept_button {
+	float: right;
+	border-radius: 5px;
+	background-color: #639118;
+	font-size: 15px;
 	font-weight: bold;
-	font-size: 20px;
+	color: white;
+}
+
+.reject_button {
+	float: right;
+	border-radius: 5px;
+	background-color: #A5223B;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+}
+
+.start_button {
+	float: right;
+	border-radius: 5px;
+	background-color: #4878A7;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+}
+
+.direction_button_right {
+	float: right;
+	border-radius: 5px;
+	background-color: #4878A7;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+}
+
+.direction_button_left {
+	float: left;
+	border-radius: 5px;
+	background-color: #4878A7;
+	font-size: 15px;
+	font-weight: bold;
+	color: white;
+}
+
+.create_column {
+  border-radius: 5px;
+  margin-left: 25px;
+  font-size: 15px;
 }
 
 button:hover {
 	opacity: 0.7;
 }
 
-.column_layout {
-	flex-grow: 1;
-	width: 320px;
+.column_layout{
+  position: relative;
+  vertical-align: top;
+  white-space: normal;
+  height: 100%;
+  flex-grow: 1;
+  min-width: 375px;
+  max-width: 400px;
+  padding: 0 20px;
 }
 
 .column_title {
-	font-size: 25px;
-	text-align: center;
+	font-size: 18px;
+	text-align: left;
 	min-width: 320px;
 	flex-grow: 1;
+	margin-left: 10px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+}
+
+.column_title::after {
+	content: "   •••";
 }
 
 .column_container {
@@ -115,13 +188,24 @@ button:hover {
 	flex-direction: row;
 }
 
-.editButton::before {
-	content: "\0270E";
+.editButton {
+	float: right;
+	border-radius: 5px;
+	background-color: #eee;
+	font-size: 15px;
+}
+
+.remove_column {
+	float: right;
+	border-radius: 5px;
+	background-color: #eee;
+	font-size: 15px;
 }
 
 .editColumnForm {
 	font-size: 15px;
 	text-align: left;
+  margin-left: 10px;
 }
 
 .deleForm {
