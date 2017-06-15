@@ -113,7 +113,7 @@ class ProjectPageController < ApplicationController
 						 	 position_value: params[:position_value],
 						 	 max_value: params[:max_value]}
 		  data_filtered = makeForDatabase(data, column)
-			updateDatabase(data_filtered, data)
+			# updateDatabase(data_filtered, data)
 	 end
 
 	 def deleteOldColumn
@@ -172,13 +172,13 @@ class ProjectPageController < ApplicationController
 	 end
 
 	 def updateDatabaseWithNewCardPlacements
-		 project = Project.find_by(id: params[:project_id].to_i)
-		 moved_card = project.findAndDeleteStoryID(params[:old_column], params[:story_id])
-		 moved_card["current_state"] = params[:new_state]
-		 puts " THE MOVED CARD IS : #{moved_card}"
-		 project.insertCard(params[:new_column], moved_card)
-		 project.save
-		 updateTrackerAPI(params[:project_id].to_i, params[:story_id].to_i, params[:new_state], params[:token])
+		#  project = Project.find_by(id: params[:project_id].to_i)
+		#  moved_card = project.findAndDeleteStoryID(params[:old_column], params[:story_id])
+		#  moved_card["current_state"] = params[:new_state]
+		#  puts " THE MOVED CARD IS : #{moved_card}"
+		#  project.insertCard(params[:new_column], moved_card)
+		#  project.save
+		#  updateTrackerAPI(params[:project_id].to_i, params[:story_id].to_i, params[:new_state], params[:token])
 	 end
 
 	 def updateTrackerAPI(project_id, story_id, new_state, token)

@@ -205,7 +205,6 @@ class Column extends React.Component{
   }
 
   render() {
-    var self = this;
     return (
       <div className="column_layout">
         <div className="column_title">
@@ -213,12 +212,10 @@ class Column extends React.Component{
             {this.customColEdit()}
         </div>
         {this.props.data.stories.map(function(card, i){
-          if (i < self.state.max_value){
-            return (
-                <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={self.state.column_name}/>
-            )
-          }
-        })}
+          return (
+            <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]}/>
+          )
+        }.bind(this))}
       </div>
     );
   }
