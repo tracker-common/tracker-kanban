@@ -24,6 +24,7 @@ class Card extends React.Component {
   }
 
   renderUserMessage(){
+    console.log(this.props.position_value)
       if (this.props.card["current_state"] === 'delivered'){
         return (
           <span>
@@ -32,14 +33,30 @@ class Card extends React.Component {
             <button className="accept_button" onClick={this.handleAcceptClick.bind(this)}>Accept</button></p>
           </span>
         );
-      } else if (this.props.card["current_state"] === 'unstarted' || this.props.card["current_state"] === 'rejected' ) {
+      // } else if (this.props.card["current_state"] === 'unstarted' || this.props.card["current_state"] === 'rejected' ) {
+      //   return (
+      //     <span>
+      //       <p><button className="start_button" onClick={this.handleStartClick.bind(this)}>Start</button></p>
+      //     </span>
+      //   );
+      }
+      else if (this.props.card["position_value"] === 0){
         return (
           <span>
-            <p><button className="start_button" onClick={this.handleStartClick.bind(this)}>Start</button></p>
+            <p><button className="direction_button_right" onClick={this.handleCardRight.bind(this)}>⇨</button></p>
           </span>
-        );
+        )
       }
-      if (this.props.card["current_state"] !== 'accepted'){
+      else if (this.props.card["position_value"] !== 0){
+        return (
+          <span>
+            <p><button className="direction_button_right" onClick={this.handleCardRight.bind(this)}>⇨</button>
+            <span> </span>
+            <button className="direction_button_left" onClick={this.handleCardLeft.bind(this)}>⇦</button></p>
+          </span>
+        )
+      }
+      else {
         return (
           <span>
             <p><button className="direction_button_right" onClick={this.handleCardRight.bind(this)}>⇨</button>

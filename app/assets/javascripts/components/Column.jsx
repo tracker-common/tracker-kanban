@@ -214,7 +214,7 @@ class Column extends React.Component{
         {this.props.data.stories.map(function(card, i){
           if (i < self.state.max_value){
             return (
-              <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]} position_value={this.props.data["position_value"]}/>
+              <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]} position_value={self.state.position_value}/>
             )
           }
         }.bind(this))}
