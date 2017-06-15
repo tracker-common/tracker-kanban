@@ -1,7 +1,7 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: '10'};
+    this.state = {project_id: this.props.project_id, state_value: 'unstarted', column_name: '', label_value: this.props.d[0], position_value: 0, info: this.props.data.columns, showEditForm: false, max_value: '10'};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
@@ -12,10 +12,33 @@ class App extends React.Component {
     this.switchColumns = this.switchColumns.bind(this);
     this.requestLiveUpdates = this.requestLiveUpdates.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.liveUpdate = this.liveUpdate.bind(this);
   }
 
   requestLiveUpdates() {
-    console.log("requesting live update");
+
+    $.ajax({
+      type: "GET",
+      url: '/project_page/RequestLiveUpdate',
+      data: {
+        project_id: this.props.project_id,
+        token: this.props.token,
+      },
+      success: function(data) {
+        console.log("Found Data");
+      },
+      error:function(){
+       alert('Unable to create column and send information.');
+     },
+    });
+       setInterval(function(){
+         console.log("Requesting Live Update");
+
+     }, 5000);
+  }
+
+  liveUpdate() {
+    console.log("Requesting live udpate");
   }
 
   retrieveCards() {
