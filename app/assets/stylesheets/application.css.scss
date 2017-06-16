@@ -202,6 +202,7 @@ button:hover {
 .column_container {
 	display: flex;
 	flex-direction: row;
+  overflow-x: auto;
 }
 
 .editButton {
