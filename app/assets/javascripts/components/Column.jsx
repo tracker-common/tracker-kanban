@@ -1,7 +1,7 @@
 class Column extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: 0, max_value: '10'}
+    this.state = {showEditForm: false, state_value: '', column_name: '', label_value: '', position_value: props.position_value, max_value: '10'}
     this.handleColumnNameChange = this.handleColumnNameChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleLabelChange = this.handleLabelChange.bind(this);
@@ -170,6 +170,10 @@ class Column extends React.Component{
     }
   }
 
+  setColumnPositioning() {
+    console.log(this.props.filter.columns);
+  }
+
   showDeleteForm() {
     if (this.state.showDeleteForm) {
       return (
@@ -184,8 +188,8 @@ class Column extends React.Component{
     }
   }
 
-  handleCardChange(name, current_state, direction, column_name){
-    this.props.onChange(name, current_state, direction, column_name);
+  handleCardChange(name, position_value, current_state, direction, column_name){
+    this.props.onChange(name, position_value, current_state, direction, column_name);
   }
 
   render() {
@@ -199,7 +203,7 @@ class Column extends React.Component{
         {this.props.data.stories.map(function(card, i){
           if (i < self.state.max_value){
             return (
-              <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]}/>
+              <Card card={card} key={i} onChangeCard={this.handleCardChange} columnName={this.props.data["name"]} position_value={self.state.position_value} last_position={self.props.filter.columns.length - 1}/>
             )
           }
         }.bind(this))}
