@@ -212,16 +212,16 @@ class App extends React.Component {
               switch(current_columns[column]["name"]) {
                 case "READY":
                   card["current_state"] = "unstarted";
-                break; 
+                break;
                 case "IN_PROGRESS":
                   card["current_state"] = "started";
-                break; 
+                break;
                 case "FINISHED":
                   card["current_state"] = "finished";
-                break; 
+                break;
                 case "DELIVERED":
                   card["current_state"] = "delivered";
-                break; 
+                break;
                 case "DONE":
                   card["current_state"] = "accepted";
                 break;
@@ -245,16 +245,16 @@ class App extends React.Component {
               switch(current_columns[column]["name"]) {
                 case "READY":
                   card["current_state"] = "unstarted";
-                break; 
+                break;
                 case "IN_PROGRESS":
                   card["current_state"] = "started";
-                break; 
+                break;
                 case "FINISHED":
                   card["current_state"] = "finished";
-                break; 
+                break;
                 case "DELIVERED":
                   card["current_state"] = "delivered";
-                break; 
+                break;
                 case "DONE":
                   card["current_state"] = "accepted";
                 break;
@@ -269,7 +269,7 @@ class App extends React.Component {
           }
           this.setState({info: current_columns});
       break;
-      
+
       default:
         alert("You are headed into the bleh")
       break;
@@ -453,7 +453,7 @@ class App extends React.Component {
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (
-                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} onChange={this.handleUpdateCardChange} labels={self.props.d}/>
+                      <Column data={column} id={self.props.project_id} filter={self.props.data} key={i} handleUpdate={self.handleUpdate} handleDelete={self.handleDelete} onChange={this.handleUpdateCardChange} labels={self.props.d} position_value={i}/>
                     )
                   }.bind(this))}
           </div>
