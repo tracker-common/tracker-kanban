@@ -18,9 +18,9 @@ class Column extends React.Component{
     if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
 
-        <span> <button className="editButton" onClick={this.editColumn_.bind(this)}> </button>
+        <span><button className="deleButton" onClick={this.deleColumn_.bind(this)}>X</button>
         <span> </span>
-        <button onClick={this.deleColumn_.bind(this)}>X</button>{this.showEditForm()}{this.showDeleteForm()}</span>
+        <button className="editButton" onClick={this.editColumn_.bind(this)}></button>{this.showEditForm()}{this.showDeleteForm()}</span>
       )
     }
   }
@@ -91,21 +91,6 @@ class Column extends React.Component{
   }
 
   showEditForm() {
-    var labels = new Set();
-    for (var i = 0; i < this.props.filter.columns.length; i++) {
-      var value = this.props.filter.columns[i]
-      for (var j = 0; j < value["stories"].length; j++) {
-        var story = value["stories"][j]
-        if (story["labels"][0] != null) {
-          labels.add(story["labels"][0]["name"])
-        }
-      }
-    }
-    var lTitles = [];
-    labels.forEach(function(value) {
-      lTitles.push(value);
-    });
-
     if(this.state.showEditForm) {
 
       return (
@@ -137,7 +122,7 @@ class Column extends React.Component{
             <label>
             Pick the label:
               <select value={this.state.label_value} name="label_value" onChange={this.handleLabelChange}>
-              {lTitles.map(function(label, i){
+              {this.props.labels.map(function(label, i){
                 return(
                   <option value={label} key={i}>{label}</option>
                   )
@@ -191,9 +176,9 @@ class Column extends React.Component{
         <div className="deleForm">
         Are you sure you want to delete this column?
         <br />
-        <button onClick={this.handleDelete_.bind(this)}>Yes</button>
+        <button className="delete_yes" onClick={this.handleDelete_.bind(this)}>✓</button>
         <span>  </span>
-        <button onClick={this.deleColumn_.bind(this)}>No</button>
+        <button className="delete_no" onClick={this.deleColumn_.bind(this)}>✗</button>
         </div>
       )
     }
