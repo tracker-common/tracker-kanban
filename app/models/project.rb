@@ -3,6 +3,7 @@ class Project
   field :name, type: String
   field :id, type: Integer
   field :columns, type: Array
+  field :liveRequestDate, type: String
 
 
 
@@ -49,7 +50,6 @@ class Project
 
   def insertCardSet(card_set)
     translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
-
       columns.each do |column|
         state = translation_states[card_set[0]["current_state"].to_sym]
         if state == column["name"]

@@ -1,3 +1,5 @@
+require 'date'
+
 class ProjectPageController < ApplicationController
 	skip_before_action :verify_authenticity_token
 	include HTTParty
@@ -16,9 +18,20 @@ class ProjectPageController < ApplicationController
 		if checkInDatabase(json)
 				data = Project.find_by(id: json["id"])
 				@data_filtered = formatData(data)
+				@time_stamp = data.liveRequestDate
 		else
-				@data_filtered = filterData(json)
+				@data_filtered = filterData(json, @token)
 		end
+	 end
+
+	 def getTimeStamp(project_id, token)
+		 response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/activity?limit=1", headers: {"X-TrackerToken" => "#{token}"})
+		 json = JSON.parse(response.body)
+		 time_stamp = ""
+		 stop = false
+		 story = json.last
+		 time_stamp = story["occurred_at"]
+		 return time_stamp
 	 end
 
 	 def show
@@ -52,7 +65,7 @@ class ProjectPageController < ApplicationController
 	 end
 
 
-	 def filterData(data)
+	 def filterData(data, token)
 		unstarted_stories = {name: "READY", stories:[]}
 		inProgress = {name: "IN-PROGRESS", stories:[]}
 		finished = {name: "FINISHED", stories:[]}
@@ -82,15 +95,17 @@ class ProjectPageController < ApplicationController
 		 data_filtered[:columns].push(finished)
 		 data_filtered[:columns].push(delivered)
 		 data_filtered[:columns].push(accepted)
-		 sendToDatabase(data_filtered, data)
+		 sendToDatabase(data_filtered, data, token)
 		 return data_filtered
    end
 
-	 def sendToDatabase(data, name)
+	 def sendToDatabase(data, name, token)
 		 @project = Project.new
 		 @project.name = name["name"]
 		 @project.id = name["id"]
 		 @project.columns = data[:columns]
+		 time_stamp = getTimeStamp(name["id"], token)
+		 @project.liveRequestDate = time_stamp
 		 @project.save
 	 end
 
@@ -123,7 +138,6 @@ class ProjectPageController < ApplicationController
 		 if card_set.count != 0
 			 project.insertCardSet(card_set)
 		 end
-
 		project.save
 	 end
 
@@ -180,18 +194,54 @@ class ProjectPageController < ApplicationController
 
 	 def updateTrackerAPI(project_id, story_id, new_state, token)
 		 puts "INFORMATION: #{project_id}, #{story_id}, #{new_state}"
-
 		 response = HTTParty.put("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/stories/#{story_id}", headers: {"X-TrackerToken" => "#{token}"}, body: {"current_state":"#{new_state}"})
 		 puts response.body
 	 end
 
    def RequestLiveUpdate
 		 puts "Requesting Live Update!!! "
-		 token = params[:token]
+
+		 user = User.find_by(uid: session[:user_id])
+		 token = user.api_token
 		 project_id = params[:project_id]
-		 response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/activity?date_format=millis,occured_after=1497551331003", headers: {"X-TrackerToken" => "#{token}"})
+
+		 project = Project.find_by(id: params[:project_id].to_i)
+
+		 puts "THE TIME STAMP IS: #{time_stamp}"
+		 response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/activity?occurred_after=#{time_stamp}", headers: {"X-TrackerToken" => "#{token}"})
 		 json = JSON.parse(response.body)
-		 puts json
+		 @list_of_changes = []
+
+		 bleh = DateTime.parse(time_stamp)
+		 puts "TRYING SOMETHING!!! :#{time_stamp.class}"
+
+		#  puts "THE JSON IS: #{json.to_json}"
+
+		 json.each do |story|
+			 story["changes"].each do |value|
+				  if value["kind"] == "story" && value["change_type"] == "update" && value["new_values"]["current_state"] != nil
+						changes = {story_id: "", original_state: "", new_state: ""}
+						changes[:original_state] = value["original_values"]["current_state"]
+						changes[:new_state] = value["new_values"]["current_state"]
+						changes[:story_id] = value["id"]
+						@list_of_changes.push(changes)
+					end
+			 end
+		 end
+
+		 puts @list_of_changes
+
+		respond_to do |format|
+			format.json { render :json => @list_of_changes}
+		end
+	 end
+
+	 def updateDatabaseWithNewCardPlacementsFromTrackerAPI
+		 project = Project.find_by(id: params[:project_id].to_i)
+		 moved_card = project.findAndDeleteStoryID(params[:old_column], params[:story_id])
+		 moved_card["current_state"] = params[:new_state]
+		 project.insertCard(params[:new_column], moved_card)
+		 project.save
 	 end
 
 

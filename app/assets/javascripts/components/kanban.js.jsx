@@ -13,32 +13,109 @@ class App extends React.Component {
     this.requestLiveUpdates = this.requestLiveUpdates.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.liveUpdate = this.liveUpdate.bind(this);
+    this.handleupdatedInformationFromTracker = this.handleupdatedInformationFromTracker.bind(this);
+    this.placeCardInStack = this.placeCardInStack.bind(this);
   }
 
   requestLiveUpdates() {
+      //  setInterval(function() {
+      //    this.liveUpdate();
+       //
+      //  }.bind(this), 15000);
+  }
 
+  liveUpdate() {
+    var token = this.props.token;
+    var project_id = this.props.project_id;
+    var time_stamp = this.props.time_stamp
     $.ajax({
       type: "GET",
       url: '/project_page/RequestLiveUpdate',
       data: {
-        project_id: this.props.project_id,
-        token: this.props.token,
+        project_id: project_id,
       },
       success: function(data) {
-        console.log("Found Data");
-      },
+        this.handleupdatedInformationFromTracker(data)
+      }.bind(this),
       error:function(){
-       alert('Unable to create column and send information.');
+       alert('Unable to retrieve new information.');
      },
-    });
-       setInterval(function(){
-         console.log("Requesting Live Update");
-
-     }, 5000);
+   });
   }
 
-  liveUpdate() {
-    console.log("Requesting live udpate");
+  handleupdatedInformationFromTracker(cards){
+    var card_columns = this.state.info;
+    var translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+
+        // console.log("Found Data", cards);
+    // if (cards[card]["name"] != null){
+    //   this.placeCardInStack(cards[card]);
+    // } else {
+    //
+    // }
+
+    console.log(cards);
+
+    for (card in cards) {
+      var current_state = cards[card]["original_state"];
+      var state = translation_states[current_state];
+      for (column in card_columns){
+        if (state == card_columns[column]["name"]){
+          for (story in card_columns[column]["stories"]) {
+            if (cards[card]["story_id"] != undefined){
+              if (card_columns[column]["stories"][story]["id"] == cards[card]["story_id"]){
+
+                var new_s = cards[card]["new_state"];
+                var new_state = translation_states[new_s];
+
+
+                for (new_column in card_columns){
+                  if (new_state == card_columns[new_column]["name"]){
+                    card_columns[column]["stories"][story]["current_state"] = cards[card]["new_state"];
+                    card_columns[new_column]["stories"].push(card_columns[column]["stories"][story]);
+                    card_columns[column]["stories"].splice(story,1);
+
+                    $.ajax({
+                      type: "PUT",
+                      url: '/project_page/updateDatabaseWithNewCardPlacementsFromTrackerAPI',
+                      data: {
+                        project_id: this.props.data.project_id,
+                        story_id: cards[card]["story_id"],
+                        old_column: card_columns[column]["name"],
+                        new_column: card_columns[new_column]["name"],
+                        new_state: cards[card]["new_state"],
+                      },
+                      error:function(){
+                       alert('Unable to update database from TrackerAPI');
+                      }
+                    });
+                    break
+                  }
+                }
+                break
+              }
+            }
+          }
+        }
+      }
+    }
+
+    this.setState({info: card_columns});
+  }
+
+  placeCardInStack(card){
+    var card_columns = this.state.info;
+    var current_state = card["current_state"];
+    translation_states = {unstarted: "READY", rejected: "READY", started:"IN-PROGRESS", delivered: "DELIVERED", finished: "FINISHED", accepted: "DONE"}
+    var state = translation_states[current_state]
+
+    for (var columns in card_columns){
+      if (state == card_columns[columns]["name"]){
+        card_columns[columns]["stories"].push(card);
+      }
+    }
+    this.setState({info: card_columns});
+
   }
 
   retrieveCards() {
@@ -72,6 +149,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    {this.requestLiveUpdates()}
   }
 
   handleUpdateCardChange(name, current_state, direction, column_name) {
@@ -373,7 +451,6 @@ class App extends React.Component {
         <div>
           <button className="create_column" onClick={this.createNewColumn_.bind(this)}>Create New Column</button>
           {this.showForm()}
-          {this.requestLiveUpdates()}
           <div className="column_container">
                   {this.state.info.map(function(column, i){
                     return (

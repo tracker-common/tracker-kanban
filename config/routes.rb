@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   put 'project_page/updateDatabaseWithNewCardPlacements'
   delete 'project_page/deleteOldColumn'
+  put 'project_page/updateDatabaseWithNewCardPlacementsFromTrackerAPI'
 
 
   get 'project_page/RequestLiveUpdate'
