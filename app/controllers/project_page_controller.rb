@@ -133,7 +133,6 @@ class ProjectPageController < ApplicationController
 
 	 def deleteOldColumn
 		 project = Project.find_by(id: params[:project_id].to_i)
-		  puts "COLUMNS BEFORE DELETIONS: #{project.columns}"
 	 	 card_set = project.findAndDeleteColumn(params[:name_of_col])
 		 if card_set.count != 0
 			 project.insertCardSet(card_set)
@@ -186,16 +185,13 @@ class ProjectPageController < ApplicationController
 		 project = Project.find_by(id: params[:project_id].to_i)
 		 moved_card = project.findAndDeleteStoryID(params[:old_column], params[:story_id])
 		 moved_card["current_state"] = params[:new_state]
-		 puts " THE MOVED CARD IS : #{moved_card}"
 		 project.insertCard(params[:new_column], moved_card)
 		 project.save
 		 updateTrackerAPI(params[:project_id].to_i, params[:story_id].to_i, params[:new_state], params[:token])
 	 end
 
 	 def updateTrackerAPI(project_id, story_id, new_state, token)
-		 puts "INFORMATION: #{project_id}, #{story_id}, #{new_state}"
 		 response = HTTParty.put("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/stories/#{story_id}", headers: {"X-TrackerToken" => "#{token}"}, body: {"current_state":"#{new_state}"})
-		 puts response.body
 	 end
 
    def RequestLiveUpdate
@@ -210,30 +206,6 @@ class ProjectPageController < ApplicationController
 		 puts "THE TIME STAMP IS: #{time_stamp}"
 		 response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/activity?occurred_after=#{time_stamp}", headers: {"X-TrackerToken" => "#{token}"})
 		 json = JSON.parse(response.body)
-		 @list_of_changes = []
-
-		 bleh = DateTime.parse(time_stamp)
-		 puts "TRYING SOMETHING!!! :#{time_stamp.class}"
-
-		#  puts "THE JSON IS: #{json.to_json}"
-
-		 json.each do |story|
-			 story["changes"].each do |value|
-				  if value["kind"] == "story" && value["change_type"] == "update" && value["new_values"]["current_state"] != nil
-						changes = {story_id: "", original_state: "", new_state: ""}
-						changes[:original_state] = value["original_values"]["current_state"]
-						changes[:new_state] = value["new_values"]["current_state"]
-						changes[:story_id] = value["id"]
-						@list_of_changes.push(changes)
-					end
-			 end
-		 end
-
-		 puts @list_of_changes
-
-		respond_to do |format|
-			format.json { render :json => @list_of_changes}
-		end
 	 end
 
 	 def updateDatabaseWithNewCardPlacementsFromTrackerAPI
