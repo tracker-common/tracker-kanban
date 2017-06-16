@@ -118,7 +118,6 @@ class ProjectPageController < ApplicationController
 
 	 def deleteOldColumn
 		 project = Project.find_by(id: params[:project_id].to_i)
-		  puts "COLUMNS BEFORE DELETIONS: #{project.columns}"
 	 	 card_set = project.findAndDeleteColumn(params[:name_of_col])
 		 if card_set.count != 0
 			 project.insertCardSet(card_set)
@@ -172,15 +171,12 @@ class ProjectPageController < ApplicationController
 		 project = Project.find_by(id: params[:project_id].to_i)
 		 moved_card = project.findAndDeleteStoryID(params[:old_column], params[:story_id])
 		 moved_card["current_state"] = params[:new_state]
-		 puts " THE MOVED CARD IS : #{moved_card}"
 		 project.insertCard(params[:new_column], moved_card)
 		 project.save
 		 updateTrackerAPI(params[:project_id].to_i, params[:story_id].to_i, params[:new_state], params[:token])
 	 end
 
 	 def updateTrackerAPI(project_id, story_id, new_state, token)
-		 puts "INFORMATION: #{project_id}, #{story_id}, #{new_state}"
-
 		 response = HTTParty.put("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/stories/#{story_id}", headers: {"X-TrackerToken" => "#{token}"}, body: {"current_state":"#{new_state}"})
 		 puts response.body
 	 end
@@ -191,7 +187,6 @@ class ProjectPageController < ApplicationController
 		 project_id = params[:project_id]
 		 response = HTTParty.get("https://www.pivotaltracker.com/services/v5/projects/#{project_id}/activity?date_format=millis,occured_after=1497551331003", headers: {"X-TrackerToken" => "#{token}"})
 		 json = JSON.parse(response.body)
-		 puts json
 	 end
 
 
