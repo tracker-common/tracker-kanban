@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'home/delete_token'
 
   get 'project_page/home'
-
+  
   get 'project_page/createNewColumn'
   # post 'project_page/createNewColumn'
   put '/project_page/createNewColumn'

@@ -30,10 +30,6 @@
 <h3> Looks like your API key was wrong or you have no projects </h3>
 <%= link_to "Re-input your token", action: "delete_token" %>
 <% else %>
-
-<br />
-<br />
-
 <body>
 	<ul >
    	<% @projects.each do |c| %>
