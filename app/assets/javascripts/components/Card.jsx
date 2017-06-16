@@ -49,17 +49,6 @@ class Card extends React.Component {
         )
       }
   }
-  renderStoryType(){
-    if(this.props.card["story_type"] === "feature") {
-      return (<span className="feature"> </span>);
-    }
-    if(this.props.card["story_type"] === "bug") {
-      return (<span className="bug"> </span>);
-    }
-    if(this.props.card["story_type"] === "chore") {
-      return (<span className="chore"> </span>);
-    }
-  }
   renderLabel() {
     if (this.props.card["labels"].length != 0){
       return (
@@ -73,7 +62,6 @@ class Card extends React.Component {
     return (
         <div className="card">
           <p className="card_title">
-            {this.renderStoryType()}
             {this.props.card["story_type"]}
           </p>
           <p className="name"> {this.props.card["name"]} </p>

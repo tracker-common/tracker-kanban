@@ -12,7 +12,7 @@ class HomeController < ApplicationController
        render :layout => 'signed_in'""
  		 else
        goToToken(@user.api_token)
- 		 end  		
+ 		 end
   	end
   end
 
@@ -25,7 +25,7 @@ class HomeController < ApplicationController
  		@user.api_token = params[:token]
     	@user.save
  		  json = JSON.parse(response.body)
-    	puts "JSON IS #{json}"    
+    	#puts "JSON IS #{json}"
     	json.each do |value|
       		@projects.push(value)
     	end
@@ -41,7 +41,7 @@ class HomeController < ApplicationController
     @projects = Array.new
  	if response.code == 200
  		json = JSON.parse(response.body)
-    	puts "JSON IS #{json}"    
+    	#puts "JSON IS #{json}"
     json.each do |value|
       	@projects.push(value)
     	end
