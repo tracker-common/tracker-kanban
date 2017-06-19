@@ -18,7 +18,7 @@ class Column extends React.Component{
     if(this.props.data["name"] !== "READY" && this.props.data["name"] !== "IN-PROGRESS" && this.props.data["name"] !== "FINISHED" && this.props.data["name"] !== "DELIVERED" && this.props.data["name"] !== "DONE") {
       return (
 
-        <span><button className="remove_column" onClick={this.deleColumn_.bind(this)}>✖</button>
+        <span><button className="remove_column" onClick={this.deleColumn_.bind(this)}>X</button>
         <span> </span>
         <button className="editButton" onClick={this.editColumn_.bind(this)}>✎</button>{this.showEditForm()}{this.showDeleteForm()}</span>
       )
