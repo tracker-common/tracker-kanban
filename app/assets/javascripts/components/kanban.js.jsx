@@ -226,8 +226,9 @@ class App extends React.Component {
                   card["current_state"] = "accepted";
                 break;
                 default:
-                  var state = current_columns[column]["stories"][0]["current_state"];
-                  card["current_state"] = state;
+                  // console.log(current_columns[column]["stories"])
+                  // var state = current_columns[column]["stories"][0]["current_state"];
+                  // card["current_state"] = state;
                 break;
               }
               current_columns[column]["stories"].splice(0, 0, card);
@@ -241,7 +242,8 @@ class App extends React.Component {
         position_value = position_value + 1;
         for (var column in current_columns) {
             if (column == position_value) {
-              console.log("MY NAME IS ", current_columns[column]["name"]);
+              console.log("Column to Move to: ", current_columns[column]);
+              console.log("Card to Move: ")
               switch(current_columns[column]["name"]) {
                 case "READY":
                   card["current_state"] = "unstarted";
@@ -259,8 +261,12 @@ class App extends React.Component {
                   card["current_state"] = "accepted";
                 break;
                 default:
-                  var state = current_columns[column]["stories"][0]["current_state"];
-                  card["current_state"] = state;
+                  // console.log("current_columns[column][stories]: ",current_columns[column]["stories"])
+                  // var state = current_columns[column]["stories"][0]["current_state"];
+                  //
+                  //
+                  //
+                  // card["current_state"] = state;
                 break;
               }
               current_columns[column]["stories"].splice(0, 0, card);
